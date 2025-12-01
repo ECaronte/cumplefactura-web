@@ -4,32 +4,32 @@ const steps = [
   {
     number: '1',
     title: 'Paso 1',
-    description: 'El cliente compra en tu WooCommerce.'
+    description: 'El cliente hace un pedido en tu tienda WooCommerce.'
   },
   {
     number: '2',
     title: 'Paso 2',
-    description: 'CumpleFactura genera la factura en el mismo instante.'
+    description: 'CumpleFactura genera la factura automáticamente.'
   },
   {
     number: '3',
     title: 'Paso 3',
-    description: 'La factura se firma digitalmente con tu certificado (XAdES).'
+    description: 'La factura se firma digitalmente con tu certificado XAdES.'
   },
   {
     number: '4',
     title: 'Paso 4',
-    description: 'Se encadena en Verifactu, cumpliendo la norma española de software verificable.'
+    description: 'Se aplica el hash y el registro Verifactu.'
   },
   {
     number: '5',
     title: 'Paso 5',
-    description: 'Opcional: se envía a MiFacturae o se guarda para tu gestoría (CSV/XML/API).'
+    description: 'Opcional: se prepara para MiFacturae y para tu gestoría.'
   },
   {
     number: '6',
     title: 'Paso 6',
-    description: 'Tú no haces nada. Las facturas salen perfectas y legales automáticamente.'
+    description: 'Tu gestoría puede recibir todo en CSV, XML o a través de API.'
   }
 ];
 
@@ -58,6 +58,12 @@ export default function HowItWorksSection() {
               </div>
             </div>
           ))}
+        </div>
+        
+        <div className="text-center mt-12">
+          <p className="text-xl font-medium text-primary">
+            Todo ocurre en segundos sin que tengas que intervenir.
+          </p>
         </div>
       </div>
     </section>

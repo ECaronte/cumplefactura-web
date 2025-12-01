@@ -21,7 +21,7 @@ export default function ComplianceSection() {
               Cumple hoy la normativa que será obligatoria mañana.
             </h2>
             <p className="text-lg text-muted-foreground">
-              CumpleFactura implementa todos los requisitos de la factura electrónica obligatoria en España:
+              CumpleFactura implementa todo lo que exige la normativa española de factura electrónica y software verificable: cadena hash e inmutabilidad (Verifactu), firma digital XAdES, registros de integridad, conservación mínima de 5 años, numeración legal y compatibilidad con MiFacturae.
             </p>
           </div>
 

@@ -9,11 +9,11 @@ export default function CtaSection() {
           Empieza hoy y despreocúpate de la factura electrónica.
         </h2>
         <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-10">
-          WooCommerce + Verifactu + Firma digital = Todo automático.
+          WooCommerce → Factura → Firma → Verifactu → Exportación para tu gestoría. Todo automático.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" variant="default" className="bg-accent text-white hover:bg-accent/90 h-12 px-8 text-lg border-none" asChild>
-            <Link to="/precios">Instalar ahora</Link>
+            <Link to="/precios">Instalar gratis</Link>
           </Button>
           <Button size="lg" variant="outline" className="border-white text-primary bg-white hover:bg-blue-50 h-12 px-8 text-lg" asChild>
             <Link to="/como-funciona">Ver demo</Link>

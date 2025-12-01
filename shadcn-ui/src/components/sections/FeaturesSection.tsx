@@ -3,22 +3,22 @@ import { Zap, ShoppingCart, ShieldCheck, Building2 } from 'lucide-react';
 const features = [
   {
     title: 'Automático de verdad',
-    description: 'Cuando tu tienda recibe un pedido, CumpleFactura genera la factura, la firma digitalmente, la encadena en Verifactu y la registra. Tú no haces nada.',
+    description: 'Cada pedido en WooCommerce genera una factura que se firma digitalmente y se registra según Verifactu. No tienes que hacer nada.',
     icon: <Zap className="h-8 w-8" />
   },
   {
     title: 'WooCommerce nativo',
-    description: 'No es un sistema externo ni un CRM adaptado: nace directamente en WooCommerce. Cero sincronizaciones, cero fallos.',
+    description: 'No somos un CRM externo. CumpleFactura funciona directamente dentro de tu tienda WooCommerce, sin sincronizaciones raras.',
     icon: <ShoppingCart className="h-8 w-8" />
   },
   {
     title: 'Cumplimiento legal total',
-    description: 'Compatible con Ley 11/2021, RD 1007/2023, Verifactu, Firma XAdES, MiFacturae, Libros y numeraciones legales. Tu negocio queda protegido.',
+    description: 'Implementa Verifactu, firma XAdES, numeración legal, MiFacturae y los requisitos del RD 1007/2023.',
     icon: <ShieldCheck className="h-8 w-8" />
   },
   {
-    title: 'Perfecto para gestorías',
-    description: 'Exportación en CSV, XML y API opcional. Panel Gestoría para acceso ordenado. Las gestorías ahorran tiempo y ganan comisión.',
+    title: 'Pensado para gestorías',
+    description: 'Exportación profesional en CSV y XML, API opcional y un futuro Panel Gestoría para trabajar con varios clientes de forma cómoda.',
     icon: <Building2 className="h-8 w-8" />
   }
 ];
