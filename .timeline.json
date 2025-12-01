@@ -1,5 +1,5 @@
 {
-  "timeline_index": 15,
+  "timeline_index": 20,
   "planner": {},
   "gallery_last_file": {},
   "timeline_status": {
@@ -16,14 +16,19 @@
     "12": 1,
     "13": 1,
     "14": 1,
-    "15": 1
+    "15": 1,
+    "16": 1,
+    "17": 1,
+    "18": 1,
+    "19": 1,
+    "20": 1
   },
   "preview_servers": {},
   "preview_server": {
     "project_dir": "/workspace/shadcn-ui",
     "status": "initializing",
     "config_path": ".mgx/config.yaml",
-    "timeline_index": 15
+    "timeline_index": 20
   },
   "last_build_failed": false
 }

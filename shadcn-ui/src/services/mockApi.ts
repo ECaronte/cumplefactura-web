@@ -6,44 +6,47 @@ export const getPlans = (): Promise<Plan[]> => {
       id: 'free',
       name: 'Plan Gratis',
       price: '0€',
-      description: 'Ideal para empezar',
+      description: 'Ideal para empezar a usar CumpleFactura sin coste.',
       features: [
         'Factura PDF automática',
-        'Integración WooCommerce'
+        'Integración nativa con WooCommerce',
+        'Sin límite de pedidos',
+        'Perfecto para probar CumpleFactura antes de activar Verifactu'
       ],
       cta: 'Empezar gratis'
     },
     {
       id: 'pro',
       name: 'Plan PRO',
-      price: '29€',
-      description: 'Cumplimiento total',
+      price: '9€',
+      description: 'El plan necesario para cumplir la normativa española de factura electrónica y software verificable.',
       features: [
-        'Firma digital automática',
-        'Verifactu completo',
-        'Cadena hash',
-        'MiFacturae',
-        'Envío automático al cliente',
+        'Firma digital XAdES automática',
+        'Verifactu completo (cadena hash + inmutabilidad)',
+        'Numeración y series legales',
+        'Preparado para MiFacturae',
+        'Exportación profesional en CSV y XML',
         'Soporte prioritario',
-        'Exportación CSV / XML'
+        '100% listo para la normativa 2025–2026'
       ],
-      cta: 'Empezar ahora',
+      cta: 'Elegir Plan PRO',
       highlight: true
     },
     {
       id: 'agency',
       name: 'Plan Gestorías',
-      price: 'Contactar',
-      description: 'Para profesionales',
+      price: '29€',
+      description: 'Pensado para gestoras fiscales y contables que trabajan con clientes que usan WooCommerce.',
       features: [
-        'Panel Gestoría',
         'Acceso multi-cliente',
-        'Descarga masiva',
-        'API integración',
-        'Alertas',
-        'Comisión por cliente'
+        'Descarga masiva de facturas',
+        'Exportaciones CSV/XML optimizadas para contabilidad',
+        'API opcional',
+        'Comisión mensual por cliente recomendado',
+        'Próximo “Panel Gestoría” incluido',
+        'Soporte especializado'
       ],
-      cta: 'Contactar ventas'
+      cta: 'Solicitar acceso'
     }
   ]);
 };
@@ -52,28 +55,28 @@ export const getFaqs = (): Promise<FaqItem[]> => {
   return Promise.resolve([
     {
       id: '1',
-      question: '¿CumpleFactura cumple la norma del software verificable?',
-      answer: 'Sí. Implementa cadena hash, firma, inmutabilidad y eventos necesarios.'
+      question: '¿Puedo usar CumpleFactura gratis?',
+      answer: 'Sí, el plan Gratis permite generar facturas PDF automáticas desde WooCommerce sin coste.'
     },
     {
       id: '2',
-      question: '¿Necesito ser técnico para instalarlo?',
-      answer: 'No. Se instala como cualquier plugin de WooCommerce.'
+      question: '¿Necesito el plan PRO para cumplir la normativa?',
+      answer: 'Sí. Verifactu, firma digital XAdES y compatibilidad MiFacturae solo están incluidos en PRO.'
     },
     {
       id: '3',
-      question: '¿Puedo usar mi certificado digital?',
-      answer: 'Sí. Lo instalas una vez y queda protegido.'
+      question: '¿Puedo cambiar de plan cuando quiera?',
+      answer: 'Sí, puedes subir o bajar de plan en cualquier momento.'
     },
     {
       id: '4',
-      question: '¿Cómo lo recibe la gestoría?',
-      answer: 'Puede usar el Panel Gestoría, o recibir CSV/XML, o conectar vía API.'
+      question: '¿Hay descuento anual?',
+      answer: 'Sí, pagando el año completo te ahorras el equivalente a dos meses.'
     },
     {
       id: '5',
-      question: '¿Es legal para 2025–2026?',
-      answer: 'Sí. Está diseñado exactamente para cumplir la normativa.'
+      question: '¿Qué incluye el Plan Gestorías?',
+      answer: 'Acceso multi-cliente, exportaciones profesionales, API opcional y comisión mensual por cliente.'
     }
   ]);
 };
