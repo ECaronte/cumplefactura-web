@@ -9,6 +9,7 @@ import Pricing from './pages/Pricing';
 import Agency from './pages/Agency';
 import Resources from './pages/Resources';
 import Blog from './pages/Blog';
+import LegalNotice from './pages/LegalNotice';
 import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/gestorias" element={<Agency />} />
           <Route path="/recursos" element={<Resources />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/aviso-legal" element={<LegalNotice />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
