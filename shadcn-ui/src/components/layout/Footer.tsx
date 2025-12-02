@@ -1,58 +1,121 @@
 import { Link } from 'react-router-dom';
-import Logo from '@/components/Logo';
+import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t bg-brand-light">
-      <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          {/* Columna 1 - Marca */}
+    <footer className="bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+      <div className="container mx-auto px-4 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          
+          {/* Brand Column */}
           <div className="space-y-4">
-            <Logo />
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              CumpleFactura es una solución privada que ayuda a autónomos y pymes a cumplir la normativa española de facturación. No forma parte de la Agencia Tributaria.
+            <Link to="/" className="inline-block">
+              <span className="text-2xl font-bold text-primary">CumpleFactura</span>
+            </Link>
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Facturación legal automática para WooCommerce: Verifactu, firma XAdES y MiFacturae.
             </p>
+            <div className="flex space-x-4 pt-2">
+              <a href="#" className="text-slate-400 hover:text-primary transition-colors">
+                <Twitter className="h-5 w-5" />
+                <span className="sr-only">Twitter</span>
+              </a>
+              <a href="#" className="text-slate-400 hover:text-primary transition-colors">
+                <Linkedin className="h-5 w-5" />
+                <span className="sr-only">LinkedIn</span>
+              </a>
+            </div>
           </div>
 
-          {/* Columna 2 - Producto */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-semibold text-primary">Producto</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/" className="hover:text-primary transition-colors">Inicio</Link></li>
-              <li><Link to="/como-funciona" className="hover:text-primary transition-colors">Cómo funciona</Link></li>
-              <li><Link to="/woocommerce-verifactu" className="hover:text-primary transition-colors">WooCommerce / VerifactuWoo</Link></li>
-              <li><Link to="/precios" className="hover:text-primary transition-colors">Precios</Link></li>
-              <li><Link to="/gestorias" className="hover:text-primary transition-colors">Gestorías</Link></li>
+          {/* Product Column */}
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Producto</h3>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <Link to="/como-funciona" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Cómo funciona
+                </Link>
+              </li>
+              <li>
+                <Link to="/woocommerce-verifactu" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Plugin para WooCommerce
+                </Link>
+              </li>
+              <li>
+                <Link to="/precios" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Precios
+                </Link>
+              </li>
+              <li>
+                <Link to="/gestorias" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Para Gestorías
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Columna 3 - Recursos */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-semibold text-primary">Recursos</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/recursos" className="hover:text-primary transition-colors">Recursos</Link></li>
-              <li><Link to="/recursos" className="hover:text-primary transition-colors">Guías</Link></li>
-              <li><Link to="/recursos" className="hover:text-primary transition-colors">FAQ</Link></li>
-              <li><Link to="/recursos" className="hover:text-primary transition-colors">Blog</Link></li>
+          {/* Resources Column */}
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Recursos</h3>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <Link to="/blog" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/recursos" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Recursos y Guías
+                </Link>
+              </li>
+              <li>
+                <Link to="/woocommerce-verifactu" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Verifactu
+                </Link>
+              </li>
+              <li>
+                <a href="mailto:soporte@cumplefactura.es" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Contacto
+                </a>
+              </li>
             </ul>
           </div>
 
-          {/* Columna 4 - Legal */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-semibold text-primary">Legal</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link to="#" className="hover:text-primary transition-colors">Aviso legal</Link></li>
-              <li><Link to="#" className="hover:text-primary transition-colors">Privacidad</Link></li>
-              <li><Link to="#" className="hover:text-primary transition-colors">Cookies</Link></li>
-              <li><Link to="#" className="hover:text-primary transition-colors">Términos</Link></li>
+          {/* Legal Column */}
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Legal</h3>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <Link to="/aviso-legal" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Aviso Legal
+                </Link>
+              </li>
+              <li>
+                <Link to="/politica-privacidad" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Política de Privacidad
+                </Link>
+              </li>
+              <li>
+                <Link to="/politica-cookies" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Política de Cookies
+                </Link>
+              </li>
+              <li>
+                <Link to="/terminos-condiciones" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Términos y Condiciones
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-200 pt-8 text-center text-sm text-muted-foreground">
-          <p>© {currentYear} CumpleFactura. Todos los derechos reservados.</p>
+        {/* Bottom Bar */}
+        <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-slate-500 dark:text-slate-500 text-center md:text-left">
+            © {currentYear} CumpleFactura. Todos los derechos reservados.
+          </p>
         </div>
       </div>
     </footer>
