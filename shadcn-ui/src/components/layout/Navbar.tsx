@@ -1,9 +1,20 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NavLink } from '@/types';
 import Logo from '@/components/Logo';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 const navLinks: NavLink[] = [
   { label: 'Inicio', href: '/' },
@@ -11,14 +22,23 @@ const navLinks: NavLink[] = [
   { label: 'Plugin', href: '/woocommerce-verifactu' },
   { label: 'Precios', href: '/precios' },
   { label: 'Gestorías', href: '/gestorias' },
-  { label: 'Recursos', href: '/recursos' },
+];
+
+const resourcesLinks = [
+  { label: 'Artículos y Guías', href: '/recursos' },
+  { label: 'Verifactu', href: '/verifactu' },
+  { label: 'Factura Electrónica 2026', href: '/factura-electronica-2026' },
+  { label: 'Firma XAdES', href: '/firma-xades' },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const location = useLocation();
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const isResourceActive = resourcesLinks.some(link => location.pathname === link.href);
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -40,6 +60,26 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+
+          {/* Recursos Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger className={`flex items-center text-sm font-medium transition-colors hover:text-primary outline-none ${isResourceActive ? 'text-primary' : 'text-muted-foreground'}`}>
+              Recursos <ChevronDown className="ml-1 h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {resourcesLinks.map((link) => (
+                <DropdownMenuItem key={link.href} asChild>
+                  <Link 
+                    to={link.href}
+                    className={`w-full cursor-pointer ${location.pathname === link.href ? 'text-primary font-medium' : ''}`}
+                  >
+                    {link.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Button size="sm" className="bg-primary hover:bg-brand-secondary text-white">Empezar</Button>
         </div>
 
@@ -55,7 +95,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden border-t bg-background p-4">
+        <div className="md:hidden border-t bg-background p-4 max-h-[calc(100vh-4rem)] overflow-y-auto">
           <div className="flex flex-col space-y-4">
             {navLinks.map((link) => (
               <Link
@@ -69,6 +109,28 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+
+            {/* Mobile Recursos Submenu */}
+            <Collapsible open={isResourcesOpen} onOpenChange={setIsResourcesOpen} className="w-full">
+              <CollapsibleTrigger className={`flex w-full items-center justify-between text-sm font-medium transition-colors hover:text-primary ${isResourceActive ? 'text-primary' : 'text-muted-foreground'}`}>
+                Recursos <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isResourcesOpen ? 'rotate-180' : ''}`} />
+              </CollapsibleTrigger>
+              <CollapsibleContent className="pt-2 pl-4 flex flex-col space-y-3">
+                {resourcesLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className={`text-sm transition-colors hover:text-primary ${
+                      location.pathname === link.href ? 'text-primary font-medium' : 'text-muted-foreground'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </CollapsibleContent>
+            </Collapsible>
+
             <Button className="w-full bg-primary hover:bg-brand-secondary text-white" size="sm">Empezar</Button>
           </div>
         </div>
