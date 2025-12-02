@@ -288,6 +288,10 @@ export default function HowItWorks() {
               </Link>
             </Button>
           </div>
+          <p className="mt-8 text-muted-foreground">
+            Si todavía te quedan dudas sobre cómo funciona CumpleFactura en tu caso concreto, puedes{' '}
+            <Link to="/contacto" className="text-primary font-medium hover:underline">contactar con nosotros aquí</Link>.
+          </p>
         </div>
       </section>
     </MainLayout>

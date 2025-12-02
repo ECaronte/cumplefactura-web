@@ -166,6 +166,16 @@ export default function Pricing() {
             </div>
           </div>
         </div>
+
+        <div className="container max-w-2xl mx-auto mt-10 text-center">
+          <p className="text-lg text-muted-foreground">
+            ¿Tienes dudas sobre qué plan elegir?{' '}
+            <Link to="/contacto" className="text-primary font-medium hover:underline">
+              Escríbenos
+            </Link>{' '}
+            y te ayudamos a encontrar la mejor opción para tu negocio.
+          </p>
+        </div>
       </section>
 
       <FaqSection />

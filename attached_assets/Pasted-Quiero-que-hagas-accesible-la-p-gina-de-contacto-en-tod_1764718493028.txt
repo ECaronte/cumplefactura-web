@@ -1,0 +1,75 @@
+Quiero que hagas accesible la página de contacto en toda la web de CumpleFactura, pero SIN añadir más ruido al menú principal, que ya está muy poblado.
+
+Toma estas decisiones de UX como definitivas:
+
+- NO añadir “Contacto” como ítem principal nuevo en el navbar.
+- SÍ tener siempre “Contacto” accesible desde el footer.
+- SÍ añadir enlaces contextuales en algunas páginas clave.
+
+Sigue estos pasos:
+
+========================
+1) VERIFICAR RUTA /contacto
+========================
+
+1. Localiza el componente de la página de contacto (ContactPage, ContactoPage o similar).
+2. Asegúrate de que está registrado en el router para la ruta `/contacto`.
+   - Si no existe la ruta, créala.
+   - Comprueba que se renderiza correctamente.
+
+========================
+2) ENLACE EN EL FOOTER (OBLIGATORIO)
+========================
+
+1. Localiza el componente del Footer.
+2. Asegúrate de que el Footer incluye un enlace a `/contacto` con texto `Contacto`.
+   - Si ya existe pero antes iba a un 404, corrígelo para que apunte a la ruta /contacto real.
+   - Si no existe, añádelo en la columna más lógica (por ejemplo donde estén “Aviso legal”, “Privacidad”, etc.).
+
+Usa el mismo sistema de enlaces que el resto del footer (Link de React Router o <a>, según use el proyecto).
+
+========================
+3) NADA NUEVO EN EL NAVBAR
+========================
+
+El menú principal ya está muy poblado, así que:
+
+- NO añadas un ítem nuevo “Contacto” al navbar de escritorio.
+- NO añadas un ítem nuevo “Contacto” a la parte principal del menú móvil.
+
+El acceso a contacto se hará vía footer + enlaces contextuales.
+
+========================
+4) ENLACES CONTEXTUALES A CONTACTO
+========================
+
+Añade enlaces naturales a `/contacto` en estas páginas:
+
+1. En `/gestorias`:
+   - Al final de la página, añade un pequeño bloque o párrafo tipo:
+     “Si quieres ver cómo encaja CumpleFactura en tu despacho, ponte en contacto con nosotros.”
+     donde “ponte en contacto con nosotros” enlaza a `/contacto`.
+
+2. En `/precios`:
+   - Cerca de la tabla de planes o debajo de ella, añade:
+     “¿Tienes dudas sobre qué plan elegir? Escríbenos.”
+     donde “Escríbenos” enlaza a `/contacto`.
+
+3. En `/como-funciona`:
+   - En la parte final, añade algo como:
+     “Si todavía te quedan dudas sobre cómo funciona CumpleFactura en tu caso concreto, puedes contactar con nosotros aquí.”
+     donde “contactar con nosotros aquí” enlaza a `/contacto`.
+
+Usa el componente Link del router.
+
+========================
+5) REVISIÓN FINAL
+========================
+
+- Verifica que:
+  - /contacto carga sin error.
+  - El footer siempre muestra un enlace a “Contacto” que lleva a `/contacto`.
+  - Las páginas `/gestorias`, `/precios` y `/como-funciona` tienen al menos un enlace contextual claro hacia `/contacto`.
+- No añadas ningún enlace de “Contacto” extra al navbar principal.
+
+Haz tú directamente todos los cambios en el código del proyecto.

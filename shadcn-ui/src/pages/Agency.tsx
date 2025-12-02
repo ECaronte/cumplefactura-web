@@ -260,9 +260,12 @@ export default function Agency() {
           <p className="text-xl opacity-90 mb-10 max-w-2xl mx-auto">
             Te enviamos ejemplos de ficheros, te ayudamos a configurar la integración y, si quieres, conectamos por API.
           </p>
-          <Button size="lg" variant="secondary" className="h-12 px-8 text-lg">
-            Hablar con CumpleFactura
+          <Button size="lg" variant="secondary" className="h-12 px-8 text-lg" asChild>
+            <Link to="/contacto">Hablar con CumpleFactura</Link>
           </Button>
+          <p className="mt-6 text-primary-foreground/80">
+            Si quieres ver cómo encaja CumpleFactura en tu despacho, <Link to="/contacto" className="underline hover:text-white">ponte en contacto con nosotros</Link>.
+          </p>
         </div>
       </section>
     </MainLayout>
