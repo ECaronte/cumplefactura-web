@@ -11,7 +11,8 @@ import {
   Download, 
   FileCheck, 
   Users,
-  ArrowRight
+  ArrowRight,
+  LayoutGrid
 } from 'lucide-react';
 import {
   Accordion,
@@ -21,42 +22,87 @@ import {
 } from "@/components/ui/accordion";
 import { Link } from 'react-router-dom';
 
+const categories = [
+  {
+    title: 'Verifactu',
+    description: 'Todo sobre el software verificable y la cadena hash obligatoria.',
+    link: '/verifactu',
+    icon: <Shield className="h-5 w-5" />
+  },
+  {
+    title: 'Factura electrónica 2026',
+    description: 'Guías para prepararte para la factura electrónica obligatoria en España.',
+    link: '/factura-electronica-2026',
+    icon: <FileText className="h-5 w-5" />
+  },
+  {
+    title: 'Firma digital XAdES',
+    description: 'Aspectos técnicos y prácticos de la firma digital en facturación.',
+    link: '/firma-xades',
+    icon: <FileCheck className="h-5 w-5" />
+  },
+  {
+    title: 'WooCommerce y cumplimiento legal',
+    description: 'Cómo adaptar tu tienda online a las nuevas obligaciones.',
+    link: '/recursos', // Placeholder as requested
+    icon: <ListChecks className="h-5 w-5" />
+  },
+  {
+    title: 'Para gestorías',
+    description: 'Recursos para despachos que trabajan con clientes en WooCommerce.',
+    link: '/gestorias',
+    icon: <Users className="h-5 w-5" />
+  },
+  {
+    title: 'Exportaciones, CSV, XML y API',
+    description: 'Cómo trabajar con los datos de CumpleFactura desde la gestoría o el ERP.',
+    link: '/recursos', // Placeholder as requested
+    icon: <Share2 className="h-5 w-5" />
+  }
+];
+
 const articles = [
   {
     title: '¿Qué es Verifactu y por qué será obligatorio en España?',
     description: 'Guía clara para autónomos y gestorías.',
     icon: <Shield className="h-6 w-6 text-primary" />,
-    type: 'Artículo'
+    type: 'Artículo',
+    link: '/verifactu'
   },
   {
     title: 'Guía definitiva sobre la factura electrónica obligatoria 2025–2026',
-    description: 'Requisitos, plazos y cómo prepararse.',
+    description: 'Requisitos, plazos y cómo prepararte.',
     icon: <BookOpen className="h-6 w-6 text-primary" />,
-    type: 'Guía'
+    type: 'Guía',
+    link: '/factura-electronica-2026'
   },
   {
     title: 'Cómo funciona la firma digital XAdES en facturación',
     description: 'Entiende por qué es obligatoria y cómo CumpleFactura la automatiza.',
     icon: <FileText className="h-6 w-6 text-primary" />,
-    type: 'Técnico'
+    type: 'Técnico',
+    link: '/firma-xades'
   },
   {
     title: 'MiFacturae: qué es, para qué sirve y cómo usarlo',
     description: 'Explicación simple para autónomos y pymes.',
     icon: <Globe className="h-6 w-6 text-primary" />,
-    type: 'Artículo'
+    type: 'Artículo',
+    link: '#'
   },
   {
     title: 'Cómo preparar tu WooCommerce para la nueva normativa',
     description: 'Checklist paso a paso.',
     icon: <ListChecks className="h-6 w-6 text-primary" />,
-    type: 'Tutorial'
+    type: 'Tutorial',
+    link: '#'
   },
   {
     title: 'Cómo funcionan las exportaciones CSV, XML y API para gestorías',
     description: 'Qué recibe tu gestoría y cómo lo usa.',
     icon: <Share2 className="h-6 w-6 text-primary" />,
-    type: 'Gestoría'
+    type: 'Gestoría',
+    link: '#'
   }
 ];
 
@@ -123,35 +169,59 @@ export default function Resources() {
             </p>
           </div>
 
-          {/* 2. Artículos recomendados */}
+          {/* 2. Categorías */}
           <div className="mb-20">
-            <h2 className="text-3xl font-bold mb-8 text-center">Artículos recomendados</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {articles.map((article, index) => (
-                <Card key={index} className="hover:shadow-lg transition-all cursor-pointer border-primary/10">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="p-2 bg-primary/10 rounded-lg">
-                        {article.icon}
+            <h2 className="text-3xl font-bold mb-8 text-center">Categorías</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {categories.map((category, index) => (
+                <Link key={index} to={category.link} className="block h-full">
+                  <Card className="h-full hover:shadow-md transition-all cursor-pointer border-primary/10 hover:border-primary/30">
+                    <CardHeader className="flex flex-row items-start space-y-0 pb-2 gap-4">
+                      <div className="p-2 bg-primary/10 rounded-lg text-primary mt-1">
+                        {category.icon}
                       </div>
-                      <span className="text-xs font-medium px-2 py-1 bg-slate-100 rounded-full text-slate-600">
-                        {article.type}
-                      </span>
-                    </div>
-                    <CardTitle className="text-lg leading-tight mb-2">{article.title}</CardTitle>
-                    <CardDescription>{article.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm font-medium text-primary flex items-center">
-                      Leer artículo <ArrowRight className="ml-1 h-3 w-3" />
-                    </p>
-                  </CardContent>
-                </Card>
+                      <div>
+                        <CardTitle className="text-lg font-semibold mb-1">{category.title}</CardTitle>
+                        <CardDescription className="text-sm">{category.description}</CardDescription>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>
 
-          {/* 3. Guías descargables */}
+          {/* 3. Artículos recomendados */}
+          <div className="mb-20">
+            <h2 className="text-3xl font-bold mb-8 text-center">Artículos recomendados</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {articles.map((article, index) => (
+                <Link key={index} to={article.link} className="block h-full">
+                  <Card className="h-full hover:shadow-lg transition-all cursor-pointer border-primary/10 flex flex-col">
+                    <CardHeader>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          {article.icon}
+                        </div>
+                        <span className="text-xs font-medium px-2 py-1 bg-slate-100 rounded-full text-slate-600">
+                          {article.type}
+                        </span>
+                      </div>
+                      <CardTitle className="text-lg leading-tight mb-2">{article.title}</CardTitle>
+                      <CardDescription>{article.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="mt-auto">
+                      <p className="text-sm font-medium text-primary flex items-center">
+                        Leer artículo <ArrowRight className="ml-1 h-3 w-3" />
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* 4. Guías descargables */}
           <div className="mb-20">
             <h2 className="text-3xl font-bold mb-8 text-center">Guías descargables</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -181,7 +251,7 @@ export default function Resources() {
         </div>
       </section>
 
-      {/* 4. Preguntas técnicas */}
+      {/* 5. Preguntas técnicas */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20">
         <div className="container max-w-3xl">
           <div className="text-center mb-12">
@@ -203,12 +273,12 @@ export default function Resources() {
         </div>
       </section>
 
-      {/* 5. CTA Final */}
+      {/* 6. CTA Final */}
       <section className="py-20 container text-center">
         <div className="bg-primary rounded-3xl p-12 text-primary-foreground">
-          <h2 className="text-3xl font-bold mb-6">Prepárate para la factura electrónica obligatoria.</h2>
+          <h2 className="text-3xl font-bold mb-6">Automatiza tu facturación y cumple la normativa sin esfuerzo.</h2>
           <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Todo lo que necesitas saber para cumplir la normativa y automatizar tu facturación.
+            Verifactu, firma digital XAdES y factura electrónica 2026, todo integrado en WooCommerce con CumpleFactura.
           </p>
           <Button size="lg" variant="secondary" className="h-12 px-8 text-lg bg-white text-primary hover:bg-white/90" asChild>
             <Link to="/woocommerce-verifactu">
