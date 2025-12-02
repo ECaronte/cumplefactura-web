@@ -3,9 +3,10 @@ import MainLayout from '@/layouts/MainLayout';
 import FaqSection from '@/components/sections/FaqSection';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Check } from 'lucide-react';
+import { Check, Briefcase } from 'lucide-react';
 import { getPlans } from '@/services/mockApi';
 import { Plan } from '@/types';
+import { Link } from 'react-router-dom';
 
 export default function Pricing() {
   const [plans, setPlans] = useState<Plan[]>([]);
@@ -24,7 +25,7 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
           {plans.map((plan) => (
             <Card 
               key={plan.id} 
@@ -60,6 +61,53 @@ export default function Pricing() {
               </CardFooter>
             </Card>
           ))}
+        </div>
+
+        {/* 1. Enlace para gestorías */}
+        <div className="container max-w-4xl mx-auto text-center mb-20">
+          <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 inline-flex flex-col sm:flex-row items-center gap-2 text-slate-600">
+            <Briefcase className="h-5 w-5 text-primary" />
+            <span>
+              ¿Eres una gestoría y quieres recomendar CumpleFactura a tus clientes?{' '}
+              <Link to="/gestorias" className="text-primary font-medium hover:underline">
+                Mira nuestro programa asociativo.
+              </Link>
+            </span>
+          </div>
+        </div>
+
+        {/* 2. Nueva sección: ¿Por qué cobrar menos...? */}
+        <div className="container max-w-4xl mx-auto mb-10">
+          <div className="bg-white rounded-2xl p-8 md:p-12 border shadow-sm">
+            <h2 className="text-3xl font-bold mb-6 text-slate-900 text-center">
+              ¿Por qué cobrar menos si tu WooCommerce factura poco?
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 text-center leading-relaxed">
+              Aunque tu tienda facture poco cada mes, estás obligado igualmente a cumplir la normativa de facturación. 
+              CumpleFactura automatiza Verifactu, la firma digital XAdES y la generación de archivos para tu gestoría, 
+              evitando errores que pueden acabar en sanciones. La cuota mensual se amortiza en tiempo ahorrado y tranquilidad jurídica.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="flex items-start gap-3">
+                <div className="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <Check className="h-5 w-5 text-green-600" />
+                </div>
+                <span className="font-medium text-slate-700">Cumplimiento legal aunque factures poco</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <Check className="h-5 w-5 text-green-600" />
+                </div>
+                <span className="font-medium text-slate-700">Evita sanciones por facturas incorrectas</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <Check className="h-5 w-5 text-green-600" />
+                </div>
+                <span className="font-medium text-slate-700">Ahorra tiempo en cada trimestre fiscal</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
