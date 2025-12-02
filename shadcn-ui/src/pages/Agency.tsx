@@ -12,12 +12,12 @@ export default function Agency() {
         <div className="container flex flex-col lg:flex-row items-center gap-12">
           <div className="flex-1 space-y-8">
             <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-              Más clientes, menos trabajo. Facturas perfectas en un clic.
+              Más clientes, menos picar datos. CumpleFactura habla el idioma de tu ERP.
             </h1>
             <p className="text-xl text-muted-foreground">
-              CumpleFactura automatiza toda la facturación legal de tus clientes con WooCommerce: Verifactu, firma XAdES y exportaciones listas para importar. Tu gestoría gana tiempo, seguridad y una comisión mensual.
+              Facturas firmadas, verificadas y trazables que puedes importar desde CSV/XML o conectar por API con tu software de gestoría.
             </p>
-            <Button size="lg" className="h-12 px-8">Solicitar acceso Gestorías</Button>
+            <Button size="lg" className="h-12 px-8">Unirse al programa de gestorías</Button>
           </div>
           <div className="flex-1 flex justify-center">
             <Building2 className="h-64 w-64 text-primary/20" />
@@ -25,100 +25,95 @@ export default function Agency() {
         </div>
       </section>
 
-      {/* 2. Por qué CumpleFactura */}
+      {/* 2. Integración cómoda con tu ERP */}
       <section className="py-20">
         <div className="container">
-          <h2 className="text-3xl font-bold text-center mb-16">Por qué CumpleFactura para gestorías</h2>
+          <h2 className="text-3xl font-bold text-center mb-16">Integración cómoda con tu ERP, a tu ritmo</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="text-center p-6 border rounded-xl bg-card shadow-sm">
               <div className="h-16 w-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FileCheck className="h-8 w-8" />
+                <Download className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-bold mb-4">Facturas correctas siempre</h3>
-              <p className="text-muted-foreground">Recibes facturas perfectas, firmadas digitalmente y encadenadas según Verifactu. Sin errores manuales, sin repetidas, sin numeración incorrecta.</p>
+              <h3 className="text-xl font-bold mb-4">Descarga manual periódica</h3>
+              <p className="text-muted-foreground">Ficheros CSV/XML listos para importar, sin campos raros y con estructuras pensadas para contabilidad y fiscalidad.</p>
             </div>
             <div className="text-center p-6 border rounded-xl bg-card shadow-sm">
               <div className="h-16 w-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Download className="h-8 w-8" />
+                <Clock className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-bold mb-4">Exportación profesional</h3>
-              <p className="text-muted-foreground">Descarga masiva en CSV y XML diseñados para importación directa en software de contabilidad.</p>
+              <h3 className="text-xl font-bold mb-4">Exportaciones programadas</h3>
+              <p className="text-muted-foreground">Recibe automáticamente los datos de facturación en tu email o servidor, reduciendo el tiempo de gestión manual.</p>
             </div>
             <div className="text-center p-6 border rounded-xl bg-card shadow-sm">
               <div className="h-16 w-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Server className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-bold mb-4">API opcional</h3>
-              <p className="text-muted-foreground">Integra CumpleFactura con tu sistema de gestoría o ERP sin depender del cliente.</p>
+              <h3 className="text-xl font-bold mb-4">Integración vía API</h3>
+              <p className="text-muted-foreground">Posibilidad de automatizar la llegada de datos directamente a tu ERP (A3, Sage, Contpaqi, etc.) mediante nuestra API.</p>
             </div>
-            <div className="text-center p-6 border rounded-xl bg-card shadow-sm">
-              <div className="h-16 w-16 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Clock className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-bold mb-4">Ahorra horas cada mes</h3>
-              <p className="text-muted-foreground">Sin perseguir clientes, sin pedir facturas, sin ordenar nada. Todo llega solo.</p>
-            </div>
-            <div className="text-center p-6 border rounded-xl bg-card shadow-sm md:col-span-2 lg:col-span-1">
-              <div className="h-16 w-16 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Banknote className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-bold mb-4">Comisión recurrente</h3>
-              <p className="text-muted-foreground">Por cada cliente que recomiendas, recibes una comisión mensual. La gestoría gana por ayudar a sus clientes.</p>
+            <div className="text-center p-6 border rounded-xl bg-card shadow-sm md:col-span-3 lg:col-span-3 bg-slate-50/50 mt-4">
+              <p className="text-lg font-medium text-slate-700 dark:text-slate-300">
+                CumpleFactura no te obliga a cambiar de herramienta. Menos tiempo corrigiendo errores de facturas mal emitidas y más tiempo para asesorar.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. Cómo funciona */}
+      {/* 3. Cómo se trabaja en el día a día */}
       <section className="py-20 bg-slate-50">
         <div className="container">
-          <h2 className="text-3xl font-bold text-center mb-16">Cómo funciona para tu gestoría</h2>
+          <h2 className="text-3xl font-bold text-center mb-16">Cómo se trabaja en el día a día</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="flex flex-col items-center text-center">
               <div className="h-12 w-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">1</div>
-              <h3 className="text-lg font-bold mb-2">El cliente instala CumpleFactura</h3>
-              <p className="text-muted-foreground">En 5 minutos queda configurado en su WooCommerce.</p>
+              <h3 className="text-lg font-bold mb-2">Cliente usa WooCommerce</h3>
+              <p className="text-muted-foreground">El cliente usa WooCommerce con CumpleFactura instalado.</p>
             </div>
             <div className="flex flex-col items-center text-center">
               <div className="h-12 w-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">2</div>
-              <h3 className="text-lg font-bold mb-2">Generación automática</h3>
-              <p className="text-muted-foreground">Las facturas se generan y firman automáticamente. No tienes que depender del cliente.</p>
+              <h3 className="text-lg font-bold mb-2">Procesamiento automático</h3>
+              <p className="text-muted-foreground">Cada factura se firma (XAdES), se registra (Verifactu) y queda lista para contabilidad.</p>
             </div>
             <div className="flex flex-col items-center text-center">
               <div className="h-12 w-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">3</div>
-              <h3 className="text-lg font-bold mb-2">Recepción de datos</h3>
-              <p className="text-muted-foreground">CSV, XML o API: tú eliges cómo recibir todos los datos en tu gestoría.</p>
+              <h3 className="text-lg font-bold mb-2">Obtención de datos</h3>
+              <p className="text-muted-foreground">Tú descargas CSV/XML o configuras la integración por API.</p>
             </div>
             <div className="flex flex-col items-center text-center">
               <div className="h-12 w-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">4</div>
-              <h3 className="text-lg font-bold mb-2">Importación y contabilización</h3>
-              <p className="text-muted-foreground">Tú solo importas y contabilizas. Sin descuadres, sin errores, sin tareas extra.</p>
+              <h3 className="text-lg font-bold mb-2">Importación sin errores</h3>
+              <p className="text-muted-foreground">Importas los datos en tu ERP con menos errores y menos trabajo manual.</p>
             </div>
+          </div>
+          <div className="mt-12 text-center">
+            <p className="text-xl font-bold text-primary">
+              “Tu equipo deja de perseguir al cliente y se centra en revisar, no en picar datos.”
+            </p>
           </div>
         </div>
       </section>
 
-      {/* 4. Panel Gestoría */}
+      {/* 4. Ventajas para gestorías */}
       <section className="py-20">
         <div className="container">
           <div className="max-w-4xl mx-auto bg-card border rounded-2xl p-8 md:p-12 shadow-lg">
             <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold mb-4">El Panel Gestoría (próximamente) te permitirá trabajar aún más rápido.</h2>
-              <p className="text-lg text-muted-foreground">Tu gestoría tendrá todo centralizado y listo para revisar en segundos.</p>
+              <h2 className="text-3xl font-bold mb-4">Ventajas para gestorías</h2>
+              <p className="text-lg text-muted-foreground">Optimiza tu flujo de trabajo con datos fiables.</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                'Acceso multi-cliente desde un solo panel',
-                'Descarga masiva de facturas',
-                'Avisos y alertas',
-                'Series y numeración legales visibles',
-                'Historial inmutable',
-                'Indicadores de cumplimiento Verifactu',
-                'Notificaciones de certificados próximos a caducar'
+                'Datos limpios y consistentes para tu ERP',
+                'Facturas ya firmadas y trazables',
+                'Flujo compatible con CSV, XML y API',
+                'Menos horas de trabajo manual',
+                'Menos riesgo de errores y sanciones para tu cliente',
+                'Soporte pensado para despachos profesionales'
               ].map((item, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="font-medium">{item}</span>
+                  <span className="font-medium text-lg">{item}</span>
                 </div>
               ))}
             </div>
@@ -126,32 +121,52 @@ export default function Agency() {
         </div>
       </section>
 
-      {/* 5. Beneficios */}
+      {/* 5. Beneficios (Opcional - Manteniendo estructura original si se desea, o simplificando según instrucciones. 
+         Las instrucciones pedían actualizar bloques. El bloque 4 "Ventajas" reemplaza al anterior "Panel Gestoría".
+         El bloque 5 original "Beneficios" puede ser redundante o puede mantenerse con textos ajustados.
+         Voy a mantener el bloque de Pricing como estaba o ajustarlo mínimamente si es necesario, 
+         pero las instrucciones se centraban en Hero, Bloque Principal, Día a Día, Ventajas y CTA.
+         Voy a omitir la sección de Pricing y Beneficios antiguos para que encaje con la nueva narrativa si así se prefiere, 
+         pero la instrucción dice "NO cambies el diseño ni muevas secciones". 
+         Para cumplir estrictamente "NO muevas secciones", mantendré las secciones existentes pero actualizaré su contenido 
+         para reflejar los puntos solicitados.
+         
+         Revisando la estructura original vs nueva:
+         1. Hero -> Actualizado
+         2. Por qué CumpleFactura -> Actualizado a "Integración cómoda"
+         3. Cómo funciona -> Actualizado a "Día a día"
+         4. Panel Gestoría -> Actualizado a "Ventajas" (usando el layout de card grande)
+         5. Beneficios -> Este bloque sobra un poco con la nueva sección de Ventajas, pero lo mantendré con textos de refuerzo.
+         6. Pricing -> No se mencionó cambio, lo mantengo.
+         7. CTA -> Actualizado.
+      */}
+      
+      {/* 5. Beneficios Adicionales (Manteniendo estructura) */}
       <section className="py-20 bg-slate-50">
         <div className="container">
-          <h2 className="text-3xl font-bold text-center mb-16">Beneficios para gestorías</h2>
+          <h2 className="text-3xl font-bold text-center mb-16">¿Por qué elegir CumpleFactura?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-background p-6 rounded-xl shadow-sm border">
-              <h3 className="text-xl font-bold mb-2 text-primary">Más clientes satisfechos</h3>
-              <p className="text-muted-foreground">Los autónomos dejan de equivocarse y tú de arreglar errores.</p>
+              <h3 className="text-xl font-bold mb-2 text-primary">Datos Limpios</h3>
+              <p className="text-muted-foreground">Olvídate de limpiar excels desordenados. Estructura contable nativa.</p>
             </div>
             <div className="bg-background p-6 rounded-xl shadow-sm border">
-              <h3 className="text-xl font-bold mb-2 text-primary">Menos horas de trabajo</h3>
-              <p className="text-muted-foreground">Importas todo limpio y perfecto.</p>
+              <h3 className="text-xl font-bold mb-2 text-primary">Trazabilidad Total</h3>
+              <p className="text-muted-foreground">Cada factura tiene su huella digital y firma, lista para inspecciones.</p>
             </div>
             <div className="bg-background p-6 rounded-xl shadow-sm border">
-              <h3 className="text-xl font-bold mb-2 text-primary">Más ingresos</h3>
-              <p className="text-muted-foreground">Comisión por cada cliente activo.</p>
+              <h3 className="text-xl font-bold mb-2 text-primary">Flexibilidad</h3>
+              <p className="text-muted-foreground">Desde CSV manual hasta API automatizada, tú decides el nivel de integración.</p>
             </div>
             <div className="bg-background p-6 rounded-xl shadow-sm border">
-              <h3 className="text-xl font-bold mb-2 text-primary">Cero riesgos legales</h3>
-              <p className="text-muted-foreground">Verifactu, firma digital y trazabilidad completa.</p>
+              <h3 className="text-xl font-bold mb-2 text-primary">Seguridad Jurídica</h3>
+              <p className="text-muted-foreground">Tus clientes cumplen la normativa 2026 sin que tú tengas que configurarlo.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. Pricing */}
+      {/* 6. Pricing (Mantenido igual, no solicitado cambio explícito pero coherente) */}
       <section className="py-20">
         <div className="container max-w-lg mx-auto">
           <Card className="border-primary shadow-xl relative overflow-hidden">
@@ -193,12 +208,12 @@ export default function Agency() {
       {/* 7. CTA */}
       <section className="py-20 bg-primary text-primary-foreground text-center">
         <div className="container">
-          <h2 className="text-3xl font-bold mb-6">Empieza a trabajar con tus clientes de WooCommerce sin complicaciones.</h2>
+          <h2 className="text-3xl font-bold mb-6">Haz que tus clientes de WooCommerce trabajen como a tu ERP le gusta</h2>
           <p className="text-xl opacity-90 mb-10 max-w-2xl mx-auto">
-            Facturas legales, firmadas, verificadas y listas para importar. Haz crecer tu gestoría ayudando a tus clientes.
+            Te enviamos ejemplos de ficheros, te ayudamos a configurar la integración y, si quieres, conectamos por API.
           </p>
           <Button size="lg" variant="secondary" className="h-12 px-8 text-lg">
-            Solicitar acceso Gestorías
+            Hablar con CumpleFactura
           </Button>
         </div>
       </section>
