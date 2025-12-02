@@ -62,12 +62,14 @@ All pages implement react-helmet-async with:
 - Added HelmetProvider in main.tsx
 - Added fallback SEO meta tags in index.html
 - All pages now have title, description, canonical, OG tags, and Twitter cards
+- Created /public/sitemap.xml with all 17 public routes
+- Updated /public/robots.txt with sitemap reference
 
 ## Known Issues to Fix
 - /contacto link in Footer returns 404 (page not created)
 - "Empezar" button in Navbar needs destination URL
 
 ## SEO Priorities (Next Steps)
-1. Generate sitemap.xml
-2. Improve internal linking between pages
-3. Add Schema.org structured data
+1. Improve internal linking between pages
+2. Add Schema.org structured data
+3. Create /contacto page

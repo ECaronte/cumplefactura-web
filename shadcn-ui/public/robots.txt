@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://cumplefactura.es/sitemap.xml
