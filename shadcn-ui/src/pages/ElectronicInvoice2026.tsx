@@ -1,223 +1,294 @@
 import MainLayout from '@/layouts/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { CheckCircle2, FileDigit, ShieldCheck, Users, AlertTriangle, ArrowRight, FileX, FileCheck } from 'lucide-react';
+import { CheckCircle2, FileDigit, ShieldCheck, Users, AlertTriangle, ArrowRight, FileX, FileCheck, Calendar, Lock, Server, FileText, Store } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function ElectronicInvoice2026() {
   return (
     <MainLayout>
-      {/* Hero Section */}
+      {/* Hero / Header del Artículo */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">
-        <div className="container text-center max-w-4xl">
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl mb-6 text-slate-900 dark:text-white">
-            Factura electrónica obligatoria 2026: lo que debes saber
+        <div className="container max-w-4xl text-center">
+          <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary/10 text-primary hover:bg-primary/20 mb-6">
+            Guía Definitiva 2026
+          </div>
+          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl mb-6 text-slate-900 dark:text-white leading-tight">
+            Factura electrónica 2026: Todo lo que necesitas saber (Guía completa y actualizada)
           </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 mx-auto leading-relaxed">
-            Guía completa sobre la nueva obligación de factura electrónica en España, cómo afectará a autónomos y negocios online, y cómo CumpleFactura te prepara para cumplirla sin esfuerzo.
+          <p className="text-xl text-slate-600 dark:text-slate-400 mx-auto leading-relaxed max-w-3xl">
+            La guía definitiva para autónomos, gestorías y comercios online sobre la obligación de factura electrónica en España en 2026.
           </p>
         </div>
       </section>
 
-      {/* Section 1: Introduction */}
-      <section className="py-16 container max-w-4xl">
-        <div className="text-center mb-12">
+      <article className="container max-w-3xl py-16 space-y-16">
+        
+        {/* 1. Introducción */}
+        <section className="prose prose-slate dark:prose-invert lg:prose-lg mx-auto">
+          <p className="lead text-xl text-slate-600 dark:text-slate-300">
+            España está a las puertas de una revolución fiscal. La factura electrónica dejará de ser una opción para convertirse en una obligación universal para prácticamente todas las relaciones comerciales entre empresas y profesionales (B2B).
+          </p>
+          <p>
+            Este cambio no es solo burocrático: transforma la manera en que autónomos, tiendas online y pymes gestionan su día a día. El año <strong>2026</strong> se marca en el calendario como el punto de inflexión definitivo donde la digitalización será obligatoria.
+          </p>
+          <p>
+            La nueva normativa exige mucho más que enviar un email: requiere <strong>firma digital, estructura de datos XML, registro de trazabilidad y comunicación automática</strong>. Para muchos, esto suena a dolor de cabeza técnico. Sin embargo, herramientas como <strong>CumpleFactura</strong> simplifican todo este proceso, permitiendo que tu tienda WooCommerce cumpla la ley automáticamente sin que tengas que cambiar tu forma de trabajar.
+          </p>
+        </section>
+
+        {/* 2. ¿Qué es la factura electrónica obligatoria? */}
+        <section>
           <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-white">
-            La factura electrónica será obligatoria para la mayoría de negocios en 2026
+            ¿Qué es la factura electrónica obligatoria en España?
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-            La normativa española avanza hacia un sistema digital de facturación totalmente trazable.
-            A partir de 2026, autónomos, pymes y comercios online deberán emitir facturas electrónicas con requisitos técnicos específicos, además de garantizar la integridad, firma y registro de cada operación.
-          </p>
-          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-            CumpleFactura integra estos requisitos de forma automática en WooCommerce, sin que el usuario tenga que aprender nada técnico.
-          </p>
-        </div>
-      </section>
-
-      {/* Section 2: Requirements */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-900/50">
-        <div className="container max-w-5xl">
-          <h2 className="text-3xl font-bold mb-10 text-center text-slate-900 dark:text-white">
-            Qué exige la factura electrónica obligatoria
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              "Emisión de factura en formato electrónico estructurado",
-              "Firma digital válida (XAdES)",
-              "Registro de integridad y trazabilidad",
-              "Conservación de datos durante el periodo legal",
-              "Comunicación o disponibilidad de la información para la Administración",
-              "Uso de software verificable compatible con los requisitos técnicos",
-              "Posible necesidad de interoperabilidad con MiFacturae"
-            ].map((item, index) => (
-              <div key={index} className="flex items-start space-x-3 p-4 bg-white dark:bg-slate-950 rounded-lg border shadow-sm">
-                <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-slate-700 dark:text-slate-300 font-medium">{item}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <p className="text-lg text-slate-700 dark:text-slate-300 max-w-3xl mx-auto bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800">
-              La factura electrónica deja de ser “un PDF enviado por email” para convertirse en un sistema digital auditado y verificado.
+          <div className="prose prose-slate dark:prose-invert lg:prose-lg mb-8">
+            <p>
+              Es fundamental entender que <strong>un PDF no es una factura electrónica</strong> según la nueva Ley Crea y Crece. Un PDF es solo una imagen digital de un documento.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3: Who is affected */}
-      <section className="py-16 container max-w-4xl">
-        <div className="bg-white dark:bg-slate-950 p-8 md:p-12 rounded-2xl border shadow-sm">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-1">
-              <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-3">
-                <Users className="h-8 w-8 text-primary" />
-                ¿A quién afecta esta obligación?
-              </h2>
-              <p className="mb-6 text-slate-600 dark:text-slate-400">Afectará a:</p>
-              <ul className="space-y-3 mb-6">
-                {[
-                  "Autónomos",
-                  "Comercios online (incluyendo WooCommerce)",
-                  "Profesionales liberales",
-                  "Pymes",
-                  "Tiendas que vendan productos o servicios",
-                  "Negocios que emitan facturas a consumidores o empresas"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-center space-x-2">
-                    <ArrowRight className="h-4 w-4 text-primary" />
-                    <span className="text-slate-800 dark:text-slate-200 font-medium">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="text-sm text-slate-500 italic border-t pt-4">
-                Esta obligación se aplicará progresivamente según tipo de contribuyente y facturación anual.
-              </p>
-            </div>
-            <div className="hidden md:block w-1/3 flex justify-center">
-              <FileDigit className="h-32 w-32 text-primary/20" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4: How CumpleFactura prepares you */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-900/50">
-        <div className="container max-w-5xl">
-          <h2 className="text-3xl font-bold mb-12 text-center text-slate-900 dark:text-white">
-            CumpleFactura automatiza todo lo que exige la nueva normativa
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: "Firma digital XAdES", desc: "En cada factura" },
-              { title: "Hash criptográfico", desc: "Trazabilidad (Verifactu)" },
-              { title: "Preparación MiFacturae", desc: "Listo para el futuro" },
-              { title: "Registros de integridad", desc: "Eventos auditables" },
-              { title: "Numeración legal", desc: "Automatizada y secuencial" },
-              { title: "Exportaciones profesionales", desc: "Para gestorías" },
-              { title: "Gestión integrada", desc: "Directamente desde WooCommerce" }
-            ].map((item, index) => (
-              <div key={index} className="bg-white dark:bg-slate-950 p-6 rounded-xl border hover:border-primary/50 transition-colors">
-                <ShieldCheck className="h-8 w-8 text-primary mb-4" />
-                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-12 text-center text-lg font-medium text-slate-700 dark:text-slate-300">
-            CumpleFactura elimina el riesgo de errores, sanciones o incumplimientos: todo se hace de manera automática en segundo plano.
-          </p>
-        </div>
-      </section>
-
-      {/* Section 5: PDF vs Electronic Invoice */}
-      <section className="py-16 container max-w-4xl">
-        <h2 className="text-3xl font-bold mb-10 text-center text-slate-900 dark:text-white">
-          Diferencias entre PDF y factura electrónica real
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-red-50 dark:bg-red-900/10 p-8 rounded-xl border border-red-100 dark:border-red-900/30">
-            <div className="flex items-center gap-3 mb-4 text-red-600 dark:text-red-400">
-              <FileX className="h-8 w-8" />
-              <h3 className="text-xl font-bold">PDF Simple</h3>
-            </div>
-            <p className="text-slate-700 dark:text-slate-300 font-medium mb-4">Un PDF NO es una factura electrónica válida.</p>
-            <p className="text-slate-600 dark:text-slate-400 text-sm">
-              Carece de estructura de datos procesable, firma digital cualificada y trazabilidad técnica requerida por la normativa.
+            <p>
+              La factura electrónica real es un fichero de datos estructurados (generalmente XML) que permite que los sistemas informáticos "lean" la factura automáticamente sin intervención humana. Además, debe cumplir tres pilares:
             </p>
           </div>
           
-          <div className="bg-green-50 dark:bg-green-900/10 p-8 rounded-xl border border-green-100 dark:border-green-900/30">
-            <div className="flex items-center gap-3 mb-4 text-green-600 dark:text-green-400">
-              <FileCheck className="h-8 w-8" />
-              <h3 className="text-xl font-bold">Factura Electrónica</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 not-prose">
+            <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl border text-center">
+              <FileDigit className="h-10 w-10 mx-auto mb-4 text-primary" />
+              <h3 className="font-bold text-lg mb-2">Formato Estructurado</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Datos legibles por máquina (Facturae, XML) para automatizar su procesamiento.
+              </p>
             </div>
-            <p className="text-slate-700 dark:text-slate-300 font-medium mb-4">La factura electrónica exige:</p>
-            <p className="text-slate-600 dark:text-slate-400 text-sm">
-              Estructura digital, firma, hash, trazabilidad y compatibilidad con los sistemas estatales.
+            <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl border text-center">
+              <ShieldCheck className="h-10 w-10 mx-auto mb-4 text-primary" />
+              <h3 className="font-bold text-lg mb-2">Firma Digital</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Garantía de autenticidad e integridad mediante certificados electrónicos cualificados.
+              </p>
+            </div>
+            <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl border text-center">
+              <Server className="h-10 w-10 mx-auto mb-4 text-primary" />
+              <h3 className="font-bold text-lg mb-2">Interconexión</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Capacidad de comunicarse con plataformas públicas (MiFacturae) o privadas.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Calendario real */}
+        <section className="bg-blue-50 dark:bg-blue-900/10 -mx-6 px-6 py-12 rounded-2xl border border-blue-100 dark:border-blue-900/30">
+          <h2 className="text-3xl font-bold mb-8 text-center text-slate-900 dark:text-white flex items-center justify-center gap-3">
+            <Calendar className="h-8 w-8 text-primary" />
+            Calendario real de entrada en vigor (2024–2026)
+          </h2>
+          <div className="space-y-8 max-w-2xl mx-auto">
+            <div className="relative pl-8 border-l-2 border-primary/30">
+              <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-primary" />
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Fase 1: Aprobación del Reglamento</h3>
+              <p className="text-slate-600 dark:text-slate-400">
+                Ya se han definido los requisitos técnicos (Verifactu). Los desarrolladores de software tienen un plazo (hasta mediados de 2025) para adaptar sus soluciones.
+              </p>
+            </div>
+            <div className="relative pl-8 border-l-2 border-primary/30">
+              <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-primary" />
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Fase 2: Grandes Empresas (Facturación &gt; 8M€)</h3>
+              <p className="text-slate-600 dark:text-slate-400">
+                Serán las primeras en estar obligadas, un año después de la aprobación definitiva del desarrollo reglamentario de la Ley Crea y Crece.
+              </p>
+            </div>
+            <div className="relative pl-8 border-l-2 border-primary/30">
+              <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-primary animate-pulse" />
+              <h3 className="text-xl font-bold text-primary mb-2">Fase 3: El resto (Autónomos y Pymes) - 2026</h3>
+              <p className="text-slate-600 dark:text-slate-400 font-medium">
+                Aquí entra la gran mayoría del tejido empresarial español. Dos años después de la aprobación del reglamento, todos los profesionales deberán emitir facturas electrónicas. Por eso se señala <strong>2026</strong> como la fecha clave definitiva.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. Requisitos técnicos */}
+        <section>
+          <h2 className="text-3xl font-bold mb-8 text-slate-900 dark:text-white">
+            Requisitos técnicos de la factura electrónica obligatoria
+          </h2>
+          <div className="grid gap-4 mb-8">
+            {[
+              { title: "Firma digital válida (XAdES)", desc: "Imprescindible para garantizar la autoría e integridad del documento." },
+              { title: "Registro de integridad", desc: "Cada factura debe quedar registrada en un sistema que impida su alteración posterior." },
+              { title: "Datos estructurados", desc: "El formato debe ser XML, Facturae u otros estándares admitidos, no texto plano ni imagen." },
+              { title: "Trazabilidad", desc: "Encadenamiento de facturas mediante huellas digitales (hashes)." },
+              { title: "Numeración legal", desc: "Series correlativas y sin saltos injustificados." },
+              { title: "Comunicación electrónica", desc: "Capacidad de enviar la factura al cliente y reportar el estado (aceptada/rechazada)." },
+              { title: "Interoperabilidad", desc: "Conexión con plataformas certificadas públicas o privadas." }
+            ].map((req, idx) => (
+              <div key={idx} className="flex items-start p-4 bg-white dark:bg-slate-950 rounded-lg border shadow-sm">
+                <CheckCircle2 className="h-5 w-5 text-green-500 mt-1 mr-3 flex-shrink-0" />
+                <div>
+                  <h3 className="font-bold text-slate-900 dark:text-white">{req.title}</h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">{req.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="bg-red-50 dark:bg-red-900/10 p-4 rounded-lg border border-red-200 dark:border-red-800 flex items-center justify-center text-center">
+            <p className="text-red-700 dark:text-red-300 font-bold">
+              <AlertTriangle className="inline-block h-5 w-5 mr-2 mb-1" />
+              Recuerda: Un PDF no es una factura electrónica válida para la normativa 2026.
             </p>
           </div>
-        </div>
-        <div className="mt-8 text-center">
-          <p className="text-xl font-bold text-primary">
-            CumpleFactura convierte WooCommerce en un sistema de facturación legal real.
-          </p>
-        </div>
-      </section>
+        </section>
 
-      {/* Section 6: FAQs */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-900/50">
-        <div className="container max-w-3xl">
-          <h2 className="text-3xl font-bold mb-10 text-center text-slate-900 dark:text-white">
-            Preguntas frecuentes
+        {/* 5. A quién afecta */}
+        <section>
+          <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-white">
+            ¿A quién afecta la obligación?
           </h2>
-          <Accordion type="single" collapsible className="w-full bg-white dark:bg-slate-950 p-6 rounded-xl border shadow-sm">
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div className="space-y-4">
+              <p className="text-lg text-slate-600 dark:text-slate-400">
+                La respuesta corta es: <strong>a casi todos</strong>. La ley no hace distinciones por tamaño una vez pasado el periodo transitorio.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center"><ArrowRight className="h-4 w-4 text-primary mr-2"/> <strong>Autónomos:</strong> Obligación directa en sus facturas B2B.</li>
+                <li className="flex items-center"><ArrowRight className="h-4 w-4 text-primary mr-2"/> <strong>Pymes:</strong> Igual que las grandes empresas.</li>
+                <li className="flex items-center"><ArrowRight className="h-4 w-4 text-primary mr-2"/> <strong>Tiendas Online:</strong> WooCommerce, Shopify, Prestashop, etc.</li>
+                <li className="flex items-center"><ArrowRight className="h-4 w-4 text-primary mr-2"/> <strong>Gestorías:</strong> Deberán recibir y procesar estos formatos.</li>
+              </ul>
+            </div>
+            <div className="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl flex items-center justify-center">
+              <p className="text-xl font-bold text-center text-slate-700 dark:text-slate-300">
+                “Ningún negocio que emita facturas quedará fuera de esta obligación.”
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 6. Impacto en WooCommerce */}
+        <section>
+          <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-white">
+            Impacto en WooCommerce y tiendas online
+          </h2>
+          <div className="prose prose-slate dark:prose-invert lg:prose-lg mb-6">
+            <p>
+              Si tienes una tienda en WooCommerce, probablemente uses un plugin que genera un PDF y lo envía por correo al cliente. <strong>Esto dejará de ser legalmente suficiente.</strong>
+            </p>
+            <p>
+              Para cumplir la normativa, tu WooCommerce necesita "superpoderes":
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+            {["Firma XAdES", "Registro Verifactu", "Datos Estructurados", "Control de Numeración", "Conservación", "Trazabilidad"].map((tag, i) => (
+              <span key={i} className="px-3 py-2 bg-primary/10 text-primary rounded-md text-center text-sm font-bold border border-primary/20">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <p className="text-lg text-slate-600 dark:text-slate-400">
+            <strong>CumpleFactura</strong> automatiza todo esto. Se instala como un plugin más, pero trabaja en segundo plano interceptando los pedidos para generar facturas que cumplen el 100% de los requisitos legales, sin que tú tengas que hacer nada extra.
+          </p>
+        </section>
+
+        {/* 7. Verifactu + Factura 2026 */}
+        <section className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-2xl border">
+          <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">
+            Verifactu + Factura electrónica 2026: cómo encajan
+          </h2>
+          <p className="text-slate-600 dark:text-slate-400 mb-4">
+            A veces se confunden, pero son dos caras de la misma moneda. <strong>Verifactu</strong> se centra en la lucha contra el fraude (que la factura no se borre ni manipule), mientras que la <strong>Factura Electrónica</strong> se centra en la digitalización de las relaciones comerciales (B2B).
+          </p>
+          <p className="text-slate-600 dark:text-slate-400">
+            Ambos sistemas exigen integridad, trazabilidad, firma digital y registros hash. CumpleFactura implementa ambos estándares simultáneamente, protegiéndote frente a ambas normativas con una sola herramienta.
+          </p>
+        </section>
+
+        {/* 8. Ventajas */}
+        <section>
+          <h2 className="text-3xl font-bold mb-8 text-center text-slate-900 dark:text-white">
+            Ventajas de adaptarse a tiempo
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              "Evitar sanciones por incumplimiento",
+              "Evitar el caos de gestión en el último minuto de 2026",
+              "Ahorro masivo de tiempo en contabilidad manual",
+              "Transparencia total con tu gestoría",
+              "Menos errores humanos en la facturación",
+              "Cumplimiento automático sin esfuerzo técnico",
+              "Imagen profesional y moderna ante clientes",
+              "Mejor organización y seguridad de tus datos fiscales"
+            ].map((benefit, idx) => (
+              <div key={idx} className="flex items-center space-x-3">
+                <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">{benefit}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 9. FAQs */}
+        <section>
+          <h2 className="text-3xl font-bold mb-8 text-center">Preguntas Frecuentes</h2>
+          <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger>¿Cuándo será obligatoria la factura electrónica?</AccordionTrigger>
-              <AccordionContent>
-                A partir de 2026, con implantación progresiva según tipo de contribuyente.
+              <AccordionTrigger className="text-lg font-medium">¿Es obligatorio ya en 2025?</AccordionTrigger>
+              <AccordionContent className="text-base text-slate-600 dark:text-slate-400">
+                Para la mayoría de autónomos y pymes, la obligación generalizada llegará en 2026. Sin embargo, Verifactu (software antifraude) tiene plazos que empiezan antes para los desarrolladores. Adaptarse en 2025 es la estrategia inteligente.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>¿Afecta a tiendas WooCommerce?</AccordionTrigger>
-              <AccordionContent>
-                Sí. Todos los comercios online deberán emitir facturas electrónicas con requisitos técnicos específicos.
+              <AccordionTrigger className="text-lg font-medium">¿Por qué se habla tanto de 2026?</AccordionTrigger>
+              <AccordionContent className="text-base text-slate-600 dark:text-slate-400">
+                Porque es la fecha estimada en la que finalizará el periodo transitorio para las empresas que facturan menos de 8 millones de euros (la inmensa mayoría).
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-              <AccordionTrigger>¿Necesito cambiar de plataforma?</AccordionTrigger>
-              <AccordionContent>
-                No. CumpleFactura añade toda la capa legal a WooCommerce automáticamente.
+              <AccordionTrigger className="text-lg font-medium">¿Qué pasa si sigo usando PDFs normales?</AccordionTrigger>
+              <AccordionContent className="text-base text-slate-600 dark:text-slate-400">
+                Estarás incumpliendo la normativa de facturación electrónica. Tus facturas podrían ser rechazadas por clientes profesionales y podrías enfrentarte a sanciones.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-4">
-              <AccordionTrigger>¿CumpleFactura será compatible con la normativa 2026?</AccordionTrigger>
-              <AccordionContent>
-                Sí. Ya incorpora firma XAdES, Verifactu y preparación para MiFacturae.
+              <AccordionTrigger className="text-lg font-medium">¿Necesito cambiar de plataforma de ecommerce?</AccordionTrigger>
+              <AccordionContent className="text-base text-slate-600 dark:text-slate-400">
+                No. Si usas WooCommerce, solo necesitas un plugin como CumpleFactura que añada la capa de cumplimiento legal a tu tienda existente.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-5">
-              <AccordionTrigger>¿Tengo que enviar las facturas manualmente?</AccordionTrigger>
-              <AccordionContent>
-                No. Todo queda automatizado desde la generación hasta la exportación para la gestoría.
+              <AccordionTrigger className="text-lg font-medium">¿Qué formato será el exigido?</AccordionTrigger>
+              <AccordionContent className="text-base text-slate-600 dark:text-slate-400">
+                Principalmente formatos estructurados como Facturae (XML), UBL o CII. El PDF dejará de ser el estándar válido para el intercambio de facturas.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-6">
+              <AccordionTrigger className="text-lg font-medium">¿Cómo afecta a autónomos sin tienda online?</AccordionTrigger>
+              <AccordionContent className="text-base text-slate-600 dark:text-slate-400">
+                También les afecta. Deberán usar un software de facturación que cumpla los requisitos para emitir sus facturas de servicios o productos.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-7">
+              <AccordionTrigger className="text-lg font-medium">¿CumpleFactura estará listo para 2026?</AccordionTrigger>
+              <AccordionContent className="text-base text-slate-600 dark:text-slate-400">
+                Sí, CumpleFactura está diseñado específicamente para cumplir con Verifactu y la Ley Crea y Crece, actualizándose constantemente conforme se publican los reglamentos técnicos.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
+      </article>
+
+      {/* 10. CTA Final */}
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container text-center max-w-3xl">
           <h2 className="text-3xl font-bold mb-6">
-            Prepárate para la factura electrónica obligatoria desde hoy
+            Prepárate hoy para la factura electrónica de 2026
           </h2>
           <p className="text-xl opacity-90 mb-8">
-            WooCommerce + CumpleFactura = facturación legal, firma digital y Verifactu sin complicaciones.
+            CumpleFactura añade automáticamente firma digital, trazabilidad, Verifactu y estructura legal a tus facturas de WooCommerce.
           </p>
-          <Button asChild size="lg" variant="secondary" className="text-primary font-bold">
+          <Button asChild size="lg" variant="secondary" className="h-12 px-8 text-lg font-bold bg-white text-primary hover:bg-white/90">
             <Link to="/woocommerce-verifactu">
-              Instalar CumpleFactura
+              Instalar CumpleFactura <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
         </div>
