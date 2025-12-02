@@ -18,6 +18,7 @@ import Verifactu from './pages/Verifactu';
 import ElectronicInvoice2026 from './pages/ElectronicInvoice2026';
 import XadesSignature from './pages/XadesSignature';
 import Integrations from './pages/Integrations';
+import SecurityAndCompliance from './pages/SecurityAndCompliance';
 import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/factura-electronica-2026" element={<ElectronicInvoice2026 />} />
           <Route path="/firma-xades" element={<XadesSignature />} />
           <Route path="/integraciones" element={<Integrations />} />
+          <Route path="/seguridad-y-cumplimiento" element={<SecurityAndCompliance />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
