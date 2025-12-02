@@ -11,33 +11,33 @@ import FaqSection from '@/components/sections/FaqSection';
 import CtaSection from '@/components/sections/CtaSection';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle2, ShieldCheck, FileText } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ShieldCheck, FileText, ShoppingBag, User } from 'lucide-react';
 
 export default function Home() {
   return (
     <MainLayout>
       <HeroSection />
       
-      {/* Nuevo bloque destacado: ERP-friendly */}
+      {/* NUEVA SECCIÓN: ¿Para quién es CumpleFactura? */}
       <section className="py-16 bg-slate-50 border-y border-slate-200">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1">
-              <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-blue-100 text-blue-700 hover:bg-blue-200 mb-4">
-                <FileText className="mr-1.5 h-3.5 w-3.5" />
-                Gestorías
+              <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-brand-light text-primary mb-4">
+                <User className="mr-1.5 h-3.5 w-3.5" />
+                Autónomos y Pymes
               </div>
               <h2 className="text-3xl font-bold tracking-tight mb-4 text-slate-900">
-                ERP-friendly para gestorías
+                Pensado para autónomos, tiendas online y pequeños negocios
               </h2>
               <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                CumpleFactura genera archivos contables limpios, compatibles con cualquier ERP (A3, Sage, Contasol, Holded, Anfix…). Exportaciones en CSV y XML diseñadas junto a gestorías reales para ahorrar horas de trabajo y eliminar errores.
+                Si vendes con WooCommerce, CumpleFactura automatiza tu facturación legal: Verifactu, firma digital XAdES y archivos listos para tu gestoría.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
-                  "Exportaciones listas para importar",
-                  "Datos mínimos y 100% coherentes",
-                  "Ahorro real de tiempo para gestorías"
+                  "Ideal para autónomos y micropymes",
+                  "Diseñado para WooCommerce",
+                  "Cumplimiento legal sin complicaciones"
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-2 text-slate-700">
                     <CheckCircle2 className="h-5 w-5 text-primary" />
@@ -45,23 +45,22 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <Button asChild size="lg" className="gap-2">
-                <Link to="/integraciones">
-                  Ver integraciones <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
             </div>
             <div className="flex-1 flex justify-center">
               <div className="relative w-full max-w-md aspect-video bg-white rounded-xl shadow-xl border border-slate-200 p-6 flex flex-col items-center justify-center">
-                <div className="grid grid-cols-2 gap-4 w-full opacity-80">
-                  <div className="bg-slate-100 h-12 rounded flex items-center justify-center font-bold text-slate-400">A3</div>
-                  <div className="bg-slate-100 h-12 rounded flex items-center justify-center font-bold text-slate-400">Sage</div>
-                  <div className="bg-slate-100 h-12 rounded flex items-center justify-center font-bold text-slate-400">Contasol</div>
-                  <div className="bg-slate-100 h-12 rounded flex items-center justify-center font-bold text-slate-400">Anfix</div>
+                 <div className="grid grid-cols-2 gap-4 w-full opacity-80">
+                  <div className="bg-slate-100 h-24 rounded flex flex-col items-center justify-center text-slate-500 border border-slate-200">
+                    <ShoppingBag className="h-8 w-8 mb-2 text-primary/60" />
+                    <span className="font-medium">Tienda Online</span>
+                  </div>
+                  <div className="bg-slate-100 h-24 rounded flex flex-col items-center justify-center text-slate-500 border border-slate-200">
+                    <User className="h-8 w-8 mb-2 text-primary/60" />
+                    <span className="font-medium">Autónomo</span>
+                  </div>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-white p-4 rounded-full shadow-lg border border-slate-100">
-                    <FileText className="h-10 w-10 text-primary" />
+                    <CheckCircle2 className="h-10 w-10 text-primary" />
                   </div>
                 </div>
               </div>
@@ -79,7 +78,7 @@ export default function Home() {
       <PricingPreviewSection />
       <FaqSection />
       
-      {/* Nuevo bloque destacado: Seguridad */}
+      {/* Bloque destacado: Seguridad (Renombrado) */}
       <section className="py-20 bg-slate-900 text-white">
         <div className="container">
           <div className="flex flex-col md:flex-row-reverse items-center gap-12">
@@ -89,7 +88,7 @@ export default function Home() {
                 Confianza
               </div>
               <h2 className="text-3xl font-bold tracking-tight mb-4">
-                Seriedad en seguridad
+                Seguridad sólida para tu negocio
               </h2>
               <p className="text-lg text-slate-300 mb-6 leading-relaxed">
                 CumpleFactura está diseñado con arquitectura segura en AWS, cifrado avanzado, firma digital XAdES y registro Verifactu con hash encadenado. Un sistema robusto para clientes y gestorías que necesitan máxima confianza.
@@ -130,6 +129,58 @@ export default function Home() {
                   </div>
                 </div>
                 <ShieldCheck className="absolute -bottom-12 -right-12 h-64 w-64 text-slate-700/20 z-0" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Bloque destacado: ERP-friendly (Movido y Renombrado) */}
+      <section className="py-16 bg-slate-50 border-y border-slate-200">
+        <div className="container">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="flex-1">
+              <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-blue-100 text-blue-700 hover:bg-blue-200 mb-4">
+                <FileText className="mr-1.5 h-3.5 w-3.5" />
+                Gestorías
+              </div>
+              <h2 className="text-3xl font-bold tracking-tight mb-4 text-slate-900">
+                Tu gestoría también te lo agradecerá
+              </h2>
+              <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                Exportaciones limpias en CSV/XML para que tu gestoría ahorre horas de trabajo. Compatible con A3, Sage, Contasol, Holded, Anfix y cualquier ERP.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Exportaciones listas para importar",
+                  "Datos mínimos y 100% coherentes",
+                  "Ahorro real de tiempo para gestorías"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-2 text-slate-700">
+                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button asChild size="lg" className="gap-2">
+                <Link to="/gestorias">
+                  Para gestorías <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+            <div className="flex-1 flex justify-center">
+              <div className="relative w-full max-w-md aspect-video bg-white rounded-xl shadow-xl border border-slate-200 p-6 flex flex-col items-center justify-center">
+                <div className="grid grid-cols-2 gap-4 w-full opacity-80">
+                  <div className="bg-slate-100 h-12 rounded flex items-center justify-center font-bold text-slate-400">A3</div>
+                  <div className="bg-slate-100 h-12 rounded flex items-center justify-center font-bold text-slate-400">Sage</div>
+                  <div className="bg-slate-100 h-12 rounded flex items-center justify-center font-bold text-slate-400">Contasol</div>
+                  <div className="bg-slate-100 h-12 rounded flex items-center justify-center font-bold text-slate-400">Anfix</div>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-white p-4 rounded-full shadow-lg border border-slate-100">
+                    <FileText className="h-10 w-10 text-primary" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

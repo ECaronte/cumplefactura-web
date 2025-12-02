@@ -8,21 +8,21 @@ export default function HeroSection() {
       <div className="container flex flex-col items-center text-center">
         <div className="space-y-6 max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl text-primary">
-            Vende en WooCommerce. Nosotros generamos tus facturas legales automáticamente.
+            Factura electrónica fácil para autónomos y negocios con WooCommerce
           </h1>
           <p className="text-xl text-muted-foreground max-w-[800px] mx-auto">
-            Facturación electrónica con Verifactu, firma digital XAdES y cumplimiento legal total. Todo automático en WooCommerce.
+            Cumple la normativa 2025–2026, envía tus registros Verifactu y genera facturas firmadas XAdES sin esfuerzo. Todo desde tu tienda online.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button size="lg" className="h-12 px-8 text-lg bg-accent hover:bg-accent/90 text-white border-none" asChild>
               <Link to="/precios">
-                Instalar gratis <ArrowRight className="ml-2 h-4 w-4" />
+                Instalar CumpleFactura <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="h-12 px-8 text-lg border-primary text-primary hover:bg-brand-light hover:text-primary" asChild>
               <Link to="/como-funciona">
                 <PlayCircle className="mr-2 h-4 w-4" />
-                Ver cómo funciona
+                Cómo funciona
               </Link>
             </Button>
           </div>
