@@ -3,10 +3,36 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Building2, FileCheck, Download, Server, Clock, Banknote, CheckCircle2, ArrowRight, Settings, FileText, Inbox, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function Agency() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>CumpleFactura para gestorías · Control de clientes y VeriFactu</title>
+        <meta
+          name="description"
+          content="Ofrece a tus clientes un cumplimiento total de factura electrónica y VeriFactu desde una única plataforma pensada para gestorías."
+        />
+        <link rel="canonical" href="https://cumplefactura.es/gestorias" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="CumpleFactura para gestorías · Control de clientes y VeriFactu" />
+        <meta
+          property="og:description"
+          content="Centraliza el cumplimiento de factura electrónica, VeriFactu y firma con certificado de todos tus clientes desde un único panel."
+        />
+        <meta property="og:url" content="https://cumplefactura.es/gestorias" />
+        <meta property="og:image" content="https://cumplefactura.es/og/gestorias.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="CumpleFactura para gestorías · Control de clientes y VeriFactu" />
+        <meta
+          name="twitter:description"
+          content="Solución pensada para gestorías: panel único para controlar el cumplimiento de todos tus clientes."
+        />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/gestorias.png" />
+      </Helmet>
       {/* 1. HERO */}
       <section className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900/20">
         <div className="container flex flex-col lg:flex-row items-center gap-12">

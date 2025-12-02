@@ -3,10 +3,36 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, Lock, Eye, FileText, Server, Globe, Key, AlertTriangle, CheckCircle2, HelpCircle, Mail, Layers, Database, Activity, FileSignature, Link as LinkIcon, EyeOff, HardDrive } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function SecurityAndCompliance() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>Seguridad y cumplimiento · CumpleFactura</title>
+        <meta
+          name="description"
+          content="Arquitectura segura en AWS, cifrado avanzado, firma digital XAdES y registro compatible con VeriFactu para proteger cada factura."
+        />
+        <link rel="canonical" href="https://cumplefactura.es/seguridad-y-cumplimiento" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Seguridad y cumplimiento · CumpleFactura" />
+        <meta
+          property="og:description"
+          content="Seguridad sólida para tu negocio: cifrado TLS, firma XAdES por QTSP y registro inmutable compatible con VeriFactu."
+        />
+        <meta property="og:url" content="https://cumplefactura.es/seguridad-y-cumplimiento" />
+        <meta property="og:image" content="https://cumplefactura.es/og/home.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Seguridad y cumplimiento · CumpleFactura" />
+        <meta
+          name="twitter:description"
+          content="Seguridad sólida para tu negocio: cifrado TLS, firma XAdES por QTSP y registro inmutable compatible con VeriFactu."
+        />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/home.png" />
+      </Helmet>
       {/* HERO */}
       <section className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900/20 border-b">
         <div className="container text-center max-w-4xl">

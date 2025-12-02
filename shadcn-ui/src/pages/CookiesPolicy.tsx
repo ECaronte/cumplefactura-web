@@ -1,8 +1,25 @@
 import MainLayout from '@/layouts/MainLayout';
+import { Helmet } from 'react-helmet-async';
 
 export default function CookiesPolicy() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>Política de cookies · CumpleFactura</title>
+        <meta name="description" content="Información sobre el uso de cookies en CumpleFactura." />
+        <link rel="canonical" href="https://cumplefactura.es/politica-cookies" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Política de cookies · CumpleFactura" />
+        <meta property="og:description" content="Información sobre el uso de cookies en CumpleFactura." />
+        <meta property="og:url" content="https://cumplefactura.es/politica-cookies" />
+        <meta property="og:image" content="https://cumplefactura.es/og/home.png" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Política de cookies · CumpleFactura" />
+        <meta name="twitter:description" content="Información sobre el uso de cookies en CumpleFactura." />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/home.png" />
+      </Helmet>
       {/* Hero */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">
         <div className="container text-center max-w-4xl">

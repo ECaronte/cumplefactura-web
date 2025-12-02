@@ -2,10 +2,36 @@ import MainLayout from '@/layouts/MainLayout';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ShoppingCart, Zap, PenTool, ShieldCheck, FileInput, Send, Store, Scale, Briefcase, FileText, Database } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function HowItWorks() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>Cómo funciona CumpleFactura · Paso a paso</title>
+        <meta
+          name="description"
+          content="Descubre cómo funciona CumpleFactura paso a paso: conexión con tu software, registro VeriFactu, firma con certificado y panel para gestorías."
+        />
+        <link rel="canonical" href="https://cumplefactura.es/como-funciona" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Cómo funciona CumpleFactura · Paso a paso" />
+        <meta
+          property="og:description"
+          content="Así integra CumpleFactura la factura electrónica, VeriFactu y la firma con certificado digital sin cambiar tu forma de trabajar."
+        />
+        <meta property="og:url" content="https://cumplefactura.es/como-funciona" />
+        <meta property="og:image" content="https://cumplefactura.es/og/como-funciona.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Cómo funciona CumpleFactura · Paso a paso" />
+        <meta
+          name="twitter:description"
+          content="Integra factura electrónica, VeriFactu y firma con certificado digital en un flujo sencillo."
+        />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/como-funciona.png" />
+      </Helmet>
       {/* 1. Intro */}
       <section className="bg-background py-20 md:py-28">
         <div className="container text-center flex flex-col items-center">

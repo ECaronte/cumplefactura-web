@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, Calendar, Tag, User } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const featuredArticles = [
   {
@@ -74,6 +75,31 @@ const recentPosts = [
 export default function Blog() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>Blog sobre factura electrónica y VeriFactu · CumpleFactura</title>
+        <meta
+          name="description"
+          content="Artículos, guías y recursos prácticos sobre factura electrónica, VeriFactu, firma con certificado digital y normativa para autónomos y gestorías."
+        />
+        <link rel="canonical" href="https://cumplefactura.es/blog" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Blog sobre factura electrónica y VeriFactu · CumpleFactura" />
+        <meta
+          property="og:description"
+          content="Mantente al día con las novedades sobre factura electrónica, VeriFactu y obligaciones fiscales."
+        />
+        <meta property="og:url" content="https://cumplefactura.es/blog" />
+        <meta property="og:image" content="https://cumplefactura.es/og/recursos.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog sobre factura electrónica y VeriFactu · CumpleFactura" />
+        <meta
+          name="twitter:description"
+          content="Artículos y guías para entender y aplicar la normativa sin perder tiempo."
+        />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/recursos.png" />
+      </Helmet>
       {/* 1. Hero */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">
         <div className="container text-center max-w-4xl">

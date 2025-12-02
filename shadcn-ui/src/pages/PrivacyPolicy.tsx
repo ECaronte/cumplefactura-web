@@ -1,8 +1,25 @@
 import MainLayout from '@/layouts/MainLayout';
+import { Helmet } from 'react-helmet-async';
 
 export default function PrivacyPolicy() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>Política de privacidad · CumpleFactura</title>
+        <meta name="description" content="Cómo tratamos tus datos personales en CumpleFactura." />
+        <link rel="canonical" href="https://cumplefactura.es/politica-privacidad" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Política de privacidad · CumpleFactura" />
+        <meta property="og:description" content="Cómo tratamos tus datos personales en CumpleFactura." />
+        <meta property="og:url" content="https://cumplefactura.es/politica-privacidad" />
+        <meta property="og:image" content="https://cumplefactura.es/og/home.png" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Política de privacidad · CumpleFactura" />
+        <meta name="twitter:description" content="Cómo tratamos tus datos personales en CumpleFactura." />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/home.png" />
+      </Helmet>
       {/* Hero */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">
         <div className="container text-center max-w-4xl">

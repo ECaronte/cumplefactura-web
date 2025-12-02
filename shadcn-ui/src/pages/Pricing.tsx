@@ -7,6 +7,7 @@ import { Check, Briefcase } from 'lucide-react';
 import { getPlans } from '@/services/mockApi';
 import { Plan } from '@/types';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function Pricing() {
   const [plans, setPlans] = useState<Plan[]>([]);
@@ -17,6 +18,31 @@ export default function Pricing() {
 
   return (
     <MainLayout>
+      <Helmet>
+        <title>Precios de CumpleFactura · Planes para autónomos y gestorías</title>
+        <meta
+          name="description"
+          content="Consulta los planes y precios de CumpleFactura para autónomos, pymes y gestorías. Empieza con un plan sencillo y escala sólo si lo necesitas."
+        />
+        <link rel="canonical" href="https://cumplefactura.es/precios" />
+
+        <meta property="og:type" content="product" />
+        <meta property="og:title" content="Precios de CumpleFactura · Planes para autónomos y gestorías" />
+        <meta
+          property="og:description"
+          content="Elige el plan de CumpleFactura que mejor se adapte a tu volumen de facturas y a tus necesidades de gestión."
+        />
+        <meta property="og:url" content="https://cumplefactura.es/precios" />
+        <meta property="og:image" content="https://cumplefactura.es/og/precios.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Precios de CumpleFactura · Planes para autónomos y gestorías" />
+        <meta
+          name="twitter:description"
+          content="Planes claros y sin letra pequeña para cumplir con factura electrónica, VeriFactu y firma con certificado."
+        />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/precios.png" />
+      </Helmet>
       <section className="py-20 md:py-32 bg-background">
         <div className="container text-center mb-16">
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl mb-6">Planes transparentes</h1>

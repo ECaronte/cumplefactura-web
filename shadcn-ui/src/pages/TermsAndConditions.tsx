@@ -1,8 +1,25 @@
 import MainLayout from '@/layouts/MainLayout';
+import { Helmet } from 'react-helmet-async';
 
 export default function TermsAndConditions() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>Términos y condiciones · CumpleFactura</title>
+        <meta name="description" content="Condiciones de uso del servicio CumpleFactura y del sitio web." />
+        <link rel="canonical" href="https://cumplefactura.es/terminos-condiciones" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Términos y condiciones · CumpleFactura" />
+        <meta property="og:description" content="Condiciones de uso del servicio CumpleFactura y del sitio web." />
+        <meta property="og:url" content="https://cumplefactura.es/terminos-condiciones" />
+        <meta property="og:image" content="https://cumplefactura.es/og/home.png" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Términos y condiciones · CumpleFactura" />
+        <meta name="twitter:description" content="Condiciones de uso del servicio CumpleFactura y del sitio web." />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/home.png" />
+      </Helmet>
       {/* Hero */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">
         <div className="container text-center max-w-4xl">

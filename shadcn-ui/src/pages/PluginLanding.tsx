@@ -2,10 +2,36 @@ import MainLayout from '@/layouts/MainLayout';
 import { Button } from '@/components/ui/button';
 import { CheckCircle2, Download, ArrowRight, Zap, Database, FileCheck, PenTool, ShieldCheck, Puzzle, FileCode, Clock, Lock, Briefcase, TrendingUp, Store, Gavel, Calendar, CheckSquare, FileText, X, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function PluginLanding() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>Plugin de facturación legal para WooCommerce · CumpleFactura</title>
+        <meta
+          name="description"
+          content="CumpleFactura es el plugin de facturación legal para WooCommerce con firma digital XAdES, VeriFactu, numeraciones legales y exportaciones profesionales."
+        />
+        <link rel="canonical" href="https://cumplefactura.es/woocommerce-verifactu" />
+
+        <meta property="og:type" content="product" />
+        <meta property="og:title" content="Plugin de facturación legal para WooCommerce · CumpleFactura" />
+        <meta
+          property="og:description"
+          content="Automatiza tu facturación en WooCommerce con firma digital XAdES, VeriFactu y cumplimiento legal garantizado."
+        />
+        <meta property="og:url" content="https://cumplefactura.es/woocommerce-verifactu" />
+        <meta property="og:image" content="https://cumplefactura.es/og/home.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Plugin de facturación legal para WooCommerce · CumpleFactura" />
+        <meta
+          name="twitter:description"
+          content="Automatiza tu facturación en WooCommerce con firma digital XAdES, VeriFactu y cumplimiento legal garantizado."
+        />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/home.png" />
+      </Helmet>
       {/* 1. Hero */}
       <section className="bg-gradient-to-b from-slate-50 to-white pt-20 pb-16 md:pt-32 md:pb-24">
         <div className="container flex flex-col lg:flex-row items-center gap-12">

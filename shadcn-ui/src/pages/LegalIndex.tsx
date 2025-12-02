@@ -2,6 +2,7 @@ import MainLayout from '@/layouts/MainLayout';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, FileText, Cookie, Scale } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Helmet } from 'react-helmet-async';
 
 export default function LegalIndex() {
   const legalPages = [
@@ -37,6 +38,22 @@ export default function LegalIndex() {
 
   return (
     <MainLayout>
+      <Helmet>
+        <title>Información legal · CumpleFactura</title>
+        <meta name="description" content="Accede a las páginas legales de CumpleFactura: aviso legal, privacidad, cookies y términos de uso." />
+        <link rel="canonical" href="https://cumplefactura.es/legal" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Información legal · CumpleFactura" />
+        <meta property="og:description" content="Accede a las páginas legales de CumpleFactura: aviso legal, privacidad, cookies y términos de uso." />
+        <meta property="og:url" content="https://cumplefactura.es/legal" />
+        <meta property="og:image" content="https://cumplefactura.es/og/home.png" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Información legal · CumpleFactura" />
+        <meta name="twitter:description" content="Accede a las páginas legales de CumpleFactura: aviso legal, privacidad, cookies y términos de uso." />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/home.png" />
+      </Helmet>
       {/* Hero */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">
         <div className="container text-center max-w-4xl">

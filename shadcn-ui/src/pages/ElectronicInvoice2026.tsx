@@ -3,10 +3,36 @@ import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { CheckCircle2, FileDigit, ShieldCheck, Users, AlertTriangle, ArrowRight, FileX, FileCheck, Calendar, Lock, Server, FileText, Store } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function ElectronicInvoice2026() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>Factura electrónica obligatoria 2026 en España · CumpleFactura</title>
+        <meta
+          name="description"
+          content="Resumen práctico de la nueva obligación de factura electrónica en España a partir de 2026. Quién está obligado, plazos y cómo prepararte sin sorpresas."
+        />
+        <link rel="canonical" href="https://cumplefactura.es/factura-electronica-2026" />
+
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Factura electrónica obligatoria 2026 en España · CumpleFactura" />
+        <meta
+          property="og:description"
+          content="Todo lo que debes saber sobre la factura electrónica obligatoria para autónomos y pymes en 2026. Explicado en un lenguaje sencillo."
+        />
+        <meta property="og:url" content="https://cumplefactura.es/factura-electronica-2026" />
+        <meta property="og:image" content="https://cumplefactura.es/og/factura-electronica-2026.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Factura electrónica obligatoria 2026 en España · CumpleFactura" />
+        <meta
+          name="twitter:description"
+          content="Nuevas obligaciones de factura electrónica para autónomos y pymes en 2026 explicadas sin jerga legal."
+        />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/factura-electronica-2026.png" />
+      </Helmet>
       {/* Hero / Header del Artículo */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">
         <div className="container max-w-4xl text-center">

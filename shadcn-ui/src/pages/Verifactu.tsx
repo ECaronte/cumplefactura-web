@@ -3,10 +3,36 @@ import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { CheckCircle2, ShieldCheck, FileText, Lock, Clock, Server, ArrowRight, AlertTriangle, Store, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function Verifactu() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>VeriFactu 2026 · CumpleFactura</title>
+        <meta
+          name="description"
+          content="Entiende qué es VeriFactu, a quién afecta y cómo puedes cumplir con la nueva obligación de registro de facturas sin volverte loco con la normativa."
+        />
+        <link rel="canonical" href="https://cumplefactura.es/verifactu" />
+
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="VeriFactu 2026 · CumpleFactura" />
+        <meta
+          property="og:description"
+          content="Guía clara sobre VeriFactu 2026 para autónomos, pymes y gestorías. Qué es, a quién afecta y cómo cumplir con la norma sin cambiar todo tu sistema."
+        />
+        <meta property="og:url" content="https://cumplefactura.es/verifactu" />
+        <meta property="og:image" content="https://cumplefactura.es/og/verifactu.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="VeriFactu 2026 · CumpleFactura" />
+        <meta
+          name="twitter:description"
+          content="Guía clara sobre VeriFactu 2026 para autónomos, pymes y gestorías. Qué es, a quién afecta y cómo cumplir con la norma sin complicaciones."
+        />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/verifactu.png" />
+      </Helmet>
       {/* 1. Hero / Header del Artículo */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">
         <div className="container max-w-4xl text-center">

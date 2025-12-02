@@ -12,10 +12,36 @@ import CtaSection from '@/components/sections/CtaSection';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle2, ShieldCheck, FileText, ShoppingBag, User, Server, Lock, ShoppingCart } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 export default function Home() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>CumpleFactura · Factura electrónica y VeriFactu sin complicaciones</title>
+        <meta
+          name="description"
+          content="CumpleFactura ayuda a autónomos, pymes y gestorías a cumplir con la factura electrónica, VeriFactu y la firma con certificado digital sin dolores de cabeza ni cambios de software traumáticos."
+        />
+        <link rel="canonical" href="https://cumplefactura.es/" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="CumpleFactura · Factura electrónica y VeriFactu sin complicaciones" />
+        <meta
+          property="og:description"
+          content="Factura electrónica, VeriFactu y firma con certificado digital en una solución sencilla pensada para autónomos y gestorías."
+        />
+        <meta property="og:url" content="https://cumplefactura.es/" />
+        <meta property="og:image" content="https://cumplefactura.es/og/home.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="CumpleFactura · Factura electrónica y VeriFactu sin complicaciones" />
+        <meta
+          name="twitter:description"
+          content="Factura electrónica, VeriFactu y firma con certificado digital en una solución sencilla pensada para autónomos y gestorías."
+        />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/home.png" />
+      </Helmet>
       <HeroSection />
       
       {/* NUEVA SECCIÓN: ¿Para quién es CumpleFactura? */}

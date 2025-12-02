@@ -3,10 +3,36 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FileSpreadsheet, CalendarClock, Server, CheckCircle2, ArrowRight, Network, Layers, Database, Code, FileJson } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function Integrations() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>Integraciones con ERP y herramientas de gestión · CumpleFactura</title>
+        <meta
+          name="description"
+          content="Conecta CumpleFactura con tu ERP o software contable mediante exportaciones CSV, XML y API opcional."
+        />
+        <link rel="canonical" href="https://cumplefactura.es/integraciones" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Integraciones con ERP y herramientas de gestión · CumpleFactura" />
+        <meta
+          property="og:description"
+          content="Exportaciones CSV/XML y API para conectar CumpleFactura con A3, Sage, Contasol, Anfix, Holded y más."
+        />
+        <meta property="og:url" content="https://cumplefactura.es/integraciones" />
+        <meta property="og:image" content="https://cumplefactura.es/og/home.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Integraciones con ERP y herramientas de gestión · CumpleFactura" />
+        <meta
+          name="twitter:description"
+          content="Exportaciones CSV/XML y API para conectar CumpleFactura con tu software contable."
+        />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/home.png" />
+      </Helmet>
       {/* HERO */}
       <section className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900/20 border-b">
         <div className="container text-center max-w-4xl">

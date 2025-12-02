@@ -3,10 +3,36 @@ import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { FileSignature, ShieldCheck, CheckCircle2, Lock, FileCheck, Briefcase, Store, ArrowRight, AlertTriangle, Key, FileCode } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function XadesSignature() {
   return (
     <MainLayout>
+      <Helmet>
+        <title>Firma XAdES y certificado digital para facturas · CumpleFactura</title>
+        <meta
+          name="description"
+          content="Aprende cómo funciona la firma XAdES y el uso de certificados digitales para firmar facturas electrónicas de forma legalmente válida."
+        />
+        <link rel="canonical" href="https://cumplefactura.es/firma-xades" />
+
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Firma XAdES y certificado digital para facturas · CumpleFactura" />
+        <meta
+          property="og:description"
+          content="Qué es la firma XAdES, cómo se relaciona con tu certificado digital y cómo CumpleFactura te ayuda a firmar facturas electrónicas sin complicarte."
+        />
+        <meta property="og:url" content="https://cumplefactura.es/firma-xades" />
+        <meta property="og:image" content="https://cumplefactura.es/og/firma-xades.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Firma XAdES y certificado digital para facturas · CumpleFactura" />
+        <meta
+          name="twitter:description"
+          content="Firma tus facturas electrónicas con certificado digital y formato XAdES de forma sencilla."
+        />
+        <meta name="twitter:image" content="https://cumplefactura.es/og/firma-xades.png" />
+      </Helmet>
       {/* Hero / Header del Artículo */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">
         <div className="container max-w-4xl text-center">
