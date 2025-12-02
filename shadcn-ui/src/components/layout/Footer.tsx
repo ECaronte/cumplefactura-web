@@ -88,6 +88,11 @@ export default function Footer() {
             <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Legal</h3>
             <ul className="space-y-3 text-sm">
               <li>
+                <Link to="/legal" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                  Centro Legal
+                </Link>
+              </li>
+              <li>
                 <Link to="/aviso-legal" className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
                   Aviso Legal
                 </Link>
