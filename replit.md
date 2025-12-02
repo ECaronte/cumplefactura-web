@@ -77,10 +77,25 @@ All pages implement react-helmet-async with:
   - Precios: Product (AggregateOffer) + BreadcrumbList
   - Cómo funciona, Gestorías: WebPage + BreadcrumbList
 
+**Performance Optimizations:**
+- React.lazy code splitting for all 19 pages with Suspense fallback
+- Preload for critical hero image (/assets/hero-dashboard.png)
+- Lazy loading with explicit width/height attributes on secondary images
+- Named imports from lucide-react for optimal tree-shaking
+
+**Accessibility (WCAG Compliance):**
+- Semantic HTML landmarks: header, nav, main, footer structure
+- aria-labelledby on all major sections with matching heading ids
+- FaqSection: Schema.org FAQPage microdata with Question/Answer entities
+- Navbar: Semantic nav/ul/li structure, aria-expanded for collapsible menus
+- Mobile menu: Descriptive aria-labels on icon-only buttons
+- Tables: Proper scope="col"/scope="row", caption, sr-only text for icons
+- Decorative elements marked with aria-hidden="true"
+
 ## Known Issues to Fix
 - "Empezar" button in Navbar needs destination URL
 
-## SEO Priorities (Next Steps)
-1. Improve internal linking between pages
-2. Add Schema.org structured data
-3. Create /contacto page
+## Next Steps
+1. Create /contacto page
+2. Add hreflang tags for multi-language support (if needed)
+3. Implement form validation for lead capture forms
