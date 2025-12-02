@@ -1,6 +1,6 @@
 import MainLayout from '@/layouts/MainLayout';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ShoppingCart, Zap, PenTool, ShieldCheck, FileInput, Send, Store, Scale, Briefcase } from 'lucide-react';
+import { ArrowRight, ShoppingCart, Zap, PenTool, ShieldCheck, FileInput, Send, Store, Scale, Briefcase, FileText, Database } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function HowItWorks() {
@@ -23,9 +23,66 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* 2. Pasos del proceso */}
-      <section className="py-20">
+      {/* NUEVA SECCIÓN: Diagrama del flujo */}
+      <section className="py-12 border-b border-slate-100">
         <div className="container">
+          <h2 className="text-3xl font-bold text-center mb-12 text-primary">Así funciona CumpleFactura de principio a fin</h2>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+            {/* Line connectors for desktop */}
+            <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -z-10 transform -translate-y-1/2"></div>
+
+            {/* Step 1 */}
+            <div className="bg-white p-6 rounded-xl border shadow-sm flex flex-col items-center text-center h-full relative z-10">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                <ShoppingCart className="h-6 w-6" />
+              </div>
+              <h3 className="font-bold mb-2">Pedido en WooCommerce</h3>
+              <p className="text-sm text-muted-foreground">El cliente compra en tu tienda online como siempre.</p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="bg-white p-6 rounded-xl border shadow-sm flex flex-col items-center text-center h-full relative z-10">
+              <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-4">
+                <FileText className="h-6 w-6" />
+              </div>
+              <h3 className="font-bold mb-2">Generación de factura</h3>
+              <p className="text-sm text-muted-foreground">CumpleFactura transforma el pedido en una factura legal.</p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-white p-6 rounded-xl border shadow-sm flex flex-col items-center text-center h-full relative z-10">
+              <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                <PenTool className="h-6 w-6" />
+              </div>
+              <h3 className="font-bold mb-2">Firma digital XAdES</h3>
+              <p className="text-sm text-muted-foreground">La factura se firma automáticamente mediante un prestador de confianza.</p>
+            </div>
+
+            {/* Step 4 */}
+            <div className="bg-white p-6 rounded-xl border shadow-sm flex flex-col items-center text-center h-full relative z-10">
+              <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mb-4">
+                <ShieldCheck className="h-6 w-6" />
+              </div>
+              <h3 className="font-bold mb-2">Registro Verifactu</h3>
+              <p className="text-sm text-muted-foreground">Se registra la operación con hash encadenado y trazabilidad.</p>
+            </div>
+
+            {/* Step 5 */}
+            <div className="bg-white p-6 rounded-xl border shadow-sm flex flex-col items-center text-center h-full relative z-10">
+              <div className="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mb-4">
+                <Database className="h-6 w-6" />
+              </div>
+              <h3 className="font-bold mb-2">Exportación</h3>
+              <p className="text-sm text-muted-foreground">Descarga CSV/XML listos para tu gestoría o conecta por integraciones.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Pasos del proceso (Existing section kept as requested, just adding variety) */}
+      <section className="py-20 bg-slate-50">
+        <div className="container">
+          <h2 className="text-2xl font-bold text-center mb-12 text-slate-800">Detalle del proceso paso a paso</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Paso 1 */}
             <div className="bg-background p-6 rounded-xl border shadow-sm">
@@ -97,7 +154,7 @@ export default function HowItWorks() {
       </section>
 
       {/* 3. Módulo “Todo ocurre en WooCommerce” */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-20 bg-white">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1 flex justify-center">
@@ -117,7 +174,7 @@ export default function HowItWorks() {
       </section>
 
       {/* 4. Módulo “Cumplimiento legal” */}
-      <section className="py-20">
+      <section className="py-20 bg-slate-50">
         <div className="container">
           <div className="flex flex-col md:flex-row-reverse items-center gap-12">
             <div className="flex-1 flex justify-center">
@@ -131,13 +188,17 @@ export default function HowItWorks() {
                 Incluye firma digital XAdES, cadena Verifactu, numeraciones legales, registros de integridad y compatibilidad con MiFacturae.
                 Todo lo que la normativa española exige para 2025–2026.
               </p>
+              {/* ENLACE AÑADIDO */}
+              <p className="text-base text-slate-600 pt-2 border-t border-slate-200">
+                ¿Quieres ver el detalle técnico de cómo protegemos los datos y garantizamos la integridad de cada factura? Consulta la página de <Link to="/seguridad-y-cumplimiento" className="text-primary font-medium hover:underline">Seguridad y Cumplimiento</Link>.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* 5. Módulo “Para tu gestoría” */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-20 bg-white">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1 flex justify-center">
@@ -151,21 +212,34 @@ export default function HowItWorks() {
                 Exportación masiva en CSV/XML, datos perfectos para contabilidad y API opcional para integraciones profesionales.
                 Tu gestoría recibirá todo sin perseguirte nunca más.
               </p>
+              {/* ENLACE AÑADIDO */}
+              <p className="text-base text-slate-600 pt-2 border-t border-slate-200">
+                Si trabajas con una gestoría o con un ERP concreto, visita la página de <Link to="/integraciones" className="text-primary font-medium hover:underline">Integraciones</Link> para ver cómo encaja CumpleFactura en tu flujo actual.
+              </p>
             </div>
           </div>
         </div>
       </section>
       
-      {/* 6. CTA Final */}
+      {/* 6. CTA Final (ACTUALIZADO) */}
       <section className="py-20 container text-center">
-        <div className="bg-brand-light rounded-3xl p-12">
-          <h2 className="text-3xl font-bold mb-6 text-primary">Instálalo hoy y deja que CumpleFactura trabaje por ti.</h2>
-          <p className="text-xl text-muted-foreground mb-8">WooCommerce + Verifactu + Firma digital = facturación legal sin esfuerzo.</p>
-          <Button size="lg" className="h-12 px-8 text-lg bg-accent hover:bg-accent/90 text-white" asChild>
-            <Link to="/woocommerce-verifactu">
-              Empezar gratis <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
+        <div className="bg-brand-light rounded-3xl p-12 border border-slate-100 shadow-sm">
+          <h2 className="text-3xl font-bold mb-6 text-primary">¿Listo para automatizar todo este proceso?</h2>
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Instalar CumpleFactura es el primer paso para olvidarte de la parte compleja de la facturación: nosotros nos encargamos de Verifactu, firma digital y exportaciones para tu gestoría.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="h-12 px-8 text-lg bg-accent hover:bg-accent/90 text-white" asChild>
+              <Link to="/woocommerce-verifactu">
+                Instalar CumpleFactura <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button size="lg" variant="outline" className="h-12 px-8 text-lg" asChild>
+              <Link to="/precios">
+                Ver precios
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
     </MainLayout>
