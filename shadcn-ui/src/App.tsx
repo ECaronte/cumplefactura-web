@@ -13,6 +13,7 @@ import LegalNotice from './pages/LegalNotice';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import CookiesPolicy from './pages/CookiesPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
+import LegalIndex from './pages/LegalIndex';
 import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
           <Route path="/politica-cookies" element={<CookiesPolicy />} />
           <Route path="/terminos-condiciones" element={<TermsAndConditions />} />
+          <Route path="/legal" element={<LegalIndex />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
