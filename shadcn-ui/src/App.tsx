@@ -14,6 +14,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import CookiesPolicy from './pages/CookiesPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
 import LegalIndex from './pages/LegalIndex';
+import Verifactu from './pages/Verifactu';
 import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/politica-cookies" element={<CookiesPolicy />} />
           <Route path="/terminos-condiciones" element={<TermsAndConditions />} />
           <Route path="/legal" element={<LegalIndex />} />
+          <Route path="/verifactu" element={<Verifactu />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
