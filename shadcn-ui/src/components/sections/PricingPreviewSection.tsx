@@ -13,10 +13,10 @@ export default function PricingPreviewSection() {
   }, []);
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-background" aria-labelledby="pricing-preview-title">
       <div className="container">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 text-primary">
+          <h2 id="pricing-preview-title" className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 text-primary">
             Planes y Precios
           </h2>
         </div>
@@ -26,6 +26,7 @@ export default function PricingPreviewSection() {
             <Card 
               key={plan.id} 
               className={`flex flex-col relative ${plan.highlight ? 'border-primary shadow-xl scale-105 z-10' : 'border-border shadow-sm'}`}
+              role="article"
             >
               {plan.highlight && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-white px-3 py-1 rounded-full text-sm font-medium shadow-sm">
@@ -41,10 +42,10 @@ export default function PricingPreviewSection() {
                   <span className="text-4xl font-bold text-primary">{plan.price}</span>
                   {plan.price !== 'Contactar' && <span className="text-muted-foreground">/mes</span>}
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-3" role="list">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-center gap-2">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" aria-hidden="true" />
                       <span className="text-sm text-gray-700">{feature}</span>
                     </li>
                   ))}

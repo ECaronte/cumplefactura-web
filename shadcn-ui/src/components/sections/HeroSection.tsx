@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom';
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-background pt-16 md:pt-24 lg:pt-32 pb-16">
+    <section 
+      className="relative overflow-hidden bg-background pt-16 md:pt-24 lg:pt-32 pb-16"
+      aria-labelledby="hero-title"
+    >
       <div className="container flex flex-col items-center text-center">
         <div className="space-y-6 max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl text-primary">
+          <h1 id="hero-title" className="text-4xl font-extrabold tracking-tight lg:text-6xl text-primary">
             Factura electrónica fácil para autónomos y negocios con WooCommerce
           </h1>
           <p className="text-xl text-muted-foreground max-w-[800px] mx-auto">
@@ -16,12 +19,12 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button size="lg" className="h-12 px-8 text-lg bg-accent hover:bg-accent/90 text-white border-none" asChild>
               <Link to="/precios">
-                Instalar CumpleFactura <ArrowRight className="ml-2 h-4 w-4" />
+                Instalar CumpleFactura <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="h-12 px-8 text-lg border-primary text-primary hover:bg-brand-light hover:text-primary" asChild>
               <Link to="/como-funciona">
-                <PlayCircle className="mr-2 h-4 w-4" />
+                <PlayCircle className="mr-2 h-4 w-4" aria-hidden="true" />
                 Cómo funciona
               </Link>
             </Button>
@@ -43,7 +46,7 @@ export default function HeroSection() {
       </div>
       
       {/* Background decoration */}
-      <div className="absolute top-0 z-[-1] h-full w-full bg-white bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.15),rgba(255,255,255,0))]"></div>
+      <div className="absolute top-0 z-[-1] h-full w-full bg-white bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.15),rgba(255,255,255,0))]" aria-hidden="true"></div>
     </section>
   );
 }

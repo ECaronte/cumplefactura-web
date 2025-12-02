@@ -43,62 +43,18 @@ export default function Navbar() {
   const isResourceActive = resourcesLinks.some(link => location.pathname === link.href);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="mr-6">
-          <Logo />
-        </div>
+    <header>
+      <nav 
+        className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+        aria-label="Navegación principal"
+      >
+        <div className="container flex h-16 items-center justify-between">
+          <div className="mr-6">
+            <Logo />
+          </div>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex md:items-center md:space-x-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                location.pathname === link.href ? 'text-primary' : 'text-muted-foreground'
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-
-          {/* Recursos Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className={`flex items-center text-sm font-medium transition-colors hover:text-primary outline-none ${isResourceActive ? 'text-primary' : 'text-muted-foreground'}`}>
-              Recursos <ChevronDown className="ml-1 h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {resourcesLinks.map((link) => (
-                <DropdownMenuItem key={link.href} asChild>
-                  <Link 
-                    to={link.href}
-                    className={`w-full cursor-pointer ${location.pathname === link.href ? 'text-primary font-medium' : ''}`}
-                  >
-                    {link.label}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Button size="sm" className="bg-primary hover:bg-brand-secondary text-white">Empezar</Button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 text-muted-foreground hover:text-primary"
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </div>
-
-      {/* Mobile Menu Dropdown */}
-      {isOpen && (
-        <div className="md:hidden border-t bg-background p-4 max-h-[calc(100vh-4rem)] overflow-y-auto">
-          <div className="flex flex-col space-y-4">
+          {/* Desktop Menu */}
+          <div className="hidden md:flex md:items-center md:space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -106,37 +62,106 @@ export default function Navbar() {
                 className={`text-sm font-medium transition-colors hover:text-primary ${
                   location.pathname === link.href ? 'text-primary' : 'text-muted-foreground'
                 }`}
-                onClick={() => setIsOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
 
-            {/* Mobile Recursos Submenu */}
-            <Collapsible open={isResourcesOpen} onOpenChange={setIsResourcesOpen} className="w-full">
-              <CollapsibleTrigger className={`flex w-full items-center justify-between text-sm font-medium transition-colors hover:text-primary ${isResourceActive ? 'text-primary' : 'text-muted-foreground'}`}>
-                Recursos <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isResourcesOpen ? 'rotate-180' : ''}`} />
-              </CollapsibleTrigger>
-              <CollapsibleContent className="pt-2 pl-4 flex flex-col space-y-3">
+            {/* Recursos Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger 
+                className={`flex items-center text-sm font-medium transition-colors hover:text-primary outline-none ${isResourceActive ? 'text-primary' : 'text-muted-foreground'}`}
+              >
+                Recursos <ChevronDown className="ml-1 h-4 w-4" aria-hidden="true" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
                 {resourcesLinks.map((link) => (
+                  <DropdownMenuItem key={link.href} asChild>
+                    <Link 
+                      to={link.href}
+                      className={`w-full cursor-pointer ${location.pathname === link.href ? 'text-primary font-medium' : ''}`}
+                    >
+                      {link.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Button size="sm" className="bg-primary hover:bg-brand-secondary text-white">Empezar</Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            className="md:hidden p-2 text-muted-foreground hover:text-primary"
+            onClick={toggleMenu}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+            aria-label={isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+          >
+            {isOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
+          </button>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isOpen && (
+          <nav 
+            id="mobile-menu"
+            className="md:hidden border-t bg-background p-4 max-h-[calc(100vh-4rem)] overflow-y-auto"
+            aria-label="Navegación móvil"
+          >
+            <ul className="flex flex-col space-y-4">
+              {navLinks.map((link) => (
+                <li key={link.href}>
                   <Link
-                    key={link.href}
                     to={link.href}
-                    className={`text-sm transition-colors hover:text-primary ${
-                      location.pathname === link.href ? 'text-primary font-medium' : 'text-muted-foreground'
+                    className={`text-sm font-medium transition-colors hover:text-primary block ${
+                      location.pathname === link.href ? 'text-primary' : 'text-muted-foreground'
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
                   </Link>
-                ))}
-              </CollapsibleContent>
-            </Collapsible>
+                </li>
+              ))}
 
-            <Button className="w-full bg-primary hover:bg-brand-secondary text-white" size="sm">Empezar</Button>
-          </div>
-        </div>
-      )}
-    </nav>
+              {/* Mobile Recursos Submenu */}
+              <li>
+                <Collapsible open={isResourcesOpen} onOpenChange={setIsResourcesOpen} className="w-full">
+                  <CollapsibleTrigger 
+                    className={`flex w-full items-center justify-between text-sm font-medium transition-colors hover:text-primary ${isResourceActive ? 'text-primary' : 'text-muted-foreground'}`}
+                    aria-expanded={isResourcesOpen}
+                  >
+                    Recursos <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isResourcesOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="pt-2 pl-4">
+                    <ul className="flex flex-col space-y-3">
+                      {resourcesLinks.map((link) => (
+                        <li key={link.href}>
+                          <Link
+                            to={link.href}
+                            className={`text-sm transition-colors hover:text-primary block ${
+                              location.pathname === link.href ? 'text-primary font-medium' : 'text-muted-foreground'
+                            }`}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {link.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </CollapsibleContent>
+                </Collapsible>
+              </li>
+
+              <li>
+                <Button className="w-full bg-primary hover:bg-brand-secondary text-white" size="sm">Empezar</Button>
+              </li>
+            </ul>
+          </nav>
+        )}
+      </nav>
+    </header>
   );
 }

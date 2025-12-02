@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 export default function CtaSection() {
   return (
-    <section className="py-24 bg-primary text-white">
+    <section className="py-24 bg-primary text-white" aria-labelledby="cta-title">
       <div className="container text-center">
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6 text-white">
+        <h2 id="cta-title" className="text-3xl font-bold tracking-tight sm:text-4xl mb-6 text-white">
           Empieza hoy y despreocúpate de la factura electrónica.
         </h2>
         <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-10">

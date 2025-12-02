@@ -1,0 +1,141 @@
+Quiero que mejores la accesibilidad y la semántica HTML de la web de CumpleFactura aplicando cambios DIRECTAMENTE en el código, no sólo explicándolos.
+
+Los problemas a resolver son:
+
+- Secciones sin <article> o landmarks semánticos (varias páginas)
+- FAQs sin itemscope para Schema (FaqSection.tsx)
+- Algunos botones sin texto accesible en el navbar móvil
+
+Sigue estos pasos:
+
+========================
+1) LANDMARKS SEMÁNTICOS EN PÁGINAS
+========================
+
+Objetivo: cada página de marketing debe tener una estructura semántica clara con landmarks HTML5.
+
+Para cada página principal (home, verifactu, factura-electronica-2026, firma-xades, como-funciona, gestorias, precios, recursos/blog, contacto):
+
+1. Asegúrate de que:
+   - El contenido principal está envuelto en un <main> único por página.
+   - El header global utiliza <header>.
+   - El footer global utiliza <footer>.
+   - La navegación principal utiliza <nav> (si no lo está ya).
+
+2. Dentro del <main>:
+   - Secciones grandes que representen bloques de contenido diferenciados (por ejemplo “Cómo funciona”, “Beneficios”, “Planes de precios”, “Testimonios”) deben estar envueltas en <section> o <article>.
+   - Usa <article> para bloques de contenido que tengan sentido por sí mismos (por ejemplo una tarjeta de caso de uso, un testimonio, una sección de texto largo tipo artículo).
+   - Asegúrate de que el orden de los encabezados H1, H2, H3 es jerárquico y no se salta niveles de forma absurda.
+
+Ejemplo de estructura que quiero:
+
+<header>…</header>
+<main>
+  <section aria-labelledby="home-hero">
+    <h1 id="home-hero">Factura electrónica y VeriFactu sin complicaciones</h1>
+    …
+  </section>
+  <section aria-labelledby="home-beneficios">
+    <h2 id="home-beneficios">Por qué CumpleFactura</h2>
+    …
+  </section>
+  <article aria-labelledby="home-caso-gestorias">
+    <h2 id="home-caso-gestorias">Para gestorías</h2>
+    …
+  </article>
+</main>
+<footer>…</footer>
+
+Aplica este patrón de landmarks semánticos en las páginas clave del marketing site, ajustándolo a la estructura real de los componentes.
+
+========================
+2) FAQS CON SCHEMA (itemscope) EN FaqSection.tsx
+========================
+
+En el componente de FAQs (por ejemplo FaqSection.tsx):
+
+1. Envuelve la sección de FAQs con un contenedor semántico, por ejemplo:
+
+<section
+  aria-labelledby="faq-title"
+  itemScope
+  itemType="https://schema.org/FAQPage"
+>
+
+2. Cada pregunta/respuesta debe seguir el patrón de Schema.org FAQPage usando microdatos:
+
+- Envolver cada FAQ con:
+  itemScope
+  itemProp="mainEntity"
+  itemType="https://schema.org/Question"
+
+- El texto de la pregunta debe tener:
+  itemProp="name"
+
+- La respuesta debe estar dentro de un elemento con:
+  itemScope
+  itemProp="acceptedAnswer"
+  itemType="https://schema.org/Answer"
+
+  y el texto de la respuesta con itemProp="text".
+
+Ejemplo de estructura que quiero que apliques al componente real:
+
+<section
+  aria-labelledby="faq-title"
+  itemScope
+  itemType="https://schema.org/FAQPage"
+>
+  <h2 id="faq-title">Preguntas frecuentes</h2>
+
+  <div
+    itemScope
+    itemProp="mainEntity"
+    itemType="https://schema.org/Question"
+  >
+    <h3 itemProp="name">¿CumpleFactura me ayuda con VeriFactu?</h3>
+    <div
+      itemScope
+      itemProp="acceptedAnswer"
+      itemType="https://schema.org/Answer"
+    >
+      <p itemProp="text">
+        Sí, CumpleFactura se conecta a tu sistema y registra las facturas según la norma VeriFactu…
+      </p>
+    </div>
+  </div>
+
+  {/* resto de FAQs con el mismo patrón */}
+</section>
+
+Adapta esto al código real de FaqSection.tsx, manteniendo el diseño actual.
+
+========================
+3) BOTONES SIN TEXTO ACCESIBLE EN NAVBAR MÓVIL
+========================
+
+En el navbar móvil (el menú hamburguesa u otros botones sin texto visible), asegúrate de que:
+
+1. Todo botón que sólo tenga un icono (por ejemplo el icono de menú) tenga:
+   - Un atributo aria-label descriptivo, por ejemplo:
+     aria-label="Abrir menú de navegación"
+   - O bien texto sólo para lectores de pantalla con una clase tipo sr-only, si ya existe en el proyecto.
+
+Ejemplo:
+
+<button
+  type="button"
+  aria-label="Abrir menú de navegación"
+>
+  <MenuIcon />
+</button>
+
+2. Revisa cualquier otro botón con sólo iconos (por ejemplo cerrar menú, desplegar algo, etc.) y añade un aria-label coherente:
+   - "Cerrar menú de navegación"
+   - "Abrir submenú"
+   - etc.
+
+Haz tú directamente todas estas modificaciones en los componentes que correspondan:
+- Páginas de marketing (landmarks semánticos)
+- FaqSection.tsx (itemscope + itemtype FAQPage/Question/Answer)
+- Navbar móvil (aria-labels en botones con iconos)
