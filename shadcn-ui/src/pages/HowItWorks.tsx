@@ -61,6 +61,9 @@ export default function HowItWorks() {
             src="/images/AppIcon.jpg" 
             alt="CumpleFactura Icon" 
             className="w-24 h-24 mb-8 drop-shadow-xl hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+            width={96}
+            height={96}
           />
           <h1 className="text-4xl font-bold tracking-tight lg:text-6xl mb-6 text-primary">
             Así funciona CumpleFactura: todo automático, desde el pedido hasta la factura legal.

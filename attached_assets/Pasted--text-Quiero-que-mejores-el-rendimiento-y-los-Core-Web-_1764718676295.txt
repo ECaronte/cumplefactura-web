@@ -1,0 +1,154 @@
+
+
+````text
+Quiero que mejores el rendimiento y los Core Web Vitals de este proyecto aplicando TÚ MISMO cambios en el código, no solo explicándolos. En concreto, quiero resolver estos puntos:
+
+- Imágenes sin lazy loading (HeroSection.tsx y resto de componentes)
+- Sin preload de la imagen principal del hero (index.html)
+- Iconos de Lucide cargados uno por uno (múltiples componentes)
+- Sin code splitting por rutas (App.tsx)
+
+El proyecto es la web de marketing de CumpleFactura (factura electrónica, VeriFactu, etc.) en React + TypeScript.
+
+========================
+1) LAZY LOADING DE IMÁGENES
+========================
+
+Objetivo: todas las imágenes NO críticas (no above-the-fold) deben usar `loading="lazy"`.
+
+Pasos que quiero que sigas:
+
+1. Localiza el componente del hero principal (por ejemplo HeroSection.tsx) y todas las imágenes que se vean "above the fold" al cargar la home (normalmente la imagen principal del dashboard/producto).
+   - A esa imagen principal del hero NO le pongas `loading="lazy"` para no romper el LCP. Déjala tal cual.
+
+2. Recorre el resto del código del proyecto (componentes de secciones, cards, logos secundarios, etc.) y a todas las imágenes que no sean críticas les añades:
+   - `loading="lazy"`
+   - Si es posible, también `width` y `height` fijos para ayudar al CLS.
+
+Ejemplo de cómo quiero que queden:
+
+```tsx
+<img
+  src="/assets/logo-gestoria.png"
+  alt="Logo de una gestoría"
+  loading="lazy"
+  width={160}
+  height={80}
+/>
+````
+
+3. Aplica esto en TODOS los componentes donde haya imágenes no críticas (secciones de testimonios, logos, capturas secundarias, etc.).
+
+Haz tú directamente los cambios en los archivos correspondientes.
+
+========================
+2) PRELOAD DE LA IMAGEN DEL HERO EN index.html
+==============================================
+
+Objetivo: precargar la imagen principal del hero para mejorar LCP.
+
+1. Localiza en `index.html` (carpeta public o equivalente) la sección `<head>`.
+
+2. Añade una línea `<link rel="preload" ...>` para la imagen principal del hero. Si el archivo que usa el hero es, por ejemplo, `/assets/hero-dashboard.png`, quiero que añadas:
+
+```html
+<link rel="preload" href="/assets/hero-dashboard.png" as="image" />
+```
+
+3. Asegúrate de que la ruta del `href` coincide exactamente con la ruta que usa el componente del hero en el código. Si el hero usa otra ruta distinta, ajusta el preload a esa ruta real.
+
+Haz tú mismo la modificación en `index.html`.
+
+========================
+3) OPTIMIZAR IMPORTS DE ICONOS LUCIDE
+=====================================
+
+Objetivo: asegurarnos de que los iconos de Lucide se cargan de forma óptima (tree shaking) y no se importa más de la cuenta.
+
+1. Recorre los componentes donde se usen iconos de `lucide-react`.
+
+2. Verifica que SIEMPRE se importan iconos concretos, por ejemplo:
+
+```tsx
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+```
+
+y NO se hace ningún import global tipo `import * as Lucide from "lucide-react"` ni nada similar.
+
+3. Si ves patrones ineficientes, cámbialos por imports nombrados.
+
+No hace falta que unifiques todos los iconos en un solo archivo; simplemente asegúrate de que:
+
+* Cada componente importa solo los iconos concretos que necesita.
+* No se está arrastrando la librería completa innecesariamente.
+
+Aplica tú mismo los cambios donde sea necesario.
+
+========================
+4) CODE SPLITTING POR RUTAS CON React.lazy
+==========================================
+
+Objetivo: que el bundle inicial de la SPA sea más pequeño cargando las páginas bajo demanda.
+
+1. Localiza el archivo donde se definen las rutas principales (por ejemplo `src/App.tsx` o similar).
+
+2. Todas las páginas que ahora se estén importando de forma estática (por ejemplo):
+
+```tsx
+import { HomePage } from "./pages/HomePage";
+import { VerifactuPage } from "./pages/VerifactuPage";
+import { FacturaElectronicaPage } from "./pages/FacturaElectronicaPage";
+// etc.
+```
+
+Cámbialas para usar `React.lazy`:
+
+```tsx
+import React, { Suspense } from "react";
+
+const HomePage = React.lazy(() => import("./pages/HomePage"));
+const VerifactuPage = React.lazy(() => import("./pages/VerifactuPage"));
+const FacturaElectronicaPage = React.lazy(() => import("./pages/FacturaElectronicaPage"));
+// etc.
+```
+
+3. Envuelve el árbol de rutas en un `<Suspense>` con un fallback sencillo pero usable (puede ser un spinner de shadcn/ui o un loader ya existente). Por ejemplo:
+
+```tsx
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+function App() {
+  return (
+    <Router>
+      <Suspense fallback={<div className="flex h-screen items-center justify-center text-sm text-muted-foreground">Cargando…</div>}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/verifactu" element={<VerifactuPage />} />
+          <Route path="/factura-electronica-2026" element={<FacturaElectronicaPage />} />
+          {/* resto de rutas */}
+        </Routes>
+      </Suspense>
+    </Router>
+  );
+}
+```
+
+4. Asegúrate de que todos los imports y tipos encajan con la estructura real del proyecto (nombres de archivos, componentes, router que se esté usando). Si usas otro tipo de router (HashRouter, createBrowserRouter, etc.), aplica el mismo concepto de Suspense + lazy donde corresponda.
+
+========================
+5) CONDICIONES FINALES
+======================
+
+* No quiero únicamente explicaciones: modifica tú directamente el código de este repo.
+* Al terminar, asegúrate de que:
+
+  * La app sigue compilando sin errores.
+  * No se rompen las rutas ni la navegación.
+  * La imagen principal del hero se sigue viendo bien y ahora tiene preload.
+  * Las imágenes secundarias usan `loading="lazy"`.
+
+Haz todos estos cambios ahora en el código del proyecto.
+
+```
+
+```

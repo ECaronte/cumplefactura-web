@@ -53,6 +53,8 @@ export default function PluginLanding() {
               src="/assets/plugin-ui-mockup.png" 
               alt="VerifactuWoo Plugin Interface" 
               className="w-full h-auto rounded-xl shadow-2xl border"
+              width={600}
+              height={400}
             />
           </div>
         </div>
