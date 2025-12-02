@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import CookieBanner from '@/components/CookieBanner';
+import AnalyticsLoader from '@/components/AnalyticsLoader';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
       </main>
       <Footer />
       <CookieBanner />
+      <AnalyticsLoader />
     </div>
   );
 }
