@@ -29,6 +29,8 @@ const resourcesLinks = [
   { label: 'Verifactu', href: '/verifactu' },
   { label: 'Factura Electrónica 2026', href: '/factura-electronica-2026' },
   { label: 'Firma XAdES', href: '/firma-xades' },
+  { label: 'Integraciones', href: '/integraciones' },
+  { label: 'Seguridad y Cumplimiento', href: '/seguridad-y-cumplimiento' },
 ];
 
 export default function Navbar() {
