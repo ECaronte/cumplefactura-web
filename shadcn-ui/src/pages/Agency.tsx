@@ -32,6 +32,28 @@ export default function Agency() {
           content="Solución pensada para gestorías: panel único para controlar el cumplimiento de todos tus clientes."
         />
         <meta name="twitter:image" content="https://cumplefactura.es/og/gestorias.png" />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebPage",
+                "name": "CumpleFactura para gestorías",
+                "description": "Ofrece a tus clientes un cumplimiento total de factura electrónica y VeriFactu desde una única plataforma pensada para gestorías.",
+                "url": "https://cumplefactura.es/gestorias",
+                "isPartOf": { "@type": "WebSite", "name": "CumpleFactura", "url": "https://cumplefactura.es" }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://cumplefactura.es/" },
+                  { "@type": "ListItem", "position": 2, "name": "Gestorías", "item": "https://cumplefactura.es/gestorias" }
+                ]
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       {/* 1. HERO */}
       <section className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900/20">

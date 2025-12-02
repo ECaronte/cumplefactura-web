@@ -32,6 +32,33 @@ export default function Verifactu() {
           content="Guía clara sobre VeriFactu 2026 para autónomos, pymes y gestorías. Qué es, a quién afecta y cómo cumplir con la norma sin complicaciones."
         />
         <meta name="twitter:image" content="https://cumplefactura.es/og/verifactu.png" />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Article",
+                "headline": "VeriFactu 2026: Qué es y cómo prepararte para la normativa de factura electrónica",
+                "description": "Guía completa sobre VeriFactu para autónomos, pymes y gestorías. Qué es, a quién afecta y cómo cumplir con la norma.",
+                "author": { "@type": "Organization", "name": "CumpleFactura" },
+                "publisher": { "@type": "Organization", "name": "CumpleFactura", "logo": { "@type": "ImageObject", "url": "https://cumplefactura.es/og/logo.png" } },
+                "datePublished": "2024-11-01",
+                "dateModified": "2025-01-15",
+                "image": "https://cumplefactura.es/og/verifactu.png",
+                "url": "https://cumplefactura.es/verifactu",
+                "keywords": ["VeriFactu", "factura electrónica", "normativa 2026", "WooCommerce", "autónomos", "gestorías"]
+              },
+              {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://cumplefactura.es/" },
+                  { "@type": "ListItem", "position": 2, "name": "VeriFactu", "item": "https://cumplefactura.es/verifactu" }
+                ]
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       {/* 1. Hero / Header del Artículo */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">

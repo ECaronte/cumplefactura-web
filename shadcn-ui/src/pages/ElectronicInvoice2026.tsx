@@ -32,6 +32,33 @@ export default function ElectronicInvoice2026() {
           content="Nuevas obligaciones de factura electrónica para autónomos y pymes en 2026 explicadas sin jerga legal."
         />
         <meta name="twitter:image" content="https://cumplefactura.es/og/factura-electronica-2026.png" />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Article",
+                "headline": "Factura electrónica obligatoria 2026 en España: Guía completa",
+                "description": "Resumen práctico de la nueva obligación de factura electrónica en España a partir de 2026. Plazos, requisitos y cómo prepararte.",
+                "author": { "@type": "Organization", "name": "CumpleFactura" },
+                "publisher": { "@type": "Organization", "name": "CumpleFactura", "logo": { "@type": "ImageObject", "url": "https://cumplefactura.es/og/logo.png" } },
+                "datePublished": "2024-10-15",
+                "dateModified": "2025-01-20",
+                "image": "https://cumplefactura.es/og/factura-electronica-2026.png",
+                "url": "https://cumplefactura.es/factura-electronica-2026",
+                "keywords": ["factura electrónica 2026", "Ley Crea y Crece", "obligación B2B", "autónomos", "pymes", "España"]
+              },
+              {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://cumplefactura.es/" },
+                  { "@type": "ListItem", "position": 2, "name": "Factura Electrónica 2026", "item": "https://cumplefactura.es/factura-electronica-2026" }
+                ]
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       {/* Hero / Header del Artículo */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">

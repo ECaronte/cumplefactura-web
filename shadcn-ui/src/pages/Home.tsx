@@ -41,6 +41,37 @@ export default function Home() {
           content="Factura electrónica, VeriFactu y firma con certificado digital en una solución sencilla pensada para autónomos y gestorías."
         />
         <meta name="twitter:image" content="https://cumplefactura.es/og/home.png" />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "name": "CumpleFactura",
+                "url": "https://cumplefactura.es",
+                "logo": "https://cumplefactura.es/og/logo.png",
+                "sameAs": []
+              },
+              {
+                "@type": "WebSite",
+                "name": "CumpleFactura",
+                "url": "https://cumplefactura.es"
+              },
+              {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Inicio",
+                    "item": "https://cumplefactura.es/"
+                  }
+                ]
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       <HeroSection />
       

@@ -32,6 +32,33 @@ export default function XadesSignature() {
           content="Firma tus facturas electrónicas con certificado digital y formato XAdES de forma sencilla."
         />
         <meta name="twitter:image" content="https://cumplefactura.es/og/firma-xades.png" />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Article",
+                "headline": "Firma XAdES y certificado digital para facturas electrónicas",
+                "description": "Guía completa sobre la firma XAdES y el uso de certificados digitales para firmar facturas electrónicas de forma legalmente válida.",
+                "author": { "@type": "Organization", "name": "CumpleFactura" },
+                "publisher": { "@type": "Organization", "name": "CumpleFactura", "logo": { "@type": "ImageObject", "url": "https://cumplefactura.es/og/logo.png" } },
+                "datePublished": "2024-09-20",
+                "dateModified": "2025-01-10",
+                "image": "https://cumplefactura.es/og/firma-xades.png",
+                "url": "https://cumplefactura.es/firma-xades",
+                "keywords": ["firma XAdES", "certificado digital", "factura electrónica", "FNMT", "firma digital", "WooCommerce"]
+              },
+              {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://cumplefactura.es/" },
+                  { "@type": "ListItem", "position": 2, "name": "Firma XAdES", "item": "https://cumplefactura.es/firma-xades" }
+                ]
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       {/* Hero / Header del Artículo */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">

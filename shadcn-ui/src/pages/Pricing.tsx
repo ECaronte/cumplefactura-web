@@ -42,6 +42,37 @@ export default function Pricing() {
           content="Planes claros y sin letra pequeña para cumplir con factura electrónica, VeriFactu y firma con certificado."
         />
         <meta name="twitter:image" content="https://cumplefactura.es/og/precios.png" />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Product",
+                "name": "CumpleFactura",
+                "description": "Software de factura electrónica y VeriFactu para WooCommerce",
+                "category": "Software de factura electrónica / VeriFactu",
+                "url": "https://cumplefactura.es/precios",
+                "brand": { "@type": "Brand", "name": "CumpleFactura" },
+                "offers": {
+                  "@type": "AggregateOffer",
+                  "priceCurrency": "EUR",
+                  "lowPrice": "0",
+                  "highPrice": "49",
+                  "offerCount": "3",
+                  "availability": "https://schema.org/InStock"
+                }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://cumplefactura.es/" },
+                  { "@type": "ListItem", "position": 2, "name": "Precios", "item": "https://cumplefactura.es/precios" }
+                ]
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       <section className="py-20 md:py-32 bg-background">
         <div className="container text-center mb-16">

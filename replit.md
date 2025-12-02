@@ -71,6 +71,11 @@ All pages implement react-helmet-async with:
   - Precios: Links to /como-funciona, /gestorias
   - Gestorías: Links to /verifactu, /precios
   - Firma XAdES: Links to /verifactu, /factura-electronica-2026
+- Added Schema.org structured data (JSON-LD) to major pages:
+  - Home: Organization + WebSite + BreadcrumbList
+  - Verifactu, Factura Electrónica 2026, Firma XAdES: Article + BreadcrumbList
+  - Precios: Product (AggregateOffer) + BreadcrumbList
+  - Cómo funciona, Gestorías: WebPage + BreadcrumbList
 
 ## Known Issues to Fix
 - /contacto link in Footer returns 404 (page not created)

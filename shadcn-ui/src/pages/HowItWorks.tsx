@@ -31,6 +31,28 @@ export default function HowItWorks() {
           content="Integra factura electrónica, VeriFactu y firma con certificado digital en un flujo sencillo."
         />
         <meta name="twitter:image" content="https://cumplefactura.es/og/como-funciona.png" />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebPage",
+                "name": "Cómo funciona CumpleFactura",
+                "description": "Descubre cómo funciona CumpleFactura paso a paso: conexión con tu software, registro VeriFactu, firma con certificado y panel para gestorías.",
+                "url": "https://cumplefactura.es/como-funciona",
+                "isPartOf": { "@type": "WebSite", "name": "CumpleFactura", "url": "https://cumplefactura.es" }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://cumplefactura.es/" },
+                  { "@type": "ListItem", "position": 2, "name": "Cómo funciona", "item": "https://cumplefactura.es/como-funciona" }
+                ]
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       {/* 1. Intro */}
       <section className="bg-background py-20 md:py-28">
