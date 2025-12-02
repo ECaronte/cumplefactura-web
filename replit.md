@@ -78,7 +78,6 @@ All pages implement react-helmet-async with:
   - Cómo funciona, Gestorías: WebPage + BreadcrumbList
 
 ## Known Issues to Fix
-- /contacto link in Footer returns 404 (page not created)
 - "Empezar" button in Navbar needs destination URL
 
 ## SEO Priorities (Next Steps)
