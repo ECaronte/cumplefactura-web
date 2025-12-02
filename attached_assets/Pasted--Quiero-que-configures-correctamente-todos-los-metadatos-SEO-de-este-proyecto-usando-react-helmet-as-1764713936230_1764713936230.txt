@@ -1,0 +1,365 @@
+
+Quiero que configures correctamente todos los metadatos SEO de este proyecto usando react-helmet-async, página por página, siguiendo EXACTAMENTE estas instrucciones.
+
+ℹ️ CONTEXTO DEL PROYECTO
+- Proyecto: web de marketing de CumpleFactura (factura electrónica, VeriFactu, firma con certificado, solución para gestorías, etc.).
+- Dominio objetivo: https://cumplefactura.es
+- Stack: React + TypeScript (usa shadcn/ui).
+- Hay varias páginas de marketing (home, verifactu, factura electrónica 2026, firma XAdES, cómo funciona, gestorías, precios, etc.).
+
+
+========================
+1) DEPENDENCIA Y SETUP GLOBAL
+========================
+
+1. Instala (o verifica que está instalada) la librería:
+   - react-helmet-async
+
+2. En el entrypoint principal (por ejemplo src/main.tsx o src/main.tsx + src/App.tsx, según la estructura de este repo):
+
+   - Importa y envuelve la app con HelmetProvider:
+
+   ```tsx
+   import { HelmetProvider } from "react-helmet-async";
+
+   ReactDOM.createRoot(document.getElementById("root")!).render(
+     <React.StrictMode>
+       <HelmetProvider>
+         <App />
+       </HelmetProvider>
+     </React.StrictMode>
+   );
+````
+
+* Si ya existe HelmetProvider, simplemente reutilízalo y NO dupliques proveedores.
+
+3. En el index.html deja un <title> y <meta name="description"> genéricos de fallback, pero asume que en producción todo se controlará desde React con Helmet:
+
+   * Title genérico: "CumpleFactura · Factura electrónica y VeriFactu para autónomos y gestorías"
+   * Description genérica: "CumpleFactura te ayuda a cumplir con la factura electrónica, VeriFactu y firma con certificado digital sin complicaciones."
+
+=========================================
+2) PÁGINAS Y METADATOS ESPECÍFICOS (HELMET)
+===========================================
+
+Quiero que localices el archivo donde se definen las rutas (por ejemplo src/App.tsx, src/router.tsx o similar) y detectes TODAS las páginas públicas del marketing site. Para cada una de estas rutas, añade un <Helmet> con metadatos específicos siguiendo estas especificaciones.
+
+IMPORTANTE:
+
+* En cada página:
+
+  * Importa: `import { Helmet } from "react-helmet-async";`
+  * Coloca el `<Helmet>` al inicio del JSX del componente principal de la página.
+  * Usa `canonical` con la URL final de producción.
+  * Añade OG y Twitter basic cards.
+* No dupliques <Helmet> si ya hay uno: en ese caso, sustitúyelo por la versión que te indico aquí.
+
+Ajusta nombres de componentes/archivos a como estén en el proyecto, pero respeta estos textos de SEO.
+
+---
+
+A) HOME / INICIO
+Ruta esperada: `/`
+Componente: el de la página principal (por ejemplo HomePage, IndexPage o similar).
+
+Dentro del componente principal de la home, añade:
+
+```tsx
+<Helmet>
+  <title>CumpleFactura · Factura electrónica y VeriFactu sin complicaciones</title>
+  <meta
+    name="description"
+    content="CumpleFactura ayuda a autónomos, pymes y gestorías a cumplir con la factura electrónica, VeriFactu y la firma con certificado digital sin dolores de cabeza ni cambios de software traumáticos."
+  />
+  <link rel="canonical" href="https://cumplefactura.es/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CumpleFactura · Factura electrónica y VeriFactu sin complicaciones" />
+  <meta
+    property="og:description"
+    content="Factura electrónica, VeriFactu y firma con certificado digital en una solución sencilla pensada para autónomos y gestorías."
+  />
+  <meta property="og:url" content="https://cumplefactura.es/" />
+  <meta property="og:image" content="https://cumplefactura.es/og/home.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CumpleFactura · Factura electrónica y VeriFactu sin complicaciones" />
+  <meta
+    name="twitter:description"
+    content="Factura electrónica, VeriFactu y firma con certificado digital en una solución sencilla pensada para autónomos y gestorías."
+  />
+  <meta name="twitter:image" content="https://cumplefactura.es/og/home.png" />
+</Helmet>
+```
+
+---
+
+B) PÁGINA VERIFACTU
+Ruta esperada: `/verifactu`
+
+```tsx
+<Helmet>
+  <title>VeriFactu 2026 · CumpleFactura</title>
+  <meta
+    name="description"
+    content="Entiende qué es VeriFactu, a quién afecta y cómo puedes cumplir con la nueva obligación de registro de facturas sin volverte loco con la normativa."
+  />
+  <link rel="canonical" href="https://cumplefactura.es/verifactu" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="VeriFactu 2026 · CumpleFactura" />
+  <meta
+    property="og:description"
+    content="Guía clara sobre VeriFactu 2026 para autónomos, pymes y gestorías. Qué es, a quién afecta y cómo cumplir con la norma sin cambiar todo tu sistema."
+  />
+  <meta property="og:url" content="https://cumplefactura.es/verifactu" />
+  <meta property="og:image" content="https://cumplefactura.es/og/verifactu.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="VeriFactu 2026 · CumpleFactura" />
+  <meta
+    name="twitter:description"
+    content="Guía clara sobre VeriFactu 2026 para autónomos, pymes y gestorías. Qué es, a quién afecta y cómo cumplir con la norma sin complicaciones."
+  />
+  <meta name="twitter:image" content="https://cumplefactura.es/og/verifactu.png" />
+</Helmet>
+```
+
+---
+
+C) FACTURA ELECTRÓNICA 2026
+Ruta esperada: `/factura-electronica-2026`
+
+```tsx
+<Helmet>
+  <title>Factura electrónica obligatoria 2026 en España · CumpleFactura</title>
+  <meta
+    name="description"
+    content="Resumen práctico de la nueva obligación de factura electrónica en España a partir de 2026. Quién está obligado, plazos y cómo prepararte sin sorpresas."
+  />
+  <link rel="canonical" href="https://cumplefactura.es/factura-electronica-2026" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Factura electrónica obligatoria 2026 en España · CumpleFactura" />
+  <meta
+    property="og:description"
+    content="Todo lo que debes saber sobre la factura electrónica obligatoria para autónomos y pymes en 2026. Explicado en un lenguaje sencillo."
+  />
+  <meta property="og:url" content="https://cumplefactura.es/factura-electronica-2026" />
+  <meta property="og:image" content="https://cumplefactura.es/og/factura-electronica-2026.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Factura electrónica obligatoria 2026 en España · CumpleFactura" />
+  <meta
+    name="twitter:description"
+    content="Nuevas obligaciones de factura electrónica para autónomos y pymes en 2026 explicadas sin jerga legal."
+  />
+  <meta name="twitter:image" content="https://cumplefactura.es/og/factura-electronica-2026.png" />
+</Helmet>
+```
+
+---
+
+D) FIRMA XAdES / FIRMA CON CERTIFICADO
+Ruta esperada: `/firma-xades`
+
+```tsx
+<Helmet>
+  <title>Firma XAdES y certificado digital para facturas · CumpleFactura</title>
+  <meta
+    name="description"
+    content="Aprende cómo funciona la firma XAdES y el uso de certificados digitales para firmar facturas electrónicas de forma legalmente válida."
+  />
+  <link rel="canonical" href="https://cumplefactura.es/firma-xades" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Firma XAdES y certificado digital para facturas · CumpleFactura" />
+  <meta
+    property="og:description"
+    content="Qué es la firma XAdES, cómo se relaciona con tu certificado digital y cómo CumpleFactura te ayuda a firmar facturas electrónicas sin complicarte."
+  />
+  <meta property="og:url" content="https://cumplefactura.es/firma-xades" />
+  <meta property="og:image" content="https://cumplefactura.es/og/firma-xades.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Firma XAdES y certificado digital para facturas · CumpleFactura" />
+  <meta
+    name="twitter:description"
+    content="Firma tus facturas electrónicas con certificado digital y formato XAdES de forma sencilla."
+  />
+  <meta name="twitter:image" content="https://cumplefactura.es/og/firma-xades.png" />
+</Helmet>
+```
+
+---
+
+E) CÓMO FUNCIONA
+Ruta esperada: `/como-funciona`
+
+```tsx
+<Helmet>
+  <title>Cómo funciona CumpleFactura · Paso a paso</title>
+  <meta
+    name="description"
+    content="Descubre cómo funciona CumpleFactura paso a paso: conexión con tu software, registro VeriFactu, firma con certificado y panel para gestorías."
+  />
+  <link rel="canonical" href="https://cumplefactura.es/como-funciona" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Cómo funciona CumpleFactura · Paso a paso" />
+  <meta
+    property="og:description"
+    content="Así integra CumpleFactura la factura electrónica, VeriFactu y la firma con certificado digital sin cambiar tu forma de trabajar."
+  />
+  <meta property="og:url" content="https://cumplefactura.es/como-funciona" />
+  <meta property="og:image" content="https://cumplefactura.es/og/como-funciona.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cómo funciona CumpleFactura · Paso a paso" />
+  <meta
+    name="twitter:description"
+    content="Integra factura electrónica, VeriFactu y firma con certificado digital en un flujo sencillo."
+  />
+  <meta name="twitter:image" content="https://cumplefactura.es/og/como-funciona.png" />
+</Helmet>
+```
+
+---
+
+F) PÁGINA PARA GESTORÍAS
+Ruta esperada: `/gestorias`
+
+```tsx
+<Helmet>
+  <title>CumpleFactura para gestorías · Control de clientes y VeriFactu</title>
+  <meta
+    name="description"
+    content="Ofrece a tus clientes un cumplimiento total de factura electrónica y VeriFactu desde una única plataforma pensada para gestorías."
+  />
+  <link rel="canonical" href="https://cumplefactura.es/gestorias" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CumpleFactura para gestorías · Control de clientes y VeriFactu" />
+  <meta
+    property="og:description"
+    content="Centraliza el cumplimiento de factura electrónica, VeriFactu y firma con certificado de todos tus clientes desde un único panel."
+  />
+  <meta property="og:url" content="https://cumplefactura.es/gestorias" />
+  <meta property="og:image" content="https://cumplefactura.es/og/gestorias.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CumpleFactura para gestorías · Control de clientes y VeriFactu" />
+  <meta
+    name="twitter:description"
+    content="Solución pensada para gestorías: panel único para controlar el cumplimiento de todos tus clientes."
+  />
+  <meta name="twitter:image" content="https://cumplefactura.es/og/gestorias.png" />
+</Helmet>
+```
+
+---
+
+G) PÁGINA DE PRECIOS
+Ruta esperada: `/precios`
+
+```tsx
+<Helmet>
+  <title>Precios de CumpleFactura · Planes para autónomos y gestorías</title>
+  <meta
+    name="description"
+    content="Consulta los planes y precios de CumpleFactura para autónomos, pymes y gestorías. Empieza con un plan sencillo y escala sólo si lo necesitas."
+  />
+  <link rel="canonical" href="https://cumplefactura.es/precios" />
+
+  <meta property="og:type" content="product" />
+  <meta property="og:title" content="Precios de CumpleFactura · Planes para autónomos y gestorías" />
+  <meta
+    property="og:description"
+    content="Elige el plan de CumpleFactura que mejor se adapte a tu volumen de facturas y a tus necesidades de gestión."
+  />
+  <meta property="og:url" content="https://cumplefactura.es/precios" />
+  <meta property="og:image" content="https://cumplefactura.es/og/precios.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Precios de CumpleFactura · Planes para autónomos y gestorías" />
+  <meta
+    name="twitter:description"
+    content="Planes claros y sin letra pequeña para cumplir con factura electrónica, VeriFactu y firma con certificado."
+  />
+  <meta name="twitter:image" content="https://cumplefactura.es/og/precios.png" />
+</Helmet>
+```
+
+---
+
+H) BLOG / RECURSOS (si existe)
+Ruta esperada: `/blog` o `/recursos`
+
+```tsx
+<Helmet>
+  <title>Recursos y guía sobre factura electrónica y VeriFactu · CumpleFactura</title>
+  <meta
+    name="description"
+    content="Artículos, guías y recursos prácticos sobre factura electrónica, VeriFactu, firma con certificado digital y normativa para autónomos y gestorías."
+  />
+  <link rel="canonical" href="https://cumplefactura.es/recursos" />
+  <!-- Si la ruta real es /blog, ajusta la canonical a /blog -->
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Recursos y guía sobre factura electrónica y VeriFactu · CumpleFactura" />
+  <meta
+    property="og:description"
+    content="Mantente al día con las novedades sobre factura electrónica, VeriFactu y obligaciones fiscales."
+  />
+  <meta property="og:url" content="https://cumplefactura.es/recursos" />
+  <meta property="og:image" content="https://cumplefactura.es/og/recursos.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Recursos y guía sobre factura electrónica y VeriFactu · CumpleFactura" />
+  <meta
+    name="twitter:description"
+    content="Artículos y guías para entender y aplicar la normativa sin perder tiempo."
+  />
+  <meta name="twitter:image" content="https://cumplefactura.es/og/recursos.png" />
+</Helmet>
+```
+
+---
+
+I) PÁGINAS LEGALES (opcional pero recomendable: aviso legal, privacidad, cookies, etc.)
+
+Para cada página legal, pon títulos y descripciones breves, por ejemplo:
+
+* Aviso legal:
+  Title: "Aviso legal · CumpleFactura"
+  Description: "Información legal y datos del titular de CumpleFactura."
+
+* Política de privacidad:
+  Title: "Política de privacidad · CumpleFactura"
+  Description: "Cómo tratamos tus datos personales en CumpleFactura."
+
+* Política de cookies:
+  Title: "Política de cookies · CumpleFactura"
+  Description: "Información sobre el uso de cookies en CumpleFactura."
+
+No hace falta OG sofisticado aquí; puedes reutilizar una imagen og genérica si existe.
+
+========================
+3) CONDICIONES FINALES
+======================
+
+* Aplica estos <Helmet> sólo en las páginas de marketing/customer-facing. No los añadas en componentes de panel interno o dashboards de app si los hubiera.
+* Asegúrate de que no haya dos <title> diferentes por página. El que manda debe ser el que hay dentro de <Helmet>.
+* Si ves alguna ruta adicional relevante de marketing que no haya mencionado, crea un Helmet coherente siguiendo el mismo estilo de títulos y descripciones.
+
+Cuando termines TODOS los cambios, haz un repaso rápido para verificar:
+
+* Que todas las rutas públicas tienen <Helmet>.
+* Que el canonical de cada página apunta a la URL correcta.
+* Que no hay errores de compilación ni imports sin usar.
+
+Haz todos estos cambios tú, tocando el código necesario en este repositorio.
+
+```
+
+
