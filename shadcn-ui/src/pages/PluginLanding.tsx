@@ -1,7 +1,6 @@
 import MainLayout from '@/layouts/MainLayout';
-import CtaSection from '@/components/sections/CtaSection';
 import { Button } from '@/components/ui/button';
-import { CheckCircle2, Download, ArrowRight, Zap, Database, FileCheck, PenTool, ShieldCheck, Puzzle, FileCode, Clock, Lock, Briefcase, TrendingUp, Store, Gavel, Calendar, CheckSquare, FileText } from 'lucide-react';
+import { CheckCircle2, Download, ArrowRight, Zap, Database, FileCheck, PenTool, ShieldCheck, Puzzle, FileCode, Clock, Lock, Briefcase, TrendingUp, Store, Gavel, Calendar, CheckSquare, FileText, X, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function PluginLanding() {
@@ -46,7 +45,9 @@ export default function PluginLanding() {
             <div className="p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow">
               <PenTool className="h-10 w-10 text-purple-500 mb-4" />
               <h3 className="text-xl font-bold mb-2">Firma digital XAdES</h3>
-              <p className="text-muted-foreground">Las facturas se firman automáticamente usando tu certificado digital, cumpliendo el estándar legal.</p>
+              <p className="text-muted-foreground">
+                Las facturas se firman automáticamente usando tu certificado digital. <Link to="/seguridad-y-cumplimiento" className="text-primary hover:underline">Ver cómo protegemos tus datos</Link>.
+              </p>
             </div>
             <div className="p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow">
               <ShieldCheck className="h-10 w-10 text-green-500 mb-4" />
@@ -61,19 +62,81 @@ export default function PluginLanding() {
             <div className="p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow">
               <Download className="h-10 w-10 text-teal-500 mb-4" />
               <h3 className="text-xl font-bold mb-2">Exportación profesional</h3>
-              <p className="text-muted-foreground">CSV y XML listos para contabilidad y gestorías. API opcional.</p>
+              <p className="text-muted-foreground">
+                CSV y XML listos para contabilidad. <Link to="/gestorias" className="text-primary hover:underline">¿Trabajas con una gestoría?</Link>
+              </p>
             </div>
             <div className="p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow">
               <FileCode className="h-10 w-10 text-indigo-500 mb-4" />
               <h3 className="text-xl font-bold mb-2">Compatible con MiFacturae</h3>
-              <p className="text-muted-foreground">Deja todo preparado para envío y registro en MiFacturae.</p>
+              <p className="text-muted-foreground">
+                Deja todo preparado para envío y registro en MiFacturae. <Link to="/integraciones" className="text-primary hover:underline">Compatibilidad con ERPs</Link>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NUEVA SECCIÓN: Ahorra tiempo y evita sanciones */}
+      <section className="py-20 bg-slate-50 border-y border-slate-200">
+        <div className="container">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold tracking-tight mb-4 text-slate-900">
+                Ahorra tiempo y evita sanciones
+              </h2>
+              <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                CumpleFactura automatiza la parte más delicada de tu facturación: registros Verifactu, firma digital XAdES y coherencia contable. Evita errores que pueden derivar en sanciones y ahorra horas cada mes con un sistema que trabaja por ti.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Cumple automáticamente con la normativa 2025–2026",
+                  "Evita errores típicos en facturas manuales",
+                  "Ahorro estimado: 2–5 horas al mes",
+                  "Registros Verifactu sin intervención manual"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-2 text-slate-700">
+                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex-1 flex justify-center">
+              <div className="relative w-full max-w-md bg-white rounded-xl shadow-xl border border-slate-200 p-8">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                    <Clock className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <div className="text-sm text-slate-500 font-medium">Tiempo ahorrado</div>
+                    <div className="text-2xl font-bold text-slate-900">5h / mes</div>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-green-500 w-[85%] rounded-full"></div>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-slate-500">Facturación manual</span>
+                    <span className="text-slate-900 font-medium">Lenta y propensa a errores</span>
+                  </div>
+                  <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-primary w-[15%] rounded-full"></div>
+                  </div>
+                   <div className="flex justify-between text-sm">
+                    <span className="text-slate-500">Con CumpleFactura</span>
+                    <span className="text-primary font-medium">Automática y segura</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* 3. Beneficios clave */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-20 bg-white">
         <div className="container">
           <h2 className="text-3xl font-bold text-center mb-12">Un plugin, toda la factura electrónica.</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -129,6 +192,39 @@ export default function PluginLanding() {
         </div>
       </section>
 
+      {/* NUEVA SECCIÓN: Tabla Comparativa */}
+      <section className="py-20 bg-slate-50">
+        <div className="container max-w-4xl">
+          <h2 className="text-3xl font-bold text-center mb-12">CumpleFactura vs Hacer facturas a mano</h2>
+          <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+            <div className="grid grid-cols-3 bg-slate-100 p-4 font-semibold text-slate-700 border-b">
+              <div className="col-span-1">Funcionalidad / Requisito</div>
+              <div className="col-span-1 text-center text-primary">Con CumpleFactura</div>
+              <div className="col-span-1 text-center text-slate-500">Hacer facturas a mano</div>
+            </div>
+            {[
+              { label: "Verifactu automático", yes: true, manual: "No" },
+              { label: "Firma digital XAdES", yes: true, manual: "No / Difícil" },
+              { label: "Exportación lista para gestoría", yes: true, manual: "No" },
+              { label: "Registro inmutable (hash)", yes: true, manual: "No" },
+              { label: "Coherencia contable", yes: "Automática", manual: "Depende del usuario" },
+              { label: "Riesgo de sanciones", yes: "Muy bajo", manual: "Alto" },
+              { label: "Tiempo invertido", yes: "Muy poco", manual: "Mucho" },
+            ].map((row, i) => (
+              <div key={i} className="grid grid-cols-3 p-4 border-b last:border-0 hover:bg-slate-50 transition-colors">
+                <div className="col-span-1 font-medium text-slate-700 flex items-center">{row.label}</div>
+                <div className="col-span-1 flex items-center justify-center font-semibold text-primary">
+                  {row.yes === true ? <Check className="h-5 w-5" /> : row.yes}
+                </div>
+                <div className="col-span-1 flex items-center justify-center text-slate-500">
+                  {row.manual === "No" ? <X className="h-5 w-5" /> : row.manual}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 4. Por qué es diferente */}
       <section className="py-20">
         <div className="container">
@@ -169,9 +265,9 @@ export default function PluginLanding() {
       {/* 5. CTA */}
       <section className="py-20 bg-primary text-primary-foreground text-center">
         <div className="container">
-          <h2 className="text-3xl font-bold mb-6">Convierte tu WooCommerce en un sistema de facturación legal.</h2>
+          <h2 className="text-3xl font-bold mb-6">Empieza a automatizar tu facturación hoy</h2>
           <Button size="lg" variant="secondary" className="h-12 px-8 text-lg">
-            Instalar gratis
+            Instalar CumpleFactura
           </Button>
         </div>
       </section>
