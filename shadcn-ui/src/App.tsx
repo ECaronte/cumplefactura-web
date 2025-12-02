@@ -16,6 +16,7 @@ import TermsAndConditions from './pages/TermsAndConditions';
 import LegalIndex from './pages/LegalIndex';
 import Verifactu from './pages/Verifactu';
 import ElectronicInvoice2026 from './pages/ElectronicInvoice2026';
+import XadesSignature from './pages/XadesSignature';
 import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/legal" element={<LegalIndex />} />
           <Route path="/verifactu" element={<Verifactu />} />
           <Route path="/factura-electronica-2026" element={<ElectronicInvoice2026 />} />
+          <Route path="/firma-xades" element={<XadesSignature />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
