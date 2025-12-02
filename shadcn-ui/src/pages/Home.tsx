@@ -11,7 +11,7 @@ import FaqSection from '@/components/sections/FaqSection';
 import CtaSection from '@/components/sections/CtaSection';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle2, ShieldCheck, FileText, ShoppingBag, User } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ShieldCheck, FileText, ShoppingBag, User, Server, Lock, ShoppingCart } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -28,10 +28,10 @@ export default function Home() {
                 Autónomos y Pymes
               </div>
               <h2 className="text-3xl font-bold tracking-tight mb-4 text-slate-900">
-                Pensado para autónomos, tiendas online y pequeños negocios
+                ¿Para quién es CumpleFactura?
               </h2>
               <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                Si vendes con WooCommerce, CumpleFactura automatiza tu facturación legal: Verifactu, firma digital XAdES y archivos listos para tu gestoría.
+                Pensado para autónomos, tiendas online y pequeños negocios que facturan con WooCommerce. CumpleFactura automatiza toda la parte legal: Verifactu, firma digital XAdES y exportaciones limpias para tu gestoría.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
@@ -64,6 +64,33 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NUEVA SECCIÓN: Iconos de confianza */}
+      <section className="py-12 bg-white border-b border-slate-100">
+        <div className="container">
+          <div className="text-center mb-8">
+            <h3 className="text-lg font-semibold text-slate-500 uppercase tracking-wider">Confianza y tecnología profesional</h3>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+            <div className="flex flex-col items-center gap-2">
+              <Server className="h-10 w-10 text-slate-600" />
+              <span className="font-bold text-slate-700">AWS</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Lock className="h-10 w-10 text-slate-600" />
+              <span className="font-bold text-slate-700">QTSP (Cualificado)</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <ShoppingCart className="h-10 w-10 text-slate-600" />
+              <span className="font-bold text-slate-700">WooCommerce</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <ShieldCheck className="h-10 w-10 text-slate-600" />
+              <span className="font-bold text-slate-700">Verifactu-ready</span>
             </div>
           </div>
         </div>

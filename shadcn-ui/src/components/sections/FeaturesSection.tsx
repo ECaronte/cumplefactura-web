@@ -1,4 +1,6 @@
-import { Zap, ShoppingCart, ShieldCheck, Building2 } from 'lucide-react';
+import { Zap, ShoppingCart, ShieldCheck, Building2, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const features = [
   {
@@ -33,7 +35,7 @@ export default function FeaturesSection() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {features.map((feature, index) => (
             <div key={index} className="flex flex-col items-center text-center p-6 bg-card rounded-xl shadow-sm border hover:shadow-md transition-shadow">
               <div className="h-16 w-16 rounded-full bg-brand-light flex items-center justify-center text-primary mb-6">
@@ -43,6 +45,14 @@ export default function FeaturesSection() {
               <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
             </div>
           ))}
+        </div>
+
+        <div className="flex justify-center">
+          <Button asChild variant="outline" size="lg" className="gap-2">
+            <Link to="/integraciones">
+              Ver Integraciones <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
