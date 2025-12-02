@@ -56,7 +56,7 @@ export default function XadesSignature() {
             La factura electrónica no es solo un cambio de papel a digital; es un cambio de paradigma basado en la confianza matemática. En este nuevo ecosistema, la <strong>firma digital</strong> es el pilar fundamental que sostiene la validez de cada documento.
           </p>
           <p>
-            Aquí entra en juego un término que verás repetido en todas las normativas: <strong>XAdES</strong>. Aunque suena a tecnicismo complejo, es simplemente el estándar que ha elegido España y Europa para garantizar que una factura es auténtica y no ha sido manipulada.
+            Aquí entra en juego un término que verás repetido en todas las normativas: <strong>XAdES</strong>. Aunque suena a tecnicismo complejo, es simplemente el estándar que ha elegido España y Europa para garantizar que una factura es auténtica y no ha sido manipulada. Es clave para cumplir con <Link to="/verifactu" className="text-primary hover:underline font-medium">VeriFactu</Link> y la <Link to="/factura-electronica-2026" className="text-primary hover:underline font-medium">factura electrónica 2026</Link>.
           </p>
           <p>
             Emitir facturas sin firma digital verificable es como enviar contratos firmados con lápiz: cualquiera podría borrarlos o alterarlos sin dejar rastro. Con la nueva normativa 2025-2026, esto ya no es una opción. Afortunadamente, herramientas como <strong>CumpleFactura</strong> eliminan esta complejidad técnica, aplicando firmas XAdES válidas automáticamente a cada venta de tu tienda WooCommerce.

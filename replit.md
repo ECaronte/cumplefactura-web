@@ -64,6 +64,13 @@ All pages implement react-helmet-async with:
 - All pages now have title, description, canonical, OG tags, and Twitter cards
 - Created /public/sitemap.xml with all 17 public routes
 - Updated /public/robots.txt with sitemap reference
+- Added strategic internal linking (interlinking SEO) across key pages:
+  - Home: Links to /verifactu and /factura-electronica-2026
+  - Verifactu: Links to /factura-electronica-2026, /firma-xades, /precios
+  - Factura Electrónica 2026: Links to /verifactu, /como-funciona
+  - Precios: Links to /como-funciona, /gestorias
+  - Gestorías: Links to /verifactu, /precios
+  - Firma XAdES: Links to /verifactu, /factura-electronica-2026
 
 ## Known Issues to Fix
 - /contacto link in Footer returns 404 (page not created)

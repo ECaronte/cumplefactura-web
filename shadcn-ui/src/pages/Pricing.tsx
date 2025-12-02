@@ -47,7 +47,7 @@ export default function Pricing() {
         <div className="container text-center mb-16">
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl mb-6">Planes transparentes</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Elige el plan que mejor se adapte a tu volumen de facturación. Sin costes ocultos.
+            Elige el plan que mejor se adapte a tu volumen de facturación. Sin costes ocultos. <Link to="/como-funciona" className="text-primary hover:underline">Ver cómo funciona</Link>.
           </p>
         </div>
 

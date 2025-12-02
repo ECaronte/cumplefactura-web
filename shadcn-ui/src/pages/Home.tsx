@@ -57,7 +57,7 @@ export default function Home() {
                 ¿Para quién es CumpleFactura?
               </h2>
               <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                Pensado para autónomos, tiendas online y pequeños negocios que facturan con WooCommerce. CumpleFactura automatiza toda la parte legal: Verifactu, firma digital XAdES y exportaciones limpias para tu gestoría.
+                Pensado para autónomos, tiendas online y pequeños negocios que facturan con WooCommerce. CumpleFactura automatiza toda la parte legal: <Link to="/verifactu" className="text-primary hover:underline font-medium">VeriFactu</Link>, firma digital XAdES y exportaciones limpias para tu gestoría.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
@@ -144,7 +144,7 @@ export default function Home() {
                 Seguridad sólida para tu negocio
               </h2>
               <p className="text-lg text-slate-300 mb-6 leading-relaxed">
-                CumpleFactura está diseñado con arquitectura segura en AWS, cifrado avanzado, firma digital XAdES y registro Verifactu con hash encadenado. Un sistema robusto para clientes y gestorías que necesitan máxima confianza.
+                CumpleFactura está diseñado con arquitectura segura en AWS, cifrado avanzado, firma digital XAdES y registro <Link to="/verifactu" className="text-emerald-400 hover:underline">VeriFactu</Link> con hash encadenado. Preparado para la <Link to="/factura-electronica-2026" className="text-emerald-400 hover:underline">factura electrónica obligatoria de 2026</Link>. Un sistema robusto para clientes y gestorías que necesitan máxima confianza.
               </p>
               <ul className="space-y-3 mb-8">
                 {[

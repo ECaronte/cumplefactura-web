@@ -41,7 +41,7 @@ export default function Agency() {
               Más clientes, menos picar datos. CumpleFactura habla el idioma de tu ERP.
             </h1>
             <p className="text-xl text-muted-foreground">
-              Facturas firmadas, verificadas y trazables que puedes importar desde CSV/XML o conectar por API con tu software de gestoría.
+              Facturas firmadas, verificadas y trazables compatibles con <Link to="/verifactu" className="text-primary hover:underline">VeriFactu</Link> que puedes importar desde CSV/XML o conectar por API con tu software de gestoría.
             </p>
             <Button size="lg" className="h-12 px-8">Unirse al programa de gestorías</Button>
           </div>
@@ -186,7 +186,7 @@ export default function Agency() {
             </div>
             <div className="bg-background p-6 rounded-xl shadow-sm border">
               <h3 className="text-xl font-bold mb-2 text-primary">Seguridad Jurídica</h3>
-              <p className="text-muted-foreground">Tus clientes cumplen la normativa 2026 sin que tú tengas que configurarlo.</p>
+              <p className="text-muted-foreground">Tus clientes cumplen la normativa 2026 sin que tú tengas que configurarlo. <Link to="/precios" className="text-primary hover:underline">Ver precios</Link>.</p>
             </div>
           </div>
         </div>

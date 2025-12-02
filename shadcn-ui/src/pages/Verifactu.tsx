@@ -56,7 +56,7 @@ export default function Verifactu() {
             La facturación en España está viviendo su mayor transformación en décadas. Con la aprobación del Reglamento de Sistemas Informáticos de Facturación (conocido popularmente como <strong>Verifactu</strong>) y la inminente Ley Crea y Crece, la forma en que autónomos y empresas emiten sus facturas va a cambiar radicalmente entre 2025 y 2026.
           </p>
           <p>
-            Ya no será suficiente con generar un PDF o usar un Excel. La administración busca acabar con el fraude fiscal y la economía sumergida mediante la digitalización y el control técnico de los procesos de facturación. Esto significa que tu software (o tu tienda WooCommerce) deberá cumplir una serie de requisitos técnicos estrictos para garantizar que las facturas no han sido manipuladas.
+            Ya no será suficiente con generar un PDF o usar un Excel. La administración busca acabar con el fraude fiscal y la economía sumergida mediante la digitalización y el control técnico de los procesos de facturación. Esto significa que tu software (o tu tienda WooCommerce) deberá cumplir una serie de requisitos técnicos estrictos para garantizar que las facturas no han sido manipuladas. Descubre más sobre la <Link to="/factura-electronica-2026" className="text-primary hover:underline font-medium">factura electrónica obligatoria 2026</Link>.
           </p>
           <div className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-6 my-8 not-prose rounded-r-lg">
             <h3 className="text-lg font-bold text-amber-800 dark:text-amber-200 flex items-center mb-2">
@@ -222,7 +222,7 @@ export default function Verifactu() {
                 <CheckCircle2 className="h-6 w-6 text-primary mr-3 mt-0.5" />
                 <div>
                   <h4 className="font-bold">Firma XAdES Automática</h4>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">Firmamos digitalmente cada factura sin que tengas que hacer nada.</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">Firmamos digitalmente cada factura sin que tengas que hacer nada. <Link to="/firma-xades" className="text-primary hover:underline">Más sobre firma XAdES</Link>.</p>
                 </div>
               </li>
               <li className="flex items-start">
@@ -279,7 +279,7 @@ export default function Verifactu() {
             <AccordionItem value="item-2">
               <AccordionTrigger className="text-lg font-medium">¿Cómo se implementa en WooCommerce?</AccordionTrigger>
               <AccordionContent className="text-base text-slate-600 dark:text-slate-400">
-                La forma más sencilla es mediante un plugin especializado como CumpleFactura. Este se encarga de interceptar los pedidos y generar las facturas cumpliendo todos los requisitos técnicos (hash, firma, formato) sin que tengas que programar nada.
+                La forma más sencilla es mediante un plugin especializado como CumpleFactura. Este se encarga de interceptar los pedidos y generar las facturas cumpliendo todos los requisitos técnicos (hash, firma, formato) sin que tengas que programar nada. <Link to="/precios" className="text-primary hover:underline">Consulta nuestros planes</Link>.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">

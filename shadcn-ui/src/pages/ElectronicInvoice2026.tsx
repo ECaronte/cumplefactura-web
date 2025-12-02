@@ -59,7 +59,7 @@ export default function ElectronicInvoice2026() {
             Este cambio no es solo burocrático: transforma la manera en que autónomos, tiendas online y pymes gestionan su día a día. El año <strong>2026</strong> se marca en el calendario como el punto de inflexión definitivo donde la digitalización será obligatoria.
           </p>
           <p>
-            La nueva normativa exige mucho más que enviar un email: requiere <strong>firma digital, estructura de datos XML, registro de trazabilidad y comunicación automática</strong>. Para muchos, esto suena a dolor de cabeza técnico. Sin embargo, herramientas como <strong>CumpleFactura</strong> simplifican todo este proceso, permitiendo que tu tienda WooCommerce cumpla la ley automáticamente sin que tengas que cambiar tu forma de trabajar.
+            La nueva normativa exige mucho más que enviar un email: requiere <strong>firma digital, estructura de datos XML, registro de trazabilidad y comunicación automática</strong>. Para muchos, esto suena a dolor de cabeza técnico. Sin embargo, herramientas como <strong>CumpleFactura</strong> simplifican todo este proceso, permitiendo que tu tienda WooCommerce cumpla la ley automáticamente sin que tengas que cambiar tu forma de trabajar. <Link to="/como-funciona" className="text-primary hover:underline font-medium">Descubre cómo funciona</Link>.
           </p>
         </section>
 
@@ -221,7 +221,7 @@ export default function ElectronicInvoice2026() {
             Verifactu + Factura electrónica 2026: cómo encajan
           </h2>
           <p className="text-slate-600 dark:text-slate-400 mb-4">
-            A veces se confunden, pero son dos caras de la misma moneda. <strong>Verifactu</strong> se centra en la lucha contra el fraude (que la factura no se borre ni manipule), mientras que la <strong>Factura Electrónica</strong> se centra en la digitalización de las relaciones comerciales (B2B).
+            A veces se confunden, pero son dos caras de la misma moneda. <strong><Link to="/verifactu" className="text-primary hover:underline">VeriFactu</Link></strong> se centra en la lucha contra el fraude (que la factura no se borre ni manipule), mientras que la <strong>Factura Electrónica</strong> se centra en la digitalización de las relaciones comerciales (B2B).
           </p>
           <p className="text-slate-600 dark:text-slate-400">
             Ambos sistemas exigen integridad, trazabilidad, firma digital y registros hash. CumpleFactura implementa ambos estándares simultáneamente, protegiéndote frente a ambas normativas con una sola herramienta.
