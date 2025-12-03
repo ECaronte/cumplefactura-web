@@ -10,8 +10,10 @@ channel = "stable-24_11"
 
 [deployment]
 run = ["node", "index.js"]
-deploymentTarget = "autoscale"
+deploymentTarget = "static"
 ignorePorts = false
+build = ["bash", "-c", "cd shadcn-ui && pnpm run build"]
+publicDir = "shadcn-ui/dist"
 
 [agent]
 expertMode = true
@@ -43,7 +45,3 @@ outputType = "webview"
 [[ports]]
 localPort = 5000
 externalPort = 80
-
-[[ports]]
-localPort = 45645
-externalPort = 3000
