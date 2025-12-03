@@ -9,10 +9,10 @@ requiredFiles = [".replit", "replit.nix", "package.json", "package-lock.json"]
 channel = "stable-24_11"
 
 [deployment]
-run = ["node", "index.js"]
-deploymentTarget = "static"
+run = ["bash", "-c", "cd shadcn-ui && pnpm run preview"]
+deploymentTarget = "autoscale"
 ignorePorts = false
-build = ["bash", "-c", "cd shadcn-ui && pnpm run build"]
+build = ["bash", "-c", "cd shadcn-ui && pnpm install && pnpm run build"]
 publicDir = "shadcn-ui/dist"
 
 [agent]
