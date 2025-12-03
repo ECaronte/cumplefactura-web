@@ -1,0 +1,173 @@
+Quiero que mejores la captación de leads en la página de gestorías.
+
+Decisión de UX (tómala como definitiva):
+- El botón principal de la página de gestorías (“Unirte al plan de gestorías” o similar) NO debe abrir sólo un mailto.
+- En su lugar, debe llevar a un FORMULARIO ESPECÍFICO de gestorías con baja fricción pero que nos permita cualificar el lead.
+- El formulario debe estar en la propia página de gestorías (no en otra ruta), para evitar pasos extra.
+
+Sigue estos pasos:
+
+========================
+1) SECCIÓN DE FORMULARIO EN LA PÁGINA DE GESTORÍAS
+========================
+
+1. Localiza el componente de la página de gestorías (la ruta /gestorias).
+
+2. Dentro de esta página, añade una nueva sección hacia el final del contenido, con un id claro:
+
+<section id="gestorias-form">...</section>
+
+3. Dentro de esa sección, crea un formulario con el siguiente contenido y estructura:
+
+- Título (h2):  
+  “Déjanos tus datos y te contactamos”
+
+- Breve texto introductorio (1–2 frases):  
+  Ejemplo:  
+  “Cuéntanos un poco sobre tu gestoría y te contactaremos para explicarte cómo encaja CumpleFactura en tu despacho.”
+
+Campos del formulario:
+
+CAMPOS OBLIGATORIOS:
+- Nombre de la gestoría (input text)
+  - name="nombreGestoria"
+  - label: “Nombre de la gestoría”
+  - required
+
+- Persona de contacto (input text)
+  - name="personaContacto"
+  - label: “Nombre y apellidos de la persona de contacto”
+  - required
+
+- Email profesional (input email)
+  - name="email"
+  - label: “Email profesional”
+  - required
+  - validación de formato
+
+- Teléfono de contacto (input tel)
+  - name="telefono"
+  - label: “Teléfono de contacto”
+  - required
+
+- Código postal (input text)
+  - name="codigoPostal"
+  - label: “Código postal de la gestoría”
+  - required
+  - puede ser un simple text, sin regex complicada
+
+CAMPOS OPCIONALES:
+- Dirección de la gestoría (input text)
+  - name="direccion"
+  - label: “Dirección (opcional)”
+
+- Volumen aproximado de clientes o facturas (select o input)
+  - name="volumen"
+  - label: “Volumen aproximado de clientes / facturas”
+  - Puede ser un <select> con rangos:
+    - “Hasta 50 clientes”
+    - “Entre 50 y 200 clientes”
+    - “Más de 200 clientes”
+
+- Tipo de clientes (checkboxes o select múltiple)
+  - name="tipoClientes"
+  - Opciones:
+    - “Autónomos”
+    - “Pymes”
+    - “Ambos”
+  - Campo opcional pero útil para cualificar.
+
+CAMPO DE COMENTARIOS (OBLIGATORIO):
+- Comentarios / mensaje (textarea)
+  - name="comentarios"
+  - label: “Cuéntanos brevemente tu caso”
+  - required
+  - altura suficiente para escribir varias líneas
+
+CONSENTIMIENTO LEGAL (OBLIGATORIO):
+- Checkbox obligatorio para consentimiento:
+  - name="consentimiento"
+  - required
+  - Texto algo similar a:
+    “He leído y acepto la política de privacidad y consiento que CumpleFactura me contacte con información sobre sus servicios.”
+  - Incluir enlace a la página de política de privacidad (ruta actual de privacidad del proyecto).
+
+Ejemplo de accesibilidad:
+- Usa <label htmlFor="..."> para todos los campos.
+- Usa aria-invalid y mensajes de error simples donde haya fallo de validación.
+
+Botón de envío:
+- Texto del botón: “Solicitar información”
+- Debe estar DESHABILITADO mientras faltan campos obligatorios o el checkbox de consentimiento no está marcado.
+
+========================
+2) COMPORTAMIENTO DEL BOTÓN “UNIRTE AL PLAN DE GESTORÍAS”
+========================
+
+1. Localiza el botón principal de CTA en la página de gestorías (por ejemplo “Unirte al plan de gestorías”).
+
+2. Cambia su comportamiento para que, al hacer clic:
+
+   - Haga scroll hasta la sección del formulario recién creada:
+     - Puedes usar scrollIntoView con un handler onClick:
+       - document.getElementById("gestorias-form")?.scrollIntoView({ behavior: "smooth" });
+
+   - Si ya tiene un link/href, sustitúyelo por un onClick que haga el scroll suave.
+   - Asegúrate de que también funciona correctamente en móvil.
+
+========================
+3) GESTIÓN DEL ENVÍO (POR AHORA, SIN BACKEND REAL)
+========================
+
+Por ahora, no voy a conectar un backend real. Quiero que el envío del formulario:
+
+1. Prevenga el comportamiento por defecto (event.preventDefault()).
+2. Valide el formulario en el cliente:
+   - Todos los campos obligatorios completados.
+   - Email con formato válido.
+   - Checkbox de consentimiento marcado.
+
+3. Si todo está correcto:
+   - Mostrar un feedback claro al usuario:
+     - Puede ser un mensaje de éxito debajo del formulario:
+       “Hemos recibido tu solicitud. Te contactaremos en breve.”
+     - Y opcionalmente limpiar los campos.
+   - Deja un TODO claro en el código para conectar con una API o enviar a gestorias@cumplefactura.es en el futuro.
+
+4. Si hay errores:
+   - Resaltar campos obligatorios con error.
+   - Mostrar mensajes de error simples y accesibles.
+
+========================
+4) ESTILO Y ACCESIBILIDAD
+========================
+
+- Usa el mismo sistema de diseño actual (shadcn/ui, tailwind, etc.) para que el formulario parezca totalmente integrado con la página.
+- Asegúrate de:
+  - El formulario sea usable en móvil.
+  - El orden de tabulación sea lógico.
+  - Los textos sean claros y profesionales.
+
+========================
+5) OPCIONAL: EMAIL EXPLÍCITO
+========================
+
+Después del formulario, añade una pequeña nota discreta con el email directo, por ejemplo:
+
+“Si prefieres escribirnos directamente, puedes hacerlo a: gestorias@cumplefactura.es”
+
+Con un enlace mailto:gestorias@cumplefactura.es.
+
+Esto sirve como alternativa de baja fricción para usuarios que no quieran rellenar el formulario completo.
+
+========================
+6) RESUMEN
+========================
+
+Implementa tú mismo:
+- La nueva sección de formulario en la página de gestorías.
+- El scroll del botón “Unirte al plan de gestorías” hacia ese formulario.
+- La validación básica en cliente y el mensaje de éxito.
+- La nota con el email gestorias@cumplefactura.es como alternativa.
+
+Mantén el código limpio, tipado (si el proyecto es TypeScript) y consistente con el estilo actual del repo.

@@ -1,11 +1,142 @@
 import MainLayout from '@/layouts/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Building2, FileCheck, Download, Server, Clock, Banknote, CheckCircle2, ArrowRight, Settings, FileText, Inbox, Check } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Building2, FileCheck, Download, Server, Clock, Banknote, CheckCircle2, ArrowRight, Settings, FileText, Inbox, Check, Mail, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useState } from 'react';
+
+interface FormData {
+  nombreGestoria: string;
+  personaContacto: string;
+  email: string;
+  telefono: string;
+  codigoPostal: string;
+  direccion: string;
+  volumen: string;
+  tipoClientes: string;
+  comentarios: string;
+  consentimiento: boolean;
+}
+
+interface FormErrors {
+  nombreGestoria?: string;
+  personaContacto?: string;
+  email?: string;
+  telefono?: string;
+  codigoPostal?: string;
+  comentarios?: string;
+  consentimiento?: string;
+}
 
 export default function Agency() {
+  const [formData, setFormData] = useState<FormData>({
+    nombreGestoria: '',
+    personaContacto: '',
+    email: '',
+    telefono: '',
+    codigoPostal: '',
+    direccion: '',
+    volumen: '',
+    tipoClientes: '',
+    comentarios: '',
+    consentimiento: false,
+  });
+
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const scrollToForm = () => {
+    document.getElementById('gestorias-form')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (!formData.nombreGestoria.trim()) {
+      newErrors.nombreGestoria = 'El nombre de la gestoría es obligatorio';
+    }
+    if (!formData.personaContacto.trim()) {
+      newErrors.personaContacto = 'El nombre de contacto es obligatorio';
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = 'El email es obligatorio';
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = 'Introduce un email válido';
+    }
+    if (!formData.telefono.trim()) {
+      newErrors.telefono = 'El teléfono es obligatorio';
+    }
+    if (!formData.codigoPostal.trim()) {
+      newErrors.codigoPostal = 'El código postal es obligatorio';
+    }
+    if (!formData.comentarios.trim()) {
+      newErrors.comentarios = 'Cuéntanos brevemente tu caso';
+    }
+    if (!formData.consentimiento) {
+      newErrors.consentimiento = 'Debes aceptar la política de privacidad';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // TODO: Conectar con API o enviar a gestorias@cumplefactura.es
+    // Por ahora simulamos el envío
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setFormData({
+        nombreGestoria: '',
+        personaContacto: '',
+        email: '',
+        telefono: '',
+        codigoPostal: '',
+        direccion: '',
+        volumen: '',
+        tipoClientes: '',
+        comentarios: '',
+        consentimiento: false,
+      });
+    }, 1000);
+  };
+
+  const handleInputChange = (field: keyof FormData, value: string | boolean) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field as keyof FormErrors]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
+  };
+
+  const isFormValid = 
+    formData.nombreGestoria.trim() &&
+    formData.personaContacto.trim() &&
+    formData.email.trim() &&
+    validateEmail(formData.email) &&
+    formData.telefono.trim() &&
+    formData.codigoPostal.trim() &&
+    formData.comentarios.trim() &&
+    formData.consentimiento;
+
   return (
     <MainLayout>
       <Helmet>
@@ -65,7 +196,9 @@ export default function Agency() {
             <p className="text-xl text-muted-foreground">
               Facturas firmadas, verificadas y trazables compatibles con <Link to="/verifactu" className="text-primary hover:underline">VeriFactu</Link> que puedes importar desde CSV/XML o conectar por API con tu software de gestoría.
             </p>
-            <Button size="lg" className="h-12 px-8">Unirse al programa de gestorías</Button>
+            <Button size="lg" className="h-12 px-8" onClick={scrollToForm}>
+              Unirse al programa de gestorías
+            </Button>
           </div>
           <div className="flex-1 flex justify-center">
             <Building2 className="h-64 w-64 text-primary/20" />
@@ -136,7 +269,7 @@ export default function Agency() {
           </div>
           <div className="mt-12 text-center">
             <p className="text-xl font-bold text-primary">
-              “Tu equipo deja de perseguir al cliente y se centra en revisar, no en picar datos.”
+              "Tu equipo deja de perseguir al cliente y se centra en revisar, no en picar datos."
             </p>
           </div>
         </div>
@@ -169,27 +302,7 @@ export default function Agency() {
         </div>
       </section>
 
-      {/* 5. Beneficios (Opcional - Manteniendo estructura original si se desea, o simplificando según instrucciones. 
-         Las instrucciones pedían actualizar bloques. El bloque 4 "Ventajas" reemplaza al anterior "Panel Gestoría".
-         El bloque 5 original "Beneficios" puede ser redundante o puede mantenerse con textos ajustados.
-         Voy a mantener el bloque de Pricing como estaba o ajustarlo mínimamente si es necesario, 
-         pero las instrucciones se centraban en Hero, Bloque Principal, Día a Día, Ventajas y CTA.
-         Voy a omitir la sección de Pricing y Beneficios antiguos para que encaje con la nueva narrativa si así se prefiere, 
-         pero la instrucción dice "NO cambies el diseño ni muevas secciones". 
-         Para cumplir estrictamente "NO muevas secciones", mantendré las secciones existentes pero actualizaré su contenido 
-         para reflejar los puntos solicitados.
-         
-         Revisando la estructura original vs nueva:
-         1. Hero -> Actualizado
-         2. Por qué CumpleFactura -> Actualizado a "Integración cómoda"
-         3. Cómo funciona -> Actualizado a "Día a día"
-         4. Panel Gestoría -> Actualizado a "Ventajas" (usando el layout de card grande)
-         5. Beneficios -> Este bloque sobra un poco con la nueva sección de Ventajas, pero lo mantendré con textos de refuerzo.
-         6. Pricing -> No se mencionó cambio, lo mantengo.
-         7. CTA -> Actualizado.
-      */}
-      
-      {/* 5. Beneficios Adicionales (Manteniendo estructura) */}
+      {/* 5. Beneficios Adicionales */}
       <section className="py-20 bg-slate-50">
         <div className="container">
           <h2 className="text-3xl font-bold text-center mb-16">¿Por qué elegir CumpleFactura?</h2>
@@ -214,7 +327,7 @@ export default function Agency() {
         </div>
       </section>
 
-      {/* 6. Pricing (Mantenido igual, no solicitado cambio explícito pero coherente) */}
+      {/* 6. Pricing */}
       <section className="py-20">
         <div className="container max-w-lg mx-auto">
           <Card className="border-primary shadow-xl relative overflow-hidden">
@@ -247,24 +360,288 @@ export default function Agency() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button className="w-full" size="lg">Solicitar acceso</Button>
+              <Button className="w-full" size="lg" onClick={scrollToForm}>
+                Solicitar acceso
+              </Button>
             </CardFooter>
           </Card>
         </div>
       </section>
 
-      {/* 7. CTA */}
+      {/* 7. FORMULARIO DE GESTORÍAS */}
+      <section id="gestorias-form" className="py-20 bg-slate-50">
+        <div className="container max-w-3xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+              Déjanos tus datos y te contactamos
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Cuéntanos un poco sobre tu gestoría y te contactaremos para explicarte cómo encaja CumpleFactura en tu despacho.
+            </p>
+          </div>
+
+          {isSubmitted ? (
+            <div className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-6">
+                <CheckCircle2 className="h-8 w-8 text-green-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-green-800 mb-4">
+                ¡Hemos recibido tu solicitud!
+              </h3>
+              <p className="text-green-700 text-lg">
+                Te contactaremos en breve para explicarte cómo CumpleFactura puede ayudar a tu gestoría.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="bg-white p-8 md:p-10 rounded-2xl border shadow-sm space-y-6">
+              {/* Campos obligatorios */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="nombreGestoria">
+                    Nombre de la gestoría <span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    id="nombreGestoria"
+                    name="nombreGestoria"
+                    type="text"
+                    placeholder="Ej: Gestoría López & Asociados"
+                    value={formData.nombreGestoria}
+                    onChange={(e) => handleInputChange('nombreGestoria', e.target.value)}
+                    aria-invalid={!!errors.nombreGestoria}
+                    className={errors.nombreGestoria ? 'border-red-500' : ''}
+                  />
+                  {errors.nombreGestoria && (
+                    <p className="text-sm text-red-500">{errors.nombreGestoria}</p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="personaContacto">
+                    Nombre y apellidos de la persona de contacto <span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    id="personaContacto"
+                    name="personaContacto"
+                    type="text"
+                    placeholder="Ej: María García Pérez"
+                    value={formData.personaContacto}
+                    onChange={(e) => handleInputChange('personaContacto', e.target.value)}
+                    aria-invalid={!!errors.personaContacto}
+                    className={errors.personaContacto ? 'border-red-500' : ''}
+                  />
+                  {errors.personaContacto && (
+                    <p className="text-sm text-red-500">{errors.personaContacto}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="email">
+                    Email profesional <span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="contacto@tugestoria.es"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    aria-invalid={!!errors.email}
+                    className={errors.email ? 'border-red-500' : ''}
+                  />
+                  {errors.email && (
+                    <p className="text-sm text-red-500">{errors.email}</p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="telefono">
+                    Teléfono de contacto <span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    id="telefono"
+                    name="telefono"
+                    type="tel"
+                    placeholder="Ej: 612 345 678"
+                    value={formData.telefono}
+                    onChange={(e) => handleInputChange('telefono', e.target.value)}
+                    aria-invalid={!!errors.telefono}
+                    className={errors.telefono ? 'border-red-500' : ''}
+                  />
+                  {errors.telefono && (
+                    <p className="text-sm text-red-500">{errors.telefono}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="codigoPostal">
+                    Código postal de la gestoría <span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    id="codigoPostal"
+                    name="codigoPostal"
+                    type="text"
+                    placeholder="Ej: 28001"
+                    value={formData.codigoPostal}
+                    onChange={(e) => handleInputChange('codigoPostal', e.target.value)}
+                    aria-invalid={!!errors.codigoPostal}
+                    className={errors.codigoPostal ? 'border-red-500' : ''}
+                  />
+                  {errors.codigoPostal && (
+                    <p className="text-sm text-red-500">{errors.codigoPostal}</p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="direccion">
+                    Dirección (opcional)
+                  </Label>
+                  <Input
+                    id="direccion"
+                    name="direccion"
+                    type="text"
+                    placeholder="Ej: Calle Gran Vía 45, 2º"
+                    value={formData.direccion}
+                    onChange={(e) => handleInputChange('direccion', e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {/* Campos opcionales */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="volumen">
+                    Volumen aproximado de clientes / facturas
+                  </Label>
+                  <select
+                    id="volumen"
+                    name="volumen"
+                    value={formData.volumen}
+                    onChange={(e) => handleInputChange('volumen', e.target.value)}
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  >
+                    <option value="">Selecciona una opción</option>
+                    <option value="hasta-50">Hasta 50 clientes</option>
+                    <option value="50-200">Entre 50 y 200 clientes</option>
+                    <option value="mas-200">Más de 200 clientes</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="tipoClientes">
+                    Tipo de clientes
+                  </Label>
+                  <select
+                    id="tipoClientes"
+                    name="tipoClientes"
+                    value={formData.tipoClientes}
+                    onChange={(e) => handleInputChange('tipoClientes', e.target.value)}
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  >
+                    <option value="">Selecciona una opción</option>
+                    <option value="autonomos">Autónomos</option>
+                    <option value="pymes">Pymes</option>
+                    <option value="ambos">Ambos</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Comentarios */}
+              <div className="space-y-2">
+                <Label htmlFor="comentarios">
+                  Cuéntanos brevemente tu caso <span className="text-red-500">*</span>
+                </Label>
+                <Textarea
+                  id="comentarios"
+                  name="comentarios"
+                  placeholder="¿Qué problemas tienes actualmente con la facturación de tus clientes? ¿Qué ERP usas?"
+                  rows={5}
+                  value={formData.comentarios}
+                  onChange={(e) => handleInputChange('comentarios', e.target.value)}
+                  aria-invalid={!!errors.comentarios}
+                  className={errors.comentarios ? 'border-red-500' : ''}
+                />
+                {errors.comentarios && (
+                  <p className="text-sm text-red-500">{errors.comentarios}</p>
+                )}
+              </div>
+
+              {/* Consentimiento */}
+              <div className="space-y-2">
+                <div className="flex items-start gap-3">
+                  <Checkbox
+                    id="consentimiento"
+                    checked={formData.consentimiento}
+                    onCheckedChange={(checked) => handleInputChange('consentimiento', checked === true)}
+                    aria-invalid={!!errors.consentimiento}
+                  />
+                  <Label htmlFor="consentimiento" className="text-sm leading-relaxed cursor-pointer">
+                    He leído y acepto la{' '}
+                    <Link to="/politica-privacidad" className="text-primary hover:underline" target="_blank">
+                      política de privacidad
+                    </Link>{' '}
+                    y consiento que CumpleFactura me contacte con información sobre sus servicios.{' '}
+                    <span className="text-red-500">*</span>
+                  </Label>
+                </div>
+                {errors.consentimiento && (
+                  <p className="text-sm text-red-500 ml-7">{errors.consentimiento}</p>
+                )}
+              </div>
+
+              {/* Botón de envío */}
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full"
+                disabled={!isFormValid || isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>Enviando...</>
+                ) : (
+                  <>
+                    <Send className="mr-2 h-4 w-4" />
+                    Solicitar información
+                  </>
+                )}
+              </Button>
+            </form>
+          )}
+
+          {/* Alternativa: email directo */}
+          <div className="mt-8 text-center">
+            <p className="text-muted-foreground">
+              Si prefieres escribirnos directamente, puedes hacerlo a:{' '}
+              <a
+                href="mailto:gestorias@cumplefactura.es"
+                className="text-primary font-medium hover:underline inline-flex items-center gap-1"
+              >
+                <Mail className="h-4 w-4" />
+                gestorias@cumplefactura.es
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. CTA Final */}
       <section className="py-20 bg-primary text-primary-foreground text-center">
         <div className="container">
           <h2 className="text-3xl font-bold mb-6">Haz que tus clientes de WooCommerce trabajen como a tu ERP le gusta</h2>
           <p className="text-xl opacity-90 mb-10 max-w-2xl mx-auto">
             Te enviamos ejemplos de ficheros, te ayudamos a configurar la integración y, si quieres, conectamos por API.
           </p>
-          <Button size="lg" variant="secondary" className="h-12 px-8 text-lg" asChild>
-            <Link to="/contacto">Hablar con CumpleFactura</Link>
+          <Button size="lg" variant="secondary" className="h-12 px-8 text-lg" onClick={scrollToForm}>
+            Unirse al programa de gestorías
           </Button>
           <p className="mt-6 text-primary-foreground/80">
-            Si quieres ver cómo encaja CumpleFactura en tu despacho, <Link to="/contacto" className="underline hover:text-white">ponte en contacto con nosotros</Link>.
+            ¿Tienes dudas? Escríbenos a{' '}
+            <a href="mailto:gestorias@cumplefactura.es" className="underline hover:text-white">
+              gestorias@cumplefactura.es
+            </a>
           </p>
         </div>
       </section>
