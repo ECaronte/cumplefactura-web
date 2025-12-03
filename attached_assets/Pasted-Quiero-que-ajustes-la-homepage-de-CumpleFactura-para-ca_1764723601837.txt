@@ -1,0 +1,167 @@
+Quiero que ajustes la homepage de CumpleFactura para captar leads de forma profesional, pensando ya en conectar más adelante con un backend en AWS (API Gateway + Lambda + DynamoDB), pero de momento solo dejar apartado el frontend bien preparado.
+
+Decisiones de producto (tómalas como definitivas):
+- El CTA principal del hero será: “Quiero CumpleFactura”.
+- Ese botón llevará a un formulario de “early access”.
+- Dentro de ese formulario habrá un botón claro para gestorías: “Soy una gestoría”, que redirige al formulario específico de gestorías en /gestorias.
+- El formulario debe estar preparado para enviar los datos a un endpoint de API (que luego se implementará en AWS), usando una URL base tomada de una variable de entorno (por ejemplo VITE_API_BASE).
+
+========================
+1) CTA PRINCIPAL DEL HERO
+========================
+
+1. Localiza el hero de la homepage (ruta /).
+2. Cambia el texto del botón principal a:
+
+   “Quiero CumpleFactura”
+
+3. El comportamiento del botón debe ser:
+   - Hacer scroll suave a la sección del formulario de early access dentro de la misma página.
+   - Para ello, crea una sección con id="early-access" (ver siguiente apartado) y haz:
+     `document.getElementById("early-access")?.scrollIntoView({ behavior: "smooth" });`
+
+4. Si en el navbar existe un botón de tipo “Empezar”, haz que tenga el mismo comportamiento: que lleve al formulario de early access (scroll al id="early-access").
+
+========================
+2) FORMULARIO DE EARLY ACCESS EN LA HOME
+========================
+
+Añade una sección nueva en la homepage, preferiblemente debajo del hero o en una posición destacada:
+
+- Estructura básica:
+
+<section id="early-access" aria-labelledby="early-access-title">
+  <h2 id="early-access-title">Sé de los primeros en usar CumpleFactura</h2>
+  <p>Estamos desplegando CumpleFactura para autónomos, pymes y gestorías. Déjanos tus datos y te avisamos cuando esté disponible, con prioridad para los primeros interesados.</p>
+
+  [ Botón “Soy una gestoría” ]
+  [ Formulario de early access ]
+</section>
+
+========================
+3) BOTÓN “SOY UNA GESTORÍA”
+========================
+
+Dentro de esta sección, antes o encima del formulario, añade un botón secundario:
+
+- Texto: “Soy una gestoría”
+- Comportamiento:
+  - Al hacer clic, debe llevar al formulario específico de gestorías que ya existe en la página /gestorias.
+  - Asume que el formulario de gestorías está en la sección con id="gestorias-form" dentro de esa página (si no, créala allí).
+  - Navegación:
+    - Puede ser un <Link to="/gestorias#gestorias-form"> o navegación programática + hash, según el router actual.
+
+Visualmente:
+- Que se vea claramente secundario respecto al CTA “Quiero CumpleFactura”.
+- Úsalo con los componentes de botón que ya tenga el proyecto (shadcn/ui o similares) para mantener consistencia.
+
+========================
+4) CAMPOS DEL FORMULARIO GENERAL DE EARLY ACCESS
+========================
+
+El formulario dentro de la sección #early-access debe ser de **baja fricción**, pero útil para cualificar leads.
+
+CAMPOS OBLIGATORIOS:
+- Nombre (input text)
+  - name="nombre"
+  - label: “Nombre”
+  - required
+
+- Email (input email)
+  - name="email"
+  - label: “Email”
+  - required, validación de formato
+
+- Tipo de usuario (select)
+  - name="tipoUsuario"
+  - label: “Soy…”
+  - opciones:
+    - “Autónomo”
+    - “Pyme / empresa”
+    - “Gestoría / asesoría”
+    - “Otro”
+  - required
+
+- Consentimiento (checkbox)
+  - name="consentimiento"
+  - required
+  - texto:
+    “Acepto la política de privacidad y deseo recibir información sobre CumpleFactura.”
+  - Enlaza “política de privacidad” a la ruta de privacidad ya existente.
+
+CAMPOS OPCIONALES:
+- Número aproximado de facturas mensuales (input text o select con rangos)
+  - name="volumenFacturas"
+
+- Comentario (textarea)
+  - name="comentario"
+  - label: “Cuéntanos brevemente tu caso (opcional)”
+
+Todos los campos deben tener:
+- <label htmlFor="...">
+- ids únicos
+- sustitución coherente del sistema de formularios que usa el proyecto (shadcn/ui, tailwind, etc.)
+
+========================
+5) COMPORTAMIENTO AL ENVIAR (PREPARADO PARA AWS)
+========================
+
+Quiero que el formulario esté preparado para enviar los datos a un endpoint REST que más adelante se implementará en AWS (API Gateway + Lambda + DynamoDB).
+
+1. Crea un pequeño cliente de API (por ejemplo en `src/lib/api.ts` o similar) con una función:
+
+   `async function submitEarlyAccessLead(payload: EarlyAccessPayload): Promise<void>`
+
+   Donde `EarlyAccessPayload` incluya:
+   - nombre
+   - email
+   - tipoUsuario
+   - volumenFacturas (opcional)
+   - comentario (opcional)
+   - consentimiento (boolean)
+   - timestamp (generado en el cliente)
+   - originPage (por ejemplo "home-early-access")
+
+2. La función debe:
+   - Leer la base URL de una variable de entorno, por ejemplo: `import.meta.env.VITE_API_BASE`.
+   - Si VITE_API_BASE está definida:
+     - Hacer un POST a `${VITE_API_BASE}/leads/early-access` con `Content-Type: application/json`.
+   - Si VITE_API_BASE NO está definida:
+     - NO hacer ninguna llamada de red.
+     - Simplemente hacer `console.info("Early access lead (mock):", payload);`
+     - Y devolver como si hubiera ido bien.
+
+3. En el componente del formulario:
+   - Prevén el submit por defecto.
+   - Valida los campos obligatorios.
+   - Mientras se está enviando, deshabilita el botón y muestra un estado de “Enviando…”.
+   - Si la llamada (real o mock) devuelve OK:
+     - Muestra un mensaje de éxito:
+       “Gracias. Te avisaremos en cuanto CumpleFactura esté disponible.”
+     - Limpia el formulario.
+   - Si hay error de red:
+     - Muestra un mensaje de error genérico:
+       “Ha ocurrido un error al enviar tus datos. Inténtalo de nuevo en unos minutos.”
+     - Mantén los campos para que no se pierda lo escrito.
+
+========================
+6) ACCESIBILIDAD Y ESTILO
+========================
+
+- Usa <section>, <h2>, etc., con aria-labelledby.
+- Asegúrate de que el formulario se ve bien en móvil.
+- Usa los componentes actuales de UI del proyecto para mantener el look & feel.
+- El CTA “Quiero CumpleFactura” y esta sección deben tener un aspecto profesional y de producto serio, no de beta rota.
+
+========================
+7) RESUMEN
+========================
+
+Implementa tú directamente:
+- Cambio del CTA del hero a “Quiero CumpleFactura” con scroll a #early-access.
+- Nueva sección con id="early-access" en la home con texto, botón “Soy una gestoría” y formulario de early access.
+- Cliente de API preparado para POST a `${VITE_API_BASE}/leads/early-access`, con fallback a mock cuando VITE_API_BASE no esté definida.
+- Manejo completo de estados de envío (loading, éxito, error) en el formulario.
+- Enlace “Soy una gestoría” apuntando a la sección de formulario en /gestorias (por ejemplo /gestorias#gestorias-form).
+
+Haz todo esto modificando el código del repositorio.

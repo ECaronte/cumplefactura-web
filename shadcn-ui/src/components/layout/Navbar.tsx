@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NavLink } from '@/types';
@@ -37,10 +37,20 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const isResourceActive = resourcesLinks.some(link => location.pathname === link.href);
+
+  const handleEmpezarClick = () => {
+    if (location.pathname === '/') {
+      document.getElementById('early-access')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/#early-access');
+    }
+    setIsOpen(false);
+  };
 
   return (
     <header>
@@ -88,7 +98,13 @@ export default function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button size="sm" className="bg-primary hover:bg-brand-secondary text-white">Empezar</Button>
+            <Button 
+              size="sm" 
+              className="bg-primary hover:bg-brand-secondary text-white"
+              onClick={handleEmpezarClick}
+            >
+              Empezar
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -156,7 +172,13 @@ export default function Navbar() {
               </li>
 
               <li>
-                <Button className="w-full bg-primary hover:bg-brand-secondary text-white" size="sm">Empezar</Button>
+                <Button 
+                  className="w-full bg-primary hover:bg-brand-secondary text-white" 
+                  size="sm"
+                  onClick={handleEmpezarClick}
+                >
+                  Empezar
+                </Button>
               </li>
             </ul>
           </nav>

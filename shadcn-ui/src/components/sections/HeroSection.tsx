@@ -3,6 +3,10 @@ import { ArrowRight, PlayCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function HeroSection() {
+  const scrollToEarlyAccess = () => {
+    document.getElementById('early-access')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section 
       className="relative overflow-hidden bg-background pt-16 md:pt-24 lg:pt-32 pb-16"
@@ -17,10 +21,12 @@ export default function HeroSection() {
             Cumple la normativa 2025–2026, envía tus registros Verifactu y genera facturas firmadas XAdES sin esfuerzo. Todo desde tu tienda online.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button size="lg" className="h-12 px-8 text-lg bg-accent hover:bg-accent/90 text-white border-none" asChild>
-              <Link to="/precios">
-                Instalar CumpleFactura <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-              </Link>
+            <Button 
+              size="lg" 
+              className="h-12 px-8 text-lg bg-accent hover:bg-accent/90 text-white border-none"
+              onClick={scrollToEarlyAccess}
+            >
+              Quiero CumpleFactura <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
             </Button>
             <Button size="lg" variant="outline" className="h-12 px-8 text-lg border-primary text-primary hover:bg-brand-light hover:text-primary" asChild>
               <Link to="/como-funciona">

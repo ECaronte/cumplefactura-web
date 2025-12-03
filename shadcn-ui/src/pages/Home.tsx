@@ -1,5 +1,6 @@
 import MainLayout from '@/layouts/MainLayout';
 import HeroSection from '@/components/sections/HeroSection';
+import EarlyAccessSection from '@/components/sections/EarlyAccessSection';
 import FeaturesSection from '@/components/sections/FeaturesSection';
 import HowItWorksSection from '@/components/sections/HowItWorksSection';
 import ComplianceSection from '@/components/sections/ComplianceSection';
@@ -74,6 +75,7 @@ export default function Home() {
         </script>
       </Helmet>
       <HeroSection />
+      <EarlyAccessSection />
       
       {/* NUEVA SECCIÓN: ¿Para quién es CumpleFactura? */}
       <section className="py-16 bg-slate-50 border-y border-slate-200" aria-labelledby="para-quien-title">
