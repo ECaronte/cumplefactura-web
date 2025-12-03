@@ -20,12 +20,40 @@ shadcn-ui/
 │   ├── pages/           # All marketing pages
 │   ├── components/      # Reusable UI components
 │   │   ├── layout/      # Navbar, Footer
+│   │   ├── sections/    # Page sections (Hero, EarlyAccess, etc.)
 │   │   └── ui/          # shadcn/ui components
+│   ├── hooks/           # Custom React hooks
+│   ├── lib/             # Utilities and API client
 │   ├── layouts/         # MainLayout wrapper
 │   └── main.tsx         # App entry with HelmetProvider
 ├── public/              # Static assets
 └── index.html           # HTML template with fallback SEO
 ```
+
+## Lead Capture System
+
+### Early Access Form (Homepage)
+- **Location:** `src/components/sections/EarlyAccessSection.tsx`
+- **Anchor:** `#early-access`
+- **Required fields:** nombre, email, tipoUsuario, consentimiento
+- **Optional fields:** volumenFacturas, comentario
+- **CTA "Quiero CumpleFactura"** in hero scrolls to this form
+- **"Empezar" button** in Navbar also scrolls to this form
+- **"Soy una gestoría"** button redirects to /gestorias#gestorias-form
+
+### Gestorías Form (/gestorias)
+- **Anchor:** `#gestorias-form`
+- **Required fields:** nombreGestoria, personaContacto, email, telefono, codigoPostal, comentarios, consentimiento
+- **Optional fields:** direccion, volumen, tipoClientes
+- **Alternative contact:** gestorias@cumplefactura.es
+
+### API Client
+- **Location:** `src/lib/api.ts`
+- **Endpoints prepared:**
+  - `POST /leads/early-access` (homepage form)
+  - `POST /leads/gestorias` (gestorías form)
+- **Environment variable:** `VITE_API_BASE`
+- **Fallback:** Mock mode with console.info when VITE_API_BASE is not set
 
 ## Pages with SEO
 All pages implement react-helmet-async with:
@@ -57,6 +85,32 @@ All pages implement react-helmet-async with:
 - Términos y Condiciones (/terminos-condiciones)
 
 ## Recent Changes
+
+**December 3, 2025:**
+- Implemented homepage lead capture system:
+  - Created EarlyAccessSection component with full form
+  - Hero CTA "Quiero CumpleFactura" scrolls to #early-access
+  - Navbar "Empezar" button scrolls to #early-access (from any page)
+  - "Soy una gestoría" button links to /gestorias#gestorias-form
+  - Created useHashScroll hook for cross-page navigation with hash
+- Created API client (src/lib/api.ts):
+  - Prepared for AWS Lambda backend (API Gateway + Lambda + DynamoDB)
+  - Uses VITE_API_BASE environment variable
+  - Falls back to mock mode when not configured
+- Form validation and UX:
+  - Client-side validation with error messages
+  - Loading, success, and error states
+  - Disabled submit until form is valid
+  - Privacy consent checkbox required
+- Added lead capture form to Gestorías page (/gestorias):
+  - Form section with id="gestorias-form" for scroll targeting
+  - Mandatory fields: nombreGestoria, personaContacto, email, telefono, codigoPostal, comentarios, consentimiento
+  - Optional fields: direccion, volumen, tipoClientes
+  - Client-side validation with error messages
+  - Success message after submission
+  - Alternative email contact: gestorias@cumplefactura.es
+- Added "Contacto" link to Footer (Producto column)
+
 **December 2, 2025:**
 - Implemented react-helmet-async across all 17 marketing pages
 - Added HelmetProvider in main.tsx
@@ -64,18 +118,8 @@ All pages implement react-helmet-async with:
 - All pages now have title, description, canonical, OG tags, and Twitter cards
 - Created /public/sitemap.xml with all 17 public routes
 - Updated /public/robots.txt with sitemap reference
-- Added strategic internal linking (interlinking SEO) across key pages:
-  - Home: Links to /verifactu and /factura-electronica-2026
-  - Verifactu: Links to /factura-electronica-2026, /firma-xades, /precios
-  - Factura Electrónica 2026: Links to /verifactu, /como-funciona
-  - Precios: Links to /como-funciona, /gestorias
-  - Gestorías: Links to /verifactu, /precios
-  - Firma XAdES: Links to /verifactu, /factura-electronica-2026
-- Added Schema.org structured data (JSON-LD) to major pages:
-  - Home: Organization + WebSite + BreadcrumbList
-  - Verifactu, Factura Electrónica 2026, Firma XAdES: Article + BreadcrumbList
-  - Precios: Product (AggregateOffer) + BreadcrumbList
-  - Cómo funciona, Gestorías: WebPage + BreadcrumbList
+- Added strategic internal linking (interlinking SEO) across key pages
+- Added Schema.org structured data (JSON-LD) to major pages
 
 **Performance Optimizations:**
 - React.lazy code splitting for all 19 pages with Suspense fallback
@@ -92,24 +136,8 @@ All pages implement react-helmet-async with:
 - Tables: Proper scope="col"/scope="row", caption, sr-only text for icons
 - Decorative elements marked with aria-hidden="true"
 
-## Known Issues to Fix
-- "Empezar" button in Navbar needs destination URL
-
-## Recent Changes
-**December 3, 2025:**
-- Added lead capture form to Gestorías page (/gestorias):
-  - Form section with id="gestorias-form" for scroll targeting
-  - Mandatory fields: nombreGestoria, personaContacto, email, telefono, codigoPostal, comentarios, consentimiento
-  - Optional fields: direccion, volumen, tipoClientes
-  - Client-side validation with error messages
-  - Privacy consent checkbox with link to /politica-privacidad
-  - Success message after submission
-  - Alternative email contact: gestorias@cumplefactura.es
-  - All CTA buttons scroll smoothly to the form
-  - TODO: Connect to backend API when ready
-- Added "Contacto" link to Footer (Producto column)
-
 ## Next Steps
-1. Connect gestorías form to backend API or email service
-2. Add hreflang tags for multi-language support (if needed)
-3. Add phone/postal code format validation (optional enhancement)
+1. Configure VITE_API_BASE environment variable when AWS backend is ready
+2. Connect forms to AWS Lambda endpoints
+3. Add hreflang tags for multi-language support (if needed)
+4. Add phone/postal code format validation (optional enhancement)

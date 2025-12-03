@@ -14,8 +14,11 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle2, ShieldCheck, FileText, ShoppingBag, User, Server, Lock, ShoppingCart } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { useHashScroll } from '@/hooks/useHashScroll';
 
 export default function Home() {
+  useHashScroll();
+
   return (
     <MainLayout>
       <Helmet>
