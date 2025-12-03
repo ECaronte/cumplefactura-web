@@ -95,7 +95,21 @@ All pages implement react-helmet-async with:
 ## Known Issues to Fix
 - "Empezar" button in Navbar needs destination URL
 
+## Recent Changes
+**December 3, 2025:**
+- Added lead capture form to Gestorías page (/gestorias):
+  - Form section with id="gestorias-form" for scroll targeting
+  - Mandatory fields: nombreGestoria, personaContacto, email, telefono, codigoPostal, comentarios, consentimiento
+  - Optional fields: direccion, volumen, tipoClientes
+  - Client-side validation with error messages
+  - Privacy consent checkbox with link to /politica-privacidad
+  - Success message after submission
+  - Alternative email contact: gestorias@cumplefactura.es
+  - All CTA buttons scroll smoothly to the form
+  - TODO: Connect to backend API when ready
+- Added "Contacto" link to Footer (Producto column)
+
 ## Next Steps
-1. Create /contacto page
+1. Connect gestorías form to backend API or email service
 2. Add hreflang tags for multi-language support (if needed)
-3. Implement form validation for lead capture forms
+3. Add phone/postal code format validation (optional enhancement)
