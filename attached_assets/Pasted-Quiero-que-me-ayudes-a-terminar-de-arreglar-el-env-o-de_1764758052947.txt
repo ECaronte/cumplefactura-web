@@ -1,0 +1,211 @@
+Quiero que me ayudes a terminar de arreglar el envío de leads de CumpleFactura (CORS + API Gateway + Lambda + frontend). Contexto técnico:
+
+Frontend está desplegado en Replit y publicado en:
+
+https://www.cumplefactura.es
+ (principal)
+
+también redirección desde https://cumplefactura.es
+
+El formulario “Quiero acceso anticipado” hace un fetch a:
+https://tmdg7b9prh.execute-api.eu-south-2.amazonaws.com/leads/early-access
+
+Esa API es un HTTP API de API Gateway en eu-south-2, ruta /leads/early-access, método POST integrado con una Lambda.
+
+La Lambda se llama algo como cf-early-access-handler y su código actual (index.js) es ESTE, NO LO MODIFIQUES salvo que sea estrictamente necesario:
+
+// Handler para guardar leads de "Quiero CumpleFactura" en DynamoDB (SDK v3)
+// Tabla: cf_early_access_leads (PK: email)
+
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+const { DynamoDBDocumentClient, PutCommand } = require("@aws-sdk/lib-dynamodb");
+
+const ddbClient = new DynamoDBClient({});
+const ddbDocClient = DynamoDBDocumentClient.from(ddbClient);
+
+const TABLE_NAME = process.env.TABLE_NAME;
+
+// Lista de orígenes permitidos para CORS
+const ALLOWED_ORIGINS = [
+  "https://cumplefactura.es",
+  "https://www.cumplefactura.es",
+  "http://localhost:5173"
+];
+
+exports.handler = async (event) => {
+  const origin = event.headers?.origin || event.headers?.Origin;
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin)
+    ? origin
+    : ALLOWED_ORIGINS[1]; // por defecto www.cumplefactura.es
+
+  const baseHeaders = {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "OPTIONS,POST",
+    "Access-Control-Allow-Credentials": true,
+  };
+
+  try {
+    // Respuesta a OPTIONS (CORS preflight)
+    if (event.requestContext?.http?.method === "OPTIONS") {
+      return {
+        statusCode: 204,
+        headers: baseHeaders,
+      };
+    }
+
+    if (!event.body) {
+      return {
+        statusCode: 400,
+        headers: baseHeaders,
+        body: JSON.stringify({ ok: false, error: "Body vacío" }),
+      };
+    }
+
+    let payload;
+    try {
+      payload = JSON.parse(event.body);
+    } catch (e) {
+      return {
+        statusCode: 400,
+        headers: baseHeaders,
+        body: JSON.stringify({ ok: false, error: "JSON inválido" }),
+      };
+    }
+
+    // Extraer campos
+    const {
+      nombre,
+      email,
+      tipoUsuario,
+      volumenFacturas,
+      comentario,
+      consentimiento,
+      originPage,
+      timestamp,
+    } = payload;
+
+    // Validaciones básicas
+    if (!email || typeof email !== "string") {
+      return {
+        statusCode: 400,
+        headers: baseHeaders,
+        body: JSON.stringify({ ok: false, error: "Email obligatorio" }),
+      };
+    }
+
+    if (!nombre || typeof nombre !== "string") {
+      return {
+        statusCode: 400,
+        headers: baseHeaders,
+        body: JSON.stringify({ ok: false, error: "Nombre obligatorio" }),
+      };
+    }
+
+    if (!tipoUsuario || typeof tipoUsuario !== "string") {
+      return {
+        statusCode: 400,
+        headers: baseHeaders,
+        body: JSON.stringify({ ok: false, error: "tipoUsuario obligatorio" }),
+      };
+    }
+
+    if (consentimiento !== true) {
+      return {
+        statusCode: 400,
+        headers: baseHeaders,
+        body: JSON.stringify({ ok: false, error: "Consentimiento requerido" }),
+      };
+    }
+
+    const safeTimestamp =
+      typeof timestamp === "string" && timestamp.length > 0
+        ? timestamp
+        : new Date().toISOString();
+
+    const item = {
+      email: email.toLowerCase().trim(),
+      nombre: nombre.trim(),
+      tipoUsuario,
+      consentimiento: true,
+      originPage: originPage || "unknown",
+      timestamp: safeTimestamp,
+    };
+
+    if (volumenFacturas) item.volumenFacturas = volumenFacturas;
+    if (comentario) item.comentario = comentario;
+
+    const params = {
+      TableName: TABLE_NAME,
+      Item: item,
+    };
+
+    await ddbDocClient.send(new PutCommand(params));
+
+    return {
+      statusCode: 201,
+      headers: baseHeaders,
+      body: JSON.stringify({ ok: true }),
+    };
+  } catch (err) {
+    console.error("Error en handler:", err);
+
+    return {
+      statusCode: 500,
+      headers: baseHeaders,
+      body: JSON.stringify({ ok: false, error: "Error interno" }),
+    };
+  }
+};
+
+
+En el navegador veo claramente un CORS error. Quiero que revises TODO el flujo y me des pasos extremadamente claros (tipo “haz clic aquí, luego aquí”) para dejarlo perfecto. Haz lo siguiente:
+
+Analiza el código del frontend en Replit para localizar dónde se hace el fetch o axios.post al endpoint /leads/early-access.
+
+Confirma que la URL usada es exactamente https://tmdg7b9prh.execute-api.eu-south-2.amazonaws.com/leads/early-access.
+
+Confirma que el body JSON que se envía incluye estos campos con estos nombres: nombre, email, tipoUsuario, volumenFacturas, comentario, consentimiento, originPage y timestamp.
+
+Si algún nombre no coincide, proponme la mínima corrección necesaria en el frontend (sin tocar la Lambda) y dime exactamente qué archivo y qué línea tengo que cambiar.
+
+Da por hecho que puedes acceder a la consola de AWS sólo “de palabra” (es decir, no puedes hacer clicks tú).
+Explícame paso a paso cómo configurar CORS en API Gateway (HTTP API) para esta API:
+
+Añadir CORS global o por ruta para permitir los orígenes:
+
+https://cumplefactura.es
+
+https://www.cumplefactura.es
+
+Permitir métodos: OPTIONS y POST.
+
+Permitir header: Content-Type.
+
+Explica exactamente dónde se hace: pestaña CORS, editar configuración, guardar, desplegar, etc.
+
+Asegúrate de que en API Gateway la ruta /leads/early-access:
+
+Está definida al menos para POST (y si hace falta, para OPTIONS también).
+
+Está integrada con la Lambda anterior usando Lambda proxy integration.
+
+Indica cómo comprobar esto y, si algo falta, dime qué tengo que crear/modificar.
+
+Una vez explicado todo lo anterior, dame un script de prueba para poder verificar desde Replit que la API responde bien SIN pasar por el navegador, por ejemplo un pequeño script Node:
+
+Que haga un POST al endpoint con un JSON de prueba válido.
+
+Que muestre por consola el statusCode y el body.
+
+Así podré comprobar que devuelve 201 y { ok: true }.
+
+Finalmente, dame una checklist corta para verificar que todo está bien:
+
+Punto 1: qué mirar en DevTools (Network) respecto a la petición OPTIONS.
+
+Punto 2: qué mirar en la respuesta POST (status 201, cabeceras CORS).
+
+Punto 3: cómo comprobar que el item se ha creado en DynamoDB en la tabla cf_early_access_leads (qué claves debo ver, etc.).
+
+Quiero que tu respuesta sea 100% accionable para alguien novato: sin suposiciones, con pasos concretos, y diferenciando claramente qué se hace en Replit, qué se hace en AWS API Gateway y qué se hace en DynamoDB. No cambies la lógica de negocio de la Lambda, solo ayúdame a que el formulario web pueda enviar leads correctamente sin errores de CORS.
