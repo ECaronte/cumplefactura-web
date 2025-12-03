@@ -1,0 +1,132 @@
+Quiero que realices una PASADA FINAL DE QA SEO + ACCESIBILIDAD + SEMÁNTICA + RENDIMIENTO en todo el proyecto de la web de marketing de CumpleFactura. No quiero cambios ahora; sólo un informe exhaustivo de TODO lo que queda pendiente.
+
+Debes revisar:
+
+========================
+1) SEO TÉCNICO
+========================
+
+Revisa:
+
+- Todos los <Helmet> de cada página:
+  - Titles únicos
+  - Meta descriptions únicas
+  - Canonical correcto
+  - OG tags completas
+  - Twitter cards
+  - Consistencia de imágenes OG
+
+- sitemap.xml:
+  - ¿Incluye todas las rutas públicas reales?
+  - ¿Tiene URL absolutas correctas?
+  - ¿Alguna página importante falta?
+
+- robots.txt:
+  - ¿El formato es correcto?
+  - ¿Apunta al sitemap de producción?
+  - ¿Hay bloqueos indeseados?
+
+- Interlinking:
+  - ¿Las páginas relacionadas están enlazadas entre sí?
+  - ¿Hay páginas huérfanas?
+  - ¿Hay CTAs rotos o sin URL?
+
+- Estructura de encabezados:
+  - Solo un H1 por página.
+  - Jerarquía coherente H2 > H3 > H4.
+
+========================
+2) DATOS ESTRUCTURADOS (SCHEMA.ORG)
+========================
+
+Revisa:
+
+- La home debe tener:
+  - Organization
+  - WebSite (si procede)
+
+- Páginas tipo artículo:
+  - Article schema instalado correctamente
+  - Imagen, headline, datePublished, author, mainEntityOfPage
+
+- Páginas de precios:
+  - Product schema con Offer válido
+
+- FAQs:
+  - Estructura FAQPage, Question, Answer usando itemscope/itemtype
+
+- BreadcrumbList:
+  - ¿Se ha instalado correctamente en todas las páginas?
+  - ¿Hay inconsistencias?
+
+========================
+3) ACCESIBILIDAD (A11y)
+========================
+
+Revisa:
+
+- Landmarks HTML:
+  - <header>, <main>, <footer>, <nav> implementados correctamente.
+  - <section> y <article> donde corresponda.
+
+- Imágenes:
+  - alt="" correcto
+  - Ninguna imagen decorativa con alt largo innecesario.
+  - Imágenes críticas sin lazy-loading, el resto SÍ lazy-loading.
+
+- Botones accesibles:
+  - En navbar móvil y en cualquier parte del proyecto, todos los botones con solo icono deben tener aria-label.
+  - Cualquier control interactivo debe ser navegable con teclado.
+
+- Contrastes:
+  - Si detectas posibles problemas de contraste en texto (solo informar).
+
+========================
+4) RENDIMIENTO / CORE WEB VITALS
+========================
+
+Revisa:
+
+- Preload de imagen hero implementado correctamente.
+- Lazy loading en imágenes no críticas.
+- React.lazy() + Suspense para code splitting en rutas.
+- Cargas innecesarias (iconos de Lucide, assets grandes, imports globales).
+- Tiempos estimados de LCP, CLS, INP según lo que se ve en el código.
+
+========================
+5) RUTAS Y ENLACES ROTOS
+========================
+
+Revisa:
+
+- Todas las rutas existentes en la app:
+  - ¿Coinciden con las URLs del sitemap?
+  - ¿Hay rutas declaradas no usadas?
+  - ¿Hay páginas enlazadas desde el footer o menú que no existen?
+
+- Página de contacto:
+  - ¿Desde dónde se puede acceder?
+  - ¿Está correctamente enlazada desde footer + enlaces contextuales?
+
+========================
+6) INFORME FINAL
+========================
+
+Quiero que me entregues:
+
+1. UNA LISTA COMPLETA DE TODO lo que queda por corregir, clasificando cada ítem como:
+
+   - 🔴 Prioridad ALTA (impacta SEO o usabilidad crítica)
+   - 🟠 Prioridad MEDIA (importante pero no bloqueante)
+   - 🟢 Prioridad BAJA (mejora pero no urgente)
+
+2. Para cada ítem:
+   - Ubicación exacta (archivo y componente si es posible)
+   - Qué está mal
+   - Qué habría que hacer para corregirlo (pero sin implementarlo todavía)
+
+3. Señala también cualquier “punto débil” del diseño o estructura del site que pueda afectar al SEO o UX.
+
+NO apliques ningún cambio todavía: solo quiero un informe exhaustivo de auditoría final que me diga exactamente qué falta por hacer.
+
+Haz un análisis completo del repositorio, sin omitir nada.
