@@ -1,0 +1,73 @@
+Estoy en este proyecto: CumpleFactura.
+La app ya publica bien en el dominio por defecto de Replit:
+
+https://cumple-factura--avefenixaveces.replit.app
+
+He configurado un dominio propio externo en Raiola, con estos DNS:
+
+Dominio: cumplefactura.es
+
+En la zona DNS están creados:
+
+www.cumplefactura.es. A 34.111.179.208
+
+www.cumplefactura.es. TXT replit-verify=65eb262e-4879-49a6-ba2d-a18f53acc1e4
+
+El dominio raíz cumplefactura.es sigue apuntando a mi hosting (A 178.211.133.105) pero en ese hosting he creado redirecciones 301:
+
+cumplefactura.es → https://www.cumplefactura.es
+
+cumplefactura.com → https://www.cumplefactura.es
+
+Es decir: todas las visitas deben acabar en https://www.cumplefactura.es, y el subdominio www ya apunta por A a Replit.
+
+El problema:
+Llevo varias horas así y cuando abro:
+
+https://www.cumplefactura.es
+
+https://www.cumplefactura.es/cdn-cgi/trace
+
+Chrome (en incógnito) sigue mostrando el error:
+
+NET::ERR_CERT_COMMON_NAME_INVALID
+“La conexión no es privada”
+
+Parece claro que el certificado SSL para www.cumplefactura.es
+ no se ha emitido o no está bien asociado a este proyecto, aunque los registros DNS ya están propagados.
+
+Por favor, haz tú todo lo que haga falta en Replit para dejar el dominio funcionando con HTTPS. En concreto:
+
+Ve a la pestaña Domains (o donde se gestionen los custom domains de este proyecto).
+
+Comprueba si www.cumplefactura.es
+ está ya añadido como dominio personalizado:
+
+Si NO está:
+
+Añádelo tú.
+
+Usa la opción estándar de Replit para dominios externos (no quiero comprar dominio, ya lo tengo en Raiola).
+
+Da por buenos los registros DNS que ya tengo (A 34.111.179.208 y TXT de verificación), sin cambiarlos en mi proveedor.
+
+Lanza la verificación y espera a que Replit confirme que el dominio está conectado.
+
+Si SÍ está:
+
+Comprueba el estado exacto (conectado, pendiente, error de SSL, etc.).
+
+Si el dominio aparece atascado o con error de certificado, elimínalo y vuelve a añadirlo desde cero, para forzar una nueva emisión de certificado.
+
+Asegúrate de que Replit emite un certificado válido (Let’s Encrypt o el que uséis) para www.cumplefactura.es
+ y que queda activo para este proyecto.
+
+Confirma que:
+
+https://www.cumplefactura.es carga correctamente la web sin errores de certificado.
+
+El dominio principal configurado en el proyecto sea https://www.cumplefactura.es (no el replit.app), si eso se puede ajustar.
+
+Si necesitas que cambie algo en mis DNS (A o TXT), dime exactamente qué valores nuevos debo poner en el panel de Raiola, pero intenta primero aprovechar la configuración actual que ya coincide con lo que Replit pedía.
+
+Cuando termines, dime exactamente qué has tocado (añadir/eliminar dominio, reemisión de SSL, etc.) y desde qué URL debo considerar “oficial” la web de producción.
