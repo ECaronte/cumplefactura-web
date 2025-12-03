@@ -10,9 +10,9 @@ channel = "stable-24_11"
 
 [deployment]
 run = ["bash", "-c", "cd shadcn-ui && pnpm run preview"]
-deploymentTarget = "autoscale"
+deploymentTarget = "static"
 ignorePorts = false
-build = ["bash", "-c", "cd shadcn-ui && NODE_ENV=development pnpm install && pnpm run build"]
+build = ["bash", "-c", "cd shadcn-ui && pnpm run build"]
 publicDir = "shadcn-ui/dist"
 
 [agent]
