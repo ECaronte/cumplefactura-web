@@ -26,13 +26,32 @@ export interface GestoriaLeadPayload {
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
-export async function submitEarlyAccessLead(payload: EarlyAccessPayload): Promise<void> {
-  if (!API_BASE) {
-    console.info('Early access lead (mock):', payload);
-    return;
-  }
+console.log('[CumpleFactura] VITE_API_BASE =', API_BASE || '(NO DEFINIDO)');
 
-  const response = await fetch(`${API_BASE}/leads/early-access`, {
+function ensureApiBase(): string {
+  if (!API_BASE) {
+    const error = new Error('VITE_API_BASE no está definido. El formulario no puede enviar leads.');
+    console.error('[CumpleFactura] ERROR:', error.message);
+    throw error;
+  }
+  return API_BASE;
+}
+
+function normalizeUrl(base: string, path: string): string {
+  const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return `${cleanBase}${cleanPath}`;
+}
+
+export async function submitEarlyAccessLead(payload: EarlyAccessPayload): Promise<void> {
+  const apiBase = ensureApiBase();
+  const url = normalizeUrl(apiBase, '/leads/early-access');
+
+  console.log('[CumpleFactura] Enviando lead early-access...');
+  console.log('[CumpleFactura] POST URL:', url);
+  console.log('[CumpleFactura] Payload:', JSON.stringify(payload, null, 2));
+
+  const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -40,18 +59,32 @@ export async function submitEarlyAccessLead(payload: EarlyAccessPayload): Promis
     body: JSON.stringify(payload),
   });
 
+  const responseText = await response.text();
+
+  console.log('[CumpleFactura] Response status:', response.status);
+  console.log('[CumpleFactura] Response body:', responseText);
+
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    console.error('[CumpleFactura] ERROR en la petición:');
+    console.error('  - Status:', response.status);
+    console.error('  - URL:', url);
+    console.error('  - Response:', responseText);
+    console.error('  - Headers enviados:', { 'Content-Type': 'application/json' });
+    throw new Error(`Error HTTP ${response.status}: ${responseText}`);
   }
+
+  console.log('[CumpleFactura] Lead enviado correctamente');
 }
 
 export async function submitGestoriaLead(payload: GestoriaLeadPayload): Promise<void> {
-  if (!API_BASE) {
-    console.info('Gestoria lead (mock):', payload);
-    return;
-  }
+  const apiBase = ensureApiBase();
+  const url = normalizeUrl(apiBase, '/leads/gestorias');
 
-  const response = await fetch(`${API_BASE}/leads/gestorias`, {
+  console.log('[CumpleFactura] Enviando lead gestoría...');
+  console.log('[CumpleFactura] POST URL:', url);
+  console.log('[CumpleFactura] Payload:', JSON.stringify(payload, null, 2));
+
+  const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -59,7 +92,19 @@ export async function submitGestoriaLead(payload: GestoriaLeadPayload): Promise<
     body: JSON.stringify(payload),
   });
 
+  const responseText = await response.text();
+
+  console.log('[CumpleFactura] Response status:', response.status);
+  console.log('[CumpleFactura] Response body:', responseText);
+
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    console.error('[CumpleFactura] ERROR en la petición:');
+    console.error('  - Status:', response.status);
+    console.error('  - URL:', url);
+    console.error('  - Response:', responseText);
+    console.error('  - Headers enviados:', { 'Content-Type': 'application/json' });
+    throw new Error(`Error HTTP ${response.status}: ${responseText}`);
   }
+
+  console.log('[CumpleFactura] Lead enviado correctamente');
 }

@@ -1,0 +1,81 @@
+Quiero que verifiques y depures todo el flujo de envío de leads desde el frontend de CumpleFactura hasta AWS.
+El objetivo es que el formulario “Quiero CumpleFactura” realmente guarde los datos en DynamoDB usando la API que acabo de crear.
+
+1️⃣ Verifica VITE_API_BASE
+
+Comprueba si import.meta.env.VITE_API_BASE tiene valor en tiempo de ejecución.
+
+Si está vacío, imprimelo en consola y detén la ejecución (no uses el mock).
+
+Asegúrate de que todas las funciones que llaman a la API lo usen correctamente.
+
+2️⃣ Forzar logs en el navegador para saber qué está pasando
+
+Añade logs temporales en estos puntos:
+
+Al cargar la app:
+
+console.log("VITE_API_BASE =", import.meta.env.VITE_API_BASE);
+
+
+Antes de enviar el lead:
+
+console.log("Payload enviado:", payload);
+console.log("POST URL:", `${import.meta.env.VITE_API_BASE}/leads/early-access`);
+
+
+Después de la petición fetch:
+
+console.log("Respuesta de API Gateway:", response.status, await response.text());
+
+
+Quiero que el navegador SIEMPRE muestre en Network una petición POST real.
+
+3️⃣ Si VITE_API_BASE está vacío
+
+Genera un error claro en consola:
+
+throw new Error("VITE_API_BASE no está definido. El formulario no puede enviar leads.");
+
+
+MUY importante: elimina cualquier comportamiento “mock” que devuelva éxito sin llamar a la API.
+
+4️⃣ Comprobar la llamada fetch
+
+Asegúrate de que el código realice:
+
+await fetch(`${import.meta.env.VITE_API_BASE}/leads/early-access`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload),
+});
+
+
+Sin rutas duplicadas, sin espacios, y sin / adicionales.
+
+5️⃣ Analizar errores
+
+Si el fetch devuelve un status distinto de 201:
+
+Mostrar en consola:
+
+status
+
+response body
+
+URL usada
+
+headers enviados
+
+6️⃣ No continúes hasta detectar exactamente uno de estos escenarios
+
+A) No se está ejecutando el fetch → problema de VITE_API_BASE o ejecución condicional.
+
+B) Se ejecuta fetch pero la URL es incorrecta.
+
+C) Se ejecuta fetch pero API Gateway devuelve error (ver status y body).
+
+D) fetch OK (201) pero Lambda no escribe → error en payload.
+
+Tu objetivo final es:
+asegurar que una prueba real desde la web añade un nuevo registro visible en la tabla DynamoDB cf_early_access_leads.
