@@ -1,16 +1,10 @@
 {
-  "name": "workspace",
+  "name": "cumplefactura-workspace",
   "version": "1.0.0",
-  "main": "index.js",
-  "dependencies": {
-    "react-helmet-async": "^2.0.5",
-    "undici-types": "^6.20.0"
-  },
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+    "build": "cd shadcn-ui && pnpm install && pnpm run build",
+    "preview": "cd shadcn-ui && pnpm run preview",
+    "dev": "cd shadcn-ui && pnpm run dev"
+  }
 }
