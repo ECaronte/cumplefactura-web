@@ -12,7 +12,7 @@ const featuredArticles = [
     date: "Oct 2024"
   },
   {
-    title: "Factura electrónica obligatoria 2025–2026: requisitos, plazos y cómo prepararte",
+    title: "Factura electrónica obligatoria 2026–2027: requisitos, plazos y cómo prepararte",
     category: "Normativa",
     date: "Oct 2024"
   },
@@ -110,7 +110,7 @@ export default function Blog() {
             Guías, análisis y recursos sobre factura electrónica y cumplimiento legal.
           </h1>
           <p className="text-xl text-muted-foreground mx-auto">
-            Artículos claros y prácticos para autónomos, gestorías y negocios con WooCommerce. Todo sobre Verifactu, MiFacturae, firma digital XAdES, RD 1007/2023 y la nueva factura electrónica 2025–2026.
+            Artículos claros y prácticos para autónomos, gestorías y negocios con WooCommerce. Todo sobre Verifactu, MiFacturae, firma digital XAdES, RD 1007/2023 y la nueva factura electrónica 2026–2027.
           </p>
         </div>
       </section>

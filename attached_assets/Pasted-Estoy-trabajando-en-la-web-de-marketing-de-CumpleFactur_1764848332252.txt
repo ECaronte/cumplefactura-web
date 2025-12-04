@@ -1,0 +1,103 @@
+Estoy trabajando en la web de marketing de CumpleFactura en este proyecto de Replit (Vite + React + shadcn/ui). Quiero que hagas dos tipos de cambios:
+
+1) Header fijo en escritorio (no fijo en móvil)
+
+Antes, el header se quedaba fijo arriba al hacer scroll y el contenido se deslizaba por debajo. Ahora quiero recuperar ese comportamiento, pero solo en escritorio.
+
+Haz lo siguiente:
+
+Localiza el componente que define el header/nav principal (logo + menú + botón de CTA “Quiero CumpleFactura” / “Instalar CumpleFactura”, etc.).
+
+Suele ser algo tipo Header.tsx, Navbar.tsx o un layout global (AppLayout, SiteHeader, etc.).
+
+Modifica el layout/estilos para que:
+
+En pantallas de escritorio (por ejemplo min-width: 1024px), el header sea:
+
+position: sticky (o equivalente con Tailwind: sticky top-0 z-50)
+
+Ocupando todo el ancho
+
+Con un fondo sólido (no transparente) y, opcionalmente, una leve sombra (box-shadow) cuando se ha hecho scroll.
+
+En móvil:
+
+El header NO debe ser sticky: se comporta como un bloque normal que se va con el scroll.
+
+El menú móvil (hamburguesa) debe seguir funcionando de la misma forma que ahora.
+
+Asegúrate de que:
+
+El contenido no queda tapado por el header (es decir, si el header ocupa X px de alto, el resto del contenido no se queda “debajo” sin margen).
+
+No rompes nada del diseño actual (colores, tipografías, enlaces, CTA).
+
+Prueba visualmente en:
+
+Un viewport tipo desktop (ej. 1440×900) → el header debe quedar fijo al hacer scroll.
+
+Un viewport tipo móvil (ej. 390×844) → el header se va con el scroll.
+
+2) Actualizar TODOS los plazos/verbiage sobre Verifactu y factura electrónica
+
+Ayer se publicó que los plazos de la factura electrónica (Verifactu) se prorrogan un año. Necesito que actualices todo el contenido del sitio para reflejar las nuevas fechas y rangos de años.
+
+La nueva realidad es:
+
+Empresas (Impuesto de Sociedades): 1 de enero de 2027
+
+Autónomos y resto de obligados: 1 de julio de 2027
+
+Rango general de normativa: “normativa 2026–2027” (en vez de 2025–2026).
+
+Quiero que hagas una pasada exhaustiva por el código y contenido:
+
+Busca y actualiza todas las menciones a:
+
+“2025–2026”, “2025-2026” o variantes → cambiar a “2026–2027”.
+
+“1 de enero de 2026” → cambiar a “1 de enero de 2027”.
+
+“1 de julio de 2026” → cambiar a “1 de julio de 2027”.
+
+Cualquier frase tipo “a partir de 2026 será obligatorio…” si se refiere a la entrada en vigor general → ajustarla para que hable de 2027 y, si procede, de las dos fechas: empresas (1 enero 2027) y autónomos (1 julio 2027).
+
+Aplica estos cambios en TODOS los sitios donde se mencione el calendario de obligatoriedad:
+
+Páginas de contenido (ej. /verifactu, /factura-electronica-2026, etc.).
+
+Secciones educativas/tipo blog dentro de la web.
+
+FAQs donde se pregunte “¿Cuándo será obligatoria la factura electrónica / Verifactu?”.
+
+Páginas de precios o de producto donde se argumente “te ayudamos a llegar a tiempo en 2025/2026”.
+
+Metadatos SEO por página (títulos, descripciones, react-helmet o similar).
+
+JSON-LD / Schema.org (Article, FAQPage, etc.) donde aparezcan años o fechas en los textos.
+
+Muy importante:
+
+No cambies otros años legales como RD 1007/2023, ni fechas de publicación de leyes, ni menciones históricas.
+
+Solo debes tocar referencias a plazos de entrada en vigor / calendario de obligatoriedad de factura electrónica / Verifactu.
+
+Donde tenga sentido, adapta el texto, no solo el número:
+
+Ejemplo: si el copy decía “queda menos de un año para la obligación en 2026…”, ahora debería decir algo coherente con que la obligación pasa a 2027 (por ejemplo, “queda margen hasta 2027, pero conviene prepararse antes”, etc.).
+
+Mantén el tono, estilo y longitud similares a lo que había.
+
+Una vez hechos los cambios:
+
+Vuelve a generar el sitemap si es necesario (solo si lo estás construyendo dinámicamente y contiene esas rutas con años en los slugs o textos).
+
+Lanza el build (npm run build) y asegúrate de que no se rompe nada.
+
+Al terminar, dime:
+
+Qué componente/control has modificado para hacer el header sticky en desktop.
+
+Una lista breve de los archivos principales donde has cambiado texto relacionado con los plazos (por ejemplo: VerifactuPage.tsx, FacturaElectronica2026Page.tsx → ahora debería quizá renombrarse o, al menos, el contenido interno adaptado a 2026–2027, etc.).
+
+Si hay alguna página cuyo slug/URL incluya el año (ej. /factura-electronica-2026) y si has dejado el contenido coherente con el nuevo calendario (aunque mantengamos la URL por ahora).

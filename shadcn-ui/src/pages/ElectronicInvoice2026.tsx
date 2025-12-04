@@ -64,13 +64,13 @@ export default function ElectronicInvoice2026() {
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">
         <div className="container max-w-4xl text-center">
           <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary/10 text-primary hover:bg-primary/20 mb-6">
-            Guía Definitiva 2026
+            Guía Definitiva 2027
           </div>
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl mb-6 text-slate-900 dark:text-white leading-tight">
-            Factura electrónica 2026: Todo lo que necesitas saber (Guía completa y actualizada)
+            Factura electrónica 2027: Todo lo que necesitas saber (Guía completa y actualizada)
           </h1>
           <p className="text-xl text-slate-600 dark:text-slate-400 mx-auto leading-relaxed max-w-3xl">
-            La guía definitiva para autónomos, gestorías y comercios online sobre la obligación de factura electrónica en España en 2026.
+            La guía definitiva para autónomos, gestorías y comercios online sobre la obligación de factura electrónica en España: empresas desde enero 2027, autónomos desde julio 2027.
           </p>
         </div>
       </section>
@@ -83,7 +83,7 @@ export default function ElectronicInvoice2026() {
             España está a las puertas de una revolución fiscal. La factura electrónica dejará de ser una opción para convertirse en una obligación universal para prácticamente todas las relaciones comerciales entre empresas y profesionales (B2B).
           </p>
           <p>
-            Este cambio no es solo burocrático: transforma la manera en que autónomos, tiendas online y pymes gestionan su día a día. El año <strong>2026</strong> se marca en el calendario como el punto de inflexión definitivo donde la digitalización será obligatoria.
+            Este cambio no es solo burocrático: transforma la manera en que autónomos, tiendas online y pymes gestionan su día a día. El año <strong>2027</strong> se marca en el calendario como el punto de inflexión definitivo: empresas desde el 1 de enero y autónomos desde el 1 de julio.
           </p>
           <p>
             La nueva normativa exige mucho más que enviar un email: requiere <strong>firma digital, estructura de datos XML, registro de trazabilidad y comunicación automática</strong>. Para muchos, esto suena a dolor de cabeza técnico. Sin embargo, herramientas como <strong>CumpleFactura</strong> simplifican todo este proceso, permitiendo que tu tienda WooCommerce cumpla la ley automáticamente sin que tengas que cambiar tu forma de trabajar. <Link to="/como-funciona" className="text-primary hover:underline font-medium">Descubre cómo funciona</Link>.
@@ -133,28 +133,28 @@ export default function ElectronicInvoice2026() {
         <section className="bg-blue-50 dark:bg-blue-900/10 -mx-6 px-6 py-12 rounded-2xl border border-blue-100 dark:border-blue-900/30">
           <h2 className="text-3xl font-bold mb-8 text-center text-slate-900 dark:text-white flex items-center justify-center gap-3">
             <Calendar className="h-8 w-8 text-primary" />
-            Calendario real de entrada en vigor (2024–2026)
+            Calendario real de entrada en vigor (2026–2027)
           </h2>
           <div className="space-y-8 max-w-2xl mx-auto">
             <div className="relative pl-8 border-l-2 border-primary/30">
               <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-primary" />
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Fase 1: Aprobación del Reglamento</h3>
               <p className="text-slate-600 dark:text-slate-400">
-                Ya se han definido los requisitos técnicos (Verifactu). Los desarrolladores de software tienen un plazo (hasta mediados de 2025) para adaptar sus soluciones.
+                Ya se han definido los requisitos técnicos (Verifactu). Los desarrolladores de software tienen plazo hasta mediados de 2026 para adaptar sus soluciones.
               </p>
             </div>
             <div className="relative pl-8 border-l-2 border-primary/30">
               <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-primary" />
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Fase 2: Grandes Empresas (Facturación &gt; 8M€)</h3>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Fase 2: Empresas (Impuesto de Sociedades) - 1 enero 2027</h3>
               <p className="text-slate-600 dark:text-slate-400">
-                Serán las primeras en estar obligadas, un año después de la aprobación definitiva del desarrollo reglamentario de la Ley Crea y Crece.
+                Las empresas sujetas al Impuesto de Sociedades estarán obligadas a partir del 1 de enero de 2027.
               </p>
             </div>
             <div className="relative pl-8 border-l-2 border-primary/30">
               <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-primary animate-pulse" />
-              <h3 className="text-xl font-bold text-primary mb-2">Fase 3: El resto (Autónomos y Pymes) - 2026</h3>
+              <h3 className="text-xl font-bold text-primary mb-2">Fase 3: Autónomos y resto - 1 julio 2027</h3>
               <p className="text-slate-600 dark:text-slate-400 font-medium">
-                Aquí entra la gran mayoría del tejido empresarial español. Dos años después de la aprobación del reglamento, todos los profesionales deberán emitir facturas electrónicas. Por eso se señala <strong>2026</strong> como la fecha clave definitiva.
+                Autónomos y el resto de obligados tributarios deberán cumplir desde el <strong>1 de julio de 2027</strong>. Este es el plazo definitivo para la gran mayoría del tejido empresarial español.
               </p>
             </div>
           </div>
@@ -187,7 +187,7 @@ export default function ElectronicInvoice2026() {
           <div className="bg-red-50 dark:bg-red-900/10 p-4 rounded-lg border border-red-200 dark:border-red-800 flex items-center justify-center text-center">
             <p className="text-red-700 dark:text-red-300 font-bold">
               <AlertTriangle className="inline-block h-5 w-5 mr-2 mb-1" />
-              Recuerda: Un PDF no es una factura electrónica válida para la normativa 2026.
+              Recuerda: Un PDF no es una factura electrónica válida para la normativa 2027.
             </p>
           </div>
         </section>
@@ -263,7 +263,7 @@ export default function ElectronicInvoice2026() {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               "Evitar sanciones por incumplimiento",
-              "Evitar el caos de gestión en el último minuto de 2026",
+              "Evitar el caos de gestión en el último momento",
               "Ahorro masivo de tiempo en contabilidad manual",
               "Transparencia total con tu gestoría",
               "Menos errores humanos en la facturación",
@@ -284,15 +284,15 @@ export default function ElectronicInvoice2026() {
           <h2 className="text-3xl font-bold mb-8 text-center">Preguntas Frecuentes</h2>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger className="text-lg font-medium">¿Es obligatorio ya en 2025?</AccordionTrigger>
+              <AccordionTrigger className="text-lg font-medium">¿Cuándo es obligatorio exactamente?</AccordionTrigger>
               <AccordionContent className="text-base text-slate-600 dark:text-slate-400">
-                Para la mayoría de autónomos y pymes, la obligación generalizada llegará en 2026. Sin embargo, Verifactu (software antifraude) tiene plazos que empiezan antes para los desarrolladores. Adaptarse en 2025 es la estrategia inteligente.
+                Los plazos se han prorrogado un año: empresas (Impuesto de Sociedades) desde el 1 de enero de 2027, y autónomos y resto de obligados desde el 1 de julio de 2027. Adaptarse en 2026 es la estrategia inteligente para llegar sin prisas.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger className="text-lg font-medium">¿Por qué se habla tanto de 2026?</AccordionTrigger>
+              <AccordionTrigger className="text-lg font-medium">¿Por qué se habla tanto de 2027?</AccordionTrigger>
               <AccordionContent className="text-base text-slate-600 dark:text-slate-400">
-                Porque es la fecha estimada en la que finalizará el periodo transitorio para las empresas que facturan menos de 8 millones de euros (la inmensa mayoría).
+                Porque 2027 marca las fechas definitivas de entrada en vigor: enero para empresas y julio para autónomos. La inmensa mayoría del tejido empresarial español debe estar preparado para entonces.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
@@ -320,7 +320,7 @@ export default function ElectronicInvoice2026() {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-7">
-              <AccordionTrigger className="text-lg font-medium">¿CumpleFactura estará listo para 2026?</AccordionTrigger>
+              <AccordionTrigger className="text-lg font-medium">¿CumpleFactura estará listo para 2027?</AccordionTrigger>
               <AccordionContent className="text-base text-slate-600 dark:text-slate-400">
                 Sí, CumpleFactura está diseñado específicamente para cumplir con Verifactu y la Ley Crea y Crece, actualizándose constantemente conforme se publican los reglamentos técnicos.
               </AccordionContent>
@@ -334,7 +334,7 @@ export default function ElectronicInvoice2026() {
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container text-center max-w-3xl">
           <h2 className="text-3xl font-bold mb-6">
-            Prepárate hoy para la factura electrónica de 2026
+            Prepárate hoy para la factura electrónica de 2027
           </h2>
           <p className="text-xl opacity-90 mb-8">
             CumpleFactura añade automáticamente firma digital, trazabilidad, Verifactu y estructura legal a tus facturas de WooCommerce.

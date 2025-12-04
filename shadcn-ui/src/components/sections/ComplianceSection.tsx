@@ -36,7 +36,7 @@ export default function ComplianceSection() {
 
           <div className="mt-10 text-center pt-8 border-t">
             <p className="text-lg font-medium text-primary">
-              Tu negocio queda actualizado para 2025–2026 sin depender de tu gestoría ni de plugins incompletos.
+              Tu negocio queda actualizado para 2026–2027 sin depender de tu gestoría ni de plugins incompletos.
             </p>
           </div>
         </div>

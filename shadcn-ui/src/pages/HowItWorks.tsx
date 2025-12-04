@@ -237,7 +237,7 @@ export default function HowItWorks() {
               <h2 className="text-3xl font-bold text-primary">Cumplimiento legal garantizado</h2>
               <p className="text-lg text-muted-foreground">
                 Incluye firma digital XAdES, cadena Verifactu, numeraciones legales, registros de integridad y compatibilidad con MiFacturae.
-                Todo lo que la normativa española exige para 2025–2026.
+                Todo lo que la normativa española exige para 2026–2027.
               </p>
               {/* ENLACE AÑADIDO */}
               <p className="text-base text-slate-600 pt-2 border-t border-slate-200">

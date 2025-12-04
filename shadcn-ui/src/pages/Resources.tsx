@@ -71,7 +71,7 @@ const articles = [
     link: '/verifactu'
   },
   {
-    title: 'Guía definitiva sobre la factura electrónica obligatoria 2025–2026',
+    title: 'Guía definitiva sobre la factura electrónica obligatoria 2026–2027',
     description: 'Requisitos, plazos y cómo prepararte.',
     icon: <BookOpen className="h-6 w-6 text-primary" />,
     type: 'Guía',
@@ -191,7 +191,7 @@ export default function Resources() {
               Recursos para entender la factura electrónica y el cumplimiento legal.
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Guías, artículos y documentación sobre Verifactu, MiFacturae, la normativa 2025–2026 y cómo usar CumpleFactura con WooCommerce.
+              Guías, artículos y documentación sobre Verifactu, MiFacturae, la normativa 2026–2027 y cómo usar CumpleFactura con WooCommerce.
             </p>
           </div>
 

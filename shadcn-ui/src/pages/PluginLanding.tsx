@@ -118,7 +118,7 @@ export default function PluginLanding() {
               </p>
               <ul className="space-y-3 mb-8">
                 {[
-                  "Cumple automáticamente con la normativa 2025–2026",
+                  "Cumple automáticamente con la normativa 2026–2027",
                   "Evita errores típicos en facturas manuales",
                   "Ahorro estimado: 2–5 horas al mes",
                   "Registros Verifactu sin intervención manual"
@@ -276,7 +276,7 @@ export default function PluginLanding() {
               <div className="mx-auto h-12 w-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-4">
                 <Calendar className="h-6 w-6" />
               </div>
-              <h3 className="text-lg font-bold mb-2">Preparado para 2025–2026</h3>
+              <h3 className="text-lg font-bold mb-2">Preparado para 2026–2027</h3>
               <p className="text-sm text-muted-foreground">La normativa llega; CumpleFactura ya está lista.</p>
             </div>
             <div className="text-center p-6">

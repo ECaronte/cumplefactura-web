@@ -86,7 +86,7 @@ export default function XadesSignature() {
             Aquí entra en juego un término que verás repetido en todas las normativas: <strong>XAdES</strong>. Aunque suena a tecnicismo complejo, es simplemente el estándar que ha elegido España y Europa para garantizar que una factura es auténtica y no ha sido manipulada. Es clave para cumplir con <Link to="/verifactu" className="text-primary hover:underline font-medium">VeriFactu</Link> y la <Link to="/factura-electronica-2026" className="text-primary hover:underline font-medium">factura electrónica 2026</Link>.
           </p>
           <p>
-            Emitir facturas sin firma digital verificable es como enviar contratos firmados con lápiz: cualquiera podría borrarlos o alterarlos sin dejar rastro. Con la nueva normativa 2025-2026, esto ya no es una opción. Afortunadamente, herramientas como <strong>CumpleFactura</strong> eliminan esta complejidad técnica, aplicando firmas XAdES válidas automáticamente a cada venta de tu tienda WooCommerce.
+            Emitir facturas sin firma digital verificable es como enviar contratos firmados con lápiz: cualquiera podría borrarlos o alterarlos sin dejar rastro. Con la nueva normativa 2026-2027, esto ya no es una opción. Afortunadamente, herramientas como <strong>CumpleFactura</strong> eliminan esta complejidad técnica, aplicando firmas XAdES válidas automáticamente a cada venta de tu tienda WooCommerce.
           </p>
         </section>
 
@@ -254,7 +254,7 @@ export default function XadesSignature() {
             </h3>
             <ul className="space-y-2 text-red-800 dark:text-red-300">
               <li>• Tus facturas son fácilmente manipulables.</li>
-              <li>• No cumplen con la normativa de software verificable 2026.</li>
+              <li>• No cumplen con la normativa de software verificable 2027.</li>
               <li>• Tu gestoría no puede validar técnicamente la integridad de los datos.</li>
               <li>• Te expones a sanciones en caso de inspección tributaria.</li>
             </ul>
@@ -377,7 +377,7 @@ export default function XadesSignature() {
             Firma XAdES automática en WooCommerce con CumpleFactura
           </h2>
           <p className="text-xl opacity-90 mb-8">
-            CumpleFactura genera y firma tus facturas electrónicamente con XAdES, añade trazabilidad Verifactu y te prepara para la normativa 2025–2026.
+            CumpleFactura genera y firma tus facturas electrónicamente con XAdES, añade trazabilidad Verifactu y te prepara para la normativa 2026–2027.
           </p>
           <Button asChild size="lg" variant="secondary" className="h-12 px-8 text-lg font-bold bg-white text-primary hover:bg-white/90">
             <Link to="/woocommerce-verifactu">

@@ -9,7 +9,7 @@ export default function Verifactu() {
   return (
     <MainLayout>
       <Helmet>
-        <title>VeriFactu 2026 · CumpleFactura</title>
+        <title>VeriFactu 2027 · CumpleFactura</title>
         <meta
           name="description"
           content="Entiende qué es VeriFactu, a quién afecta y cómo puedes cumplir con la nueva obligación de registro de facturas sin volverte loco con la normativa."
@@ -17,19 +17,19 @@ export default function Verifactu() {
         <link rel="canonical" href="https://cumplefactura.es/verifactu" />
 
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="VeriFactu 2026 · CumpleFactura" />
+        <meta property="og:title" content="VeriFactu 2027 · CumpleFactura" />
         <meta
           property="og:description"
-          content="Guía clara sobre VeriFactu 2026 para autónomos, pymes y gestorías. Qué es, a quién afecta y cómo cumplir con la norma sin cambiar todo tu sistema."
+          content="Guía clara sobre VeriFactu 2027 para autónomos, pymes y gestorías. Qué es, a quién afecta y cómo cumplir con la norma sin cambiar todo tu sistema."
         />
         <meta property="og:url" content="https://cumplefactura.es/verifactu" />
         <meta property="og:image" content="https://cumplefactura.es/og/verifactu.png" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="VeriFactu 2026 · CumpleFactura" />
+        <meta name="twitter:title" content="VeriFactu 2027 · CumpleFactura" />
         <meta
           name="twitter:description"
-          content="Guía clara sobre VeriFactu 2026 para autónomos, pymes y gestorías. Qué es, a quién afecta y cómo cumplir con la norma sin complicaciones."
+          content="Guía clara sobre VeriFactu 2027 para autónomos, pymes y gestorías. Qué es, a quién afecta y cómo cumplir con la norma sin complicaciones."
         />
         <meta name="twitter:image" content="https://cumplefactura.es/og/verifactu.png" />
 
@@ -39,7 +39,7 @@ export default function Verifactu() {
             "@graph": [
               {
                 "@type": "Article",
-                "headline": "VeriFactu 2026: Qué es y cómo prepararte para la normativa de factura electrónica",
+                "headline": "VeriFactu 2027: Qué es y cómo prepararte para la normativa de factura electrónica",
                 "description": "Guía completa sobre VeriFactu para autónomos, pymes y gestorías. Qué es, a quién afecta y cómo cumplir con la norma.",
                 "author": { "@type": "Organization", "name": "CumpleFactura" },
                 "publisher": { "@type": "Organization", "name": "CumpleFactura", "logo": { "@type": "ImageObject", "url": "https://cumplefactura.es/og/logo.png" } },
@@ -47,7 +47,7 @@ export default function Verifactu() {
                 "dateModified": "2025-01-15",
                 "image": "https://cumplefactura.es/og/verifactu.png",
                 "url": "https://cumplefactura.es/verifactu",
-                "keywords": ["VeriFactu", "factura electrónica", "normativa 2026", "WooCommerce", "autónomos", "gestorías"]
+                "keywords": ["VeriFactu", "factura electrónica", "normativa 2027", "WooCommerce", "autónomos", "gestorías"]
               },
               {
                 "@type": "BreadcrumbList",
@@ -64,10 +64,10 @@ export default function Verifactu() {
       <section className="py-20 bg-slate-50 dark:bg-slate-900/20 border-b">
         <div className="container max-w-4xl text-center">
           <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary/10 text-primary hover:bg-primary/20 mb-6">
-            Guía Actualizada 2025
+            Guía Actualizada 2026
           </div>
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl mb-6 text-slate-900 dark:text-white leading-tight">
-            Qué es Verifactu y cómo prepararte para la normativa de factura electrónica 2025–2026
+            Qué es Verifactu y cómo prepararte para la normativa de factura electrónica 2026–2027
           </h1>
           <p className="text-xl text-slate-600 dark:text-slate-400 mx-auto leading-relaxed max-w-3xl">
             Guía completa, clara y actualizada para autónomos, gestorías y tiendas WooCommerce sobre el nuevo reglamento de sistemas informáticos de facturación.
@@ -80,7 +80,7 @@ export default function Verifactu() {
         {/* 1. Introducción */}
         <section className="prose prose-slate dark:prose-invert lg:prose-lg mx-auto">
           <p className="lead text-xl text-slate-600 dark:text-slate-300">
-            La facturación en España está viviendo su mayor transformación en décadas. Con la aprobación del Reglamento de Sistemas Informáticos de Facturación (conocido popularmente como <strong>Verifactu</strong>) y la inminente Ley Crea y Crece, la forma en que autónomos y empresas emiten sus facturas va a cambiar radicalmente entre 2025 y 2026.
+            La facturación en España está viviendo su mayor transformación en décadas. Con la aprobación del Reglamento de Sistemas Informáticos de Facturación (conocido popularmente como <strong>Verifactu</strong>) y la inminente Ley Crea y Crece, la forma en que autónomos y empresas emiten sus facturas va a cambiar radicalmente entre 2026 y 2027.
           </p>
           <p>
             Ya no será suficiente con generar un PDF o usar un Excel. La administración busca acabar con el fraude fiscal y la economía sumergida mediante la digitalización y el control técnico de los procesos de facturación. Esto significa que tu software (o tu tienda WooCommerce) deberá cumplir una serie de requisitos técnicos estrictos para garantizar que las facturas no han sido manipuladas. Descubre más sobre la <Link to="/factura-electronica-2026" className="text-primary hover:underline font-medium">factura electrónica obligatoria 2026</Link>.
@@ -300,7 +300,7 @@ export default function Verifactu() {
             <AccordionItem value="item-1">
               <AccordionTrigger className="text-lg font-medium">¿Es obligatorio Verifactu ya?</AccordionTrigger>
               <AccordionContent className="text-base text-slate-600 dark:text-slate-400">
-                El reglamento ya ha sido aprobado, pero los plazos de implementación obligatoria para todas las empresas y autónomos se extienden hasta julio de 2025 para desarrolladores y posteriormente para usuarios. Sin embargo, es altamente recomendable adaptarse cuanto antes para evitar cuellos de botella.
+                El reglamento ya ha sido aprobado, pero los plazos de implementación obligatoria se han prorrogado: empresas (Impuesto de Sociedades) desde el 1 de enero de 2027 y autónomos desde el 1 de julio de 2027. Sin embargo, es altamente recomendable adaptarse cuanto antes para evitar cuellos de botella.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">

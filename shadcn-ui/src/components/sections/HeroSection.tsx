@@ -18,7 +18,7 @@ export default function HeroSection() {
             Factura electrónica fácil para autónomos y negocios con WooCommerce
           </h1>
           <p className="text-xl text-muted-foreground max-w-[800px] mx-auto">
-            Cumple la normativa 2025–2026, envía tus registros Verifactu y genera facturas firmadas XAdES sin esfuerzo. Todo desde tu tienda online.
+            Cumple la normativa 2026–2027, envía tus registros Verifactu y genera facturas firmadas XAdES sin esfuerzo. Todo desde tu tienda online.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button 
@@ -36,7 +36,7 @@ export default function HeroSection() {
             </Button>
           </div>
           <p className="text-sm text-muted-foreground font-medium pt-2">
-            Compatible con la factura electrónica obligatoria en España (2025–2026).
+            Compatible con la factura electrónica obligatoria en España (2026–2027).
           </p>
         </div>
         

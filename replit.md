@@ -4,7 +4,7 @@
 Marketing website for CumpleFactura - a solution for electronic invoicing (factura electrónica), VeriFactu compliance, and XAdES digital signatures for WooCommerce stores in Spain.
 
 **Domain:** cumplefactura.es  
-**Target audience:** Autónomos (freelancers), small businesses, and gestorías (accounting firms) who need to comply with 2025-2026 Spanish invoicing regulations.
+**Target audience:** Autónomos (freelancers), small businesses, and gestorías (accounting firms) who need to comply with 2026-2027 Spanish invoicing regulations (empresas desde enero 2027, autónomos desde julio 2027).
 
 ## Tech Stack
 - **Framework:** React + Vite
@@ -85,6 +85,17 @@ All pages implement react-helmet-async with:
 - Términos y Condiciones (/terminos-condiciones)
 
 ## Recent Changes
+
+**December 4, 2025:**
+- Updated all invoicing deadline references from 2025-2026 to 2026-2027:
+  - New deadlines: Companies (IS) from January 1, 2027; Freelancers from July 1, 2027
+  - Updated HeroSection, ComplianceSection, Verifactu page, ElectronicInvoice2026 page
+  - Updated PluginLanding, Blog, HowItWorks, Resources, XadesSignature pages
+  - Updated SEO meta tags and Schema.org structured data
+- Modified Navbar for desktop-only sticky header:
+  - Sticky positioning (lg:sticky lg:top-0) only applies on desktop (≥1024px)
+  - Mobile: header scrolls normally with content
+  - Added subtle shadow on desktop (lg:shadow-sm)
 
 **December 3, 2025:**
 - Implemented homepage lead capture system:
