@@ -93,9 +93,9 @@ All pages implement react-helmet-async with:
   - Updated PluginLanding, Blog, HowItWorks, Resources, XadesSignature pages
   - Updated SEO meta tags and Schema.org structured data
 - Modified Navbar for desktop-only sticky header:
-  - Sticky positioning (lg:sticky lg:top-0) only applies on desktop (≥1024px)
-  - Mobile: header scrolls normally with content
-  - Added subtle shadow on desktop (lg:shadow-sm)
+  - Sticky positioning (md:sticky md:top-0) applies on tablet/desktop (≥768px)
+  - Mobile (<768px): header scrolls normally with content
+  - Added subtle shadow on desktop (md:shadow-sm)
 
 **December 3, 2025:**
 - Implemented homepage lead capture system:
