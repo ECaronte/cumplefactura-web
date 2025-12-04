@@ -12,7 +12,7 @@ channel = "stable-24_11"
 run = ["bash", "-c", "cd shadcn-ui && pnpm run preview"]
 deploymentTarget = "static"
 ignorePorts = false
-build = ["npm", "run", "build"]
+build = ["pnpm", "--dir", "shadcn-ui", "run", "build"]
 publicDir = "shadcn-ui/dist"
 
 [agent]
