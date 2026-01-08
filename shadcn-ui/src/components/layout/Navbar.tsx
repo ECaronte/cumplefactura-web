@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { NavLink } from '@/types';
-import Logo from '@/components/Logo';
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { NavLink } from "@/types";
+import Logo from "@/components/Logo";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,20 +17,20 @@ import {
 } from "@/components/ui/collapsible";
 
 const navLinks: NavLink[] = [
-  { label: 'Inicio', href: '/' },
-  { label: 'Cómo funciona', href: '/como-funciona' },
-  { label: 'Plugin', href: '/woocommerce-verifactu' },
-  { label: 'Precios', href: '/precios' },
-  { label: 'Gestorías', href: '/gestorias' },
+  { label: "Inicio", href: "/" },
+  { label: "Cómo funciona", href: "/como-funciona" },
+  { label: "Plugin", href: "/woocommerce-verifactu" },
+  { label: "Precios", href: "/precios" },
+  { label: "Gestorías", href: "/gestorias" },
 ];
 
 const resourcesLinks = [
-  { label: 'Artículos y Guías', href: '/recursos' },
-  { label: 'Verifactu', href: '/verifactu' },
-  { label: 'Factura Electrónica 2026', href: '/factura-electronica-2026' },
-  { label: 'Firma XAdES', href: '/firma-xades' },
-  { label: 'Integraciones', href: '/integraciones' },
-  { label: 'Seguridad y Cumplimiento', href: '/seguridad-y-cumplimiento' },
+  { label: "Artículos y Guías", href: "/recursos" },
+  { label: "Verifactu", href: "/verifactu" },
+  { label: "Factura Electrónica 2027", href: "/factura-electronica-2027" },
+  { label: "Firma XAdES", href: "/firma-xades" },
+  { label: "Integraciones", href: "/integraciones" },
+  { label: "Seguridad y Cumplimiento", href: "/seguridad-y-cumplimiento" },
 ];
 
 export default function Navbar() {
@@ -41,20 +41,24 @@ export default function Navbar() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const isResourceActive = resourcesLinks.some(link => location.pathname === link.href);
+  const isResourceActive = resourcesLinks.some(
+    (link) => location.pathname === link.href,
+  );
 
   const handleEmpezarClick = () => {
-    if (location.pathname === '/') {
-      document.getElementById('early-access')?.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname === "/") {
+      document
+        .getElementById("early-access")
+        ?.scrollIntoView({ behavior: "smooth" });
     } else {
-      navigate('/#early-access');
+      navigate("/#early-access");
     }
     setIsOpen(false);
   };
 
   return (
     <header className="md:sticky md:top-0 z-50">
-      <nav 
+      <nav
         className="w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:shadow-sm"
         aria-label="Navegación principal"
       >
@@ -70,7 +74,9 @@ export default function Navbar() {
                 key={link.href}
                 to={link.href}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location.pathname === link.href ? 'text-primary' : 'text-muted-foreground'
+                  location.pathname === link.href
+                    ? "text-primary"
+                    : "text-muted-foreground"
                 }`}
               >
                 {link.label}
@@ -79,17 +85,18 @@ export default function Navbar() {
 
             {/* Recursos Dropdown */}
             <DropdownMenu>
-              <DropdownMenuTrigger 
-                className={`flex items-center text-sm font-medium transition-colors hover:text-primary outline-none ${isResourceActive ? 'text-primary' : 'text-muted-foreground'}`}
+              <DropdownMenuTrigger
+                className={`flex items-center text-sm font-medium transition-colors hover:text-primary outline-none ${isResourceActive ? "text-primary" : "text-muted-foreground"}`}
               >
-                Recursos <ChevronDown className="ml-1 h-4 w-4" aria-hidden="true" />
+                Recursos{" "}
+                <ChevronDown className="ml-1 h-4 w-4" aria-hidden="true" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 {resourcesLinks.map((link) => (
                   <DropdownMenuItem key={link.href} asChild>
-                    <Link 
+                    <Link
                       to={link.href}
-                      className={`w-full cursor-pointer ${location.pathname === link.href ? 'text-primary font-medium' : ''}`}
+                      className={`w-full cursor-pointer ${location.pathname === link.href ? "text-primary font-medium" : ""}`}
                     >
                       {link.label}
                     </Link>
@@ -98,8 +105,8 @@ export default function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               className="bg-primary hover:bg-brand-secondary text-white"
               onClick={handleEmpezarClick}
             >
@@ -114,15 +121,21 @@ export default function Navbar() {
             onClick={toggleMenu}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
-            aria-label={isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+            aria-label={
+              isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"
+            }
           >
-            {isOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
+            {isOpen ? (
+              <X className="h-6 w-6" aria-hidden="true" />
+            ) : (
+              <Menu className="h-6 w-6" aria-hidden="true" />
+            )}
           </button>
         </div>
 
         {/* Mobile Menu Dropdown */}
         {isOpen && (
-          <nav 
+          <nav
             id="mobile-menu"
             className="md:hidden border-t bg-background p-4 max-h-[calc(100vh-4rem)] overflow-y-auto"
             aria-label="Navegación móvil"
@@ -133,7 +146,9 @@ export default function Navbar() {
                   <Link
                     to={link.href}
                     className={`text-sm font-medium transition-colors hover:text-primary block ${
-                      location.pathname === link.href ? 'text-primary' : 'text-muted-foreground'
+                      location.pathname === link.href
+                        ? "text-primary"
+                        : "text-muted-foreground"
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
@@ -144,12 +159,20 @@ export default function Navbar() {
 
               {/* Mobile Recursos Submenu */}
               <li>
-                <Collapsible open={isResourcesOpen} onOpenChange={setIsResourcesOpen} className="w-full">
-                  <CollapsibleTrigger 
-                    className={`flex w-full items-center justify-between text-sm font-medium transition-colors hover:text-primary ${isResourceActive ? 'text-primary' : 'text-muted-foreground'}`}
+                <Collapsible
+                  open={isResourcesOpen}
+                  onOpenChange={setIsResourcesOpen}
+                  className="w-full"
+                >
+                  <CollapsibleTrigger
+                    className={`flex w-full items-center justify-between text-sm font-medium transition-colors hover:text-primary ${isResourceActive ? "text-primary" : "text-muted-foreground"}`}
                     aria-expanded={isResourcesOpen}
                   >
-                    Recursos <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isResourcesOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+                    Recursos{" "}
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-200 ${isResourcesOpen ? "rotate-180" : ""}`}
+                      aria-hidden="true"
+                    />
                   </CollapsibleTrigger>
                   <CollapsibleContent className="pt-2 pl-4">
                     <ul className="flex flex-col space-y-3">
@@ -158,7 +181,9 @@ export default function Navbar() {
                           <Link
                             to={link.href}
                             className={`text-sm transition-colors hover:text-primary block ${
-                              location.pathname === link.href ? 'text-primary font-medium' : 'text-muted-foreground'
+                              location.pathname === link.href
+                                ? "text-primary font-medium"
+                                : "text-muted-foreground"
                             }`}
                             onClick={() => setIsOpen(false)}
                           >
@@ -172,8 +197,8 @@ export default function Navbar() {
               </li>
 
               <li>
-                <Button 
-                  className="w-full bg-primary hover:bg-brand-secondary text-white" 
+                <Button
+                  className="w-full bg-primary hover:bg-brand-secondary text-white"
                   size="sm"
                   onClick={handleEmpezarClick}
                 >

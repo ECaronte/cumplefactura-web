@@ -1,28 +1,41 @@
-import React, { Suspense } from 'react';
-import { Toaster } from '@/components/ui/sonner';
-import { TooltipProvider } from '@/components/ui/tooltip';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { Suspense } from "react";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const Home = React.lazy(() => import('./pages/Home'));
-const HowItWorks = React.lazy(() => import('./pages/HowItWorks'));
-const PluginLanding = React.lazy(() => import('./pages/PluginLanding'));
-const Pricing = React.lazy(() => import('./pages/Pricing'));
-const Agency = React.lazy(() => import('./pages/Agency'));
-const Resources = React.lazy(() => import('./pages/Resources'));
-const Blog = React.lazy(() => import('./pages/Blog'));
-const LegalNotice = React.lazy(() => import('./pages/LegalNotice'));
-const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
-const CookiesPolicy = React.lazy(() => import('./pages/CookiesPolicy'));
-const TermsAndConditions = React.lazy(() => import('./pages/TermsAndConditions'));
-const LegalIndex = React.lazy(() => import('./pages/LegalIndex'));
-const Verifactu = React.lazy(() => import('./pages/Verifactu'));
-const ElectronicInvoice2026 = React.lazy(() => import('./pages/ElectronicInvoice2026'));
-const XadesSignature = React.lazy(() => import('./pages/XadesSignature'));
-const Integrations = React.lazy(() => import('./pages/Integrations'));
-const SecurityAndCompliance = React.lazy(() => import('./pages/SecurityAndCompliance'));
-const ContactPage = React.lazy(() => import('./pages/ContactPage'));
-const NotFound = React.lazy(() => import('./pages/NotFound'));
+const Home = React.lazy(() => import("./pages/Home"));
+const HowItWorks = React.lazy(() => import("./pages/HowItWorks"));
+const PluginLanding = React.lazy(() => import("./pages/PluginLanding"));
+const Pricing = React.lazy(() => import("./pages/Pricing"));
+const Agency = React.lazy(() => import("./pages/Agency"));
+const Resources = React.lazy(() => import("./pages/Resources"));
+const Blog = React.lazy(() => import("./pages/Blog"));
+const LegalNotice = React.lazy(() => import("./pages/LegalNotice"));
+const PrivacyPolicy = React.lazy(() => import("./pages/PrivacyPolicy"));
+const CookiesPolicy = React.lazy(() => import("./pages/CookiesPolicy"));
+const TermsAndConditions = React.lazy(
+  () => import("./pages/TermsAndConditions"),
+);
+const LegalIndex = React.lazy(() => import("./pages/LegalIndex"));
+const Verifactu = React.lazy(() => import("./pages/Verifactu"));
+
+// ✅ 2026 queda como redirect
+const ElectronicInvoice2026 = React.lazy(
+  () => import("./pages/ElectronicInvoice2026"),
+);
+// ✅ nueva página real
+const ElectronicInvoice2027 = React.lazy(
+  () => import("./pages/ElectronicInvoice2027"),
+);
+
+const XadesSignature = React.lazy(() => import("./pages/XadesSignature"));
+const Integrations = React.lazy(() => import("./pages/Integrations"));
+const SecurityAndCompliance = React.lazy(
+  () => import("./pages/SecurityAndCompliance"),
+);
+const ContactPage = React.lazy(() => import("./pages/ContactPage"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -51,17 +64,37 @@ const App = () => (
             <Route path="/gestorias" element={<Agency />} />
             <Route path="/recursos" element={<Resources />} />
             <Route path="/blog" element={<Blog />} />
+
             <Route path="/aviso-legal" element={<LegalNotice />} />
             <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
             <Route path="/politica-cookies" element={<CookiesPolicy />} />
-            <Route path="/terminos-condiciones" element={<TermsAndConditions />} />
+            <Route
+              path="/terminos-condiciones"
+              element={<TermsAndConditions />}
+            />
             <Route path="/legal" element={<LegalIndex />} />
+
             <Route path="/verifactu" element={<Verifactu />} />
-            <Route path="/factura-electronica-2026" element={<ElectronicInvoice2026 />} />
+
+            {/* ✅ Nuevo: página 2027 real */}
+            <Route
+              path="/factura-electronica-2027"
+              element={<ElectronicInvoice2027 />}
+            />
+            {/* ✅ Antiguo: se mantiene por SEO, hace redirect dentro del componente */}
+            <Route
+              path="/factura-electronica-2026"
+              element={<ElectronicInvoice2026 />}
+            />
+
             <Route path="/firma-xades" element={<XadesSignature />} />
             <Route path="/integraciones" element={<Integrations />} />
-            <Route path="/seguridad-y-cumplimiento" element={<SecurityAndCompliance />} />
+            <Route
+              path="/seguridad-y-cumplimiento"
+              element={<SecurityAndCompliance />}
+            />
             <Route path="/contacto" element={<ContactPage />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
