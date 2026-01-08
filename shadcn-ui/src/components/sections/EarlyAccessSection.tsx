@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Link, useNavigate } from 'react-router-dom';
-import { Building2, Send, CheckCircle2, AlertCircle } from 'lucide-react';
-import { submitEarlyAccessLead, EarlyAccessPayload } from '@/lib/api';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Link, useNavigate } from "react-router-dom";
+import { Building2, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { submitEarlyAccessLead, EarlyAccessPayload } from "@/lib/api";
 
 interface FormData {
   nombre: string;
@@ -27,11 +27,11 @@ interface FormErrors {
 export default function EarlyAccessSection() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
-    nombre: '',
-    email: '',
-    tipoUsuario: '',
-    volumenFacturas: '',
-    comentario: '',
+    nombre: "",
+    email: "",
+    tipoUsuario: "",
+    volumenFacturas: "",
+    comentario: "",
     consentimiento: false,
   });
 
@@ -49,18 +49,18 @@ export default function EarlyAccessSection() {
     const newErrors: FormErrors = {};
 
     if (!formData.nombre.trim()) {
-      newErrors.nombre = 'El nombre es obligatorio';
+      newErrors.nombre = "El nombre es obligatorio";
     }
     if (!formData.email.trim()) {
-      newErrors.email = 'El email es obligatorio';
+      newErrors.email = "El email es obligatorio";
     } else if (!validateEmail(formData.email)) {
-      newErrors.email = 'Introduce un email válido';
+      newErrors.email = "Introduce un email válido";
     }
     if (!formData.tipoUsuario) {
-      newErrors.tipoUsuario = 'Selecciona una opción';
+      newErrors.tipoUsuario = "Selecciona una opción";
     }
     if (!formData.consentimiento) {
-      newErrors.consentimiento = 'Debes aceptar la política de privacidad';
+      newErrors.consentimiento = "Debes aceptar la política de privacidad";
     }
 
     setErrors(newErrors);
@@ -85,31 +85,36 @@ export default function EarlyAccessSection() {
       comentario: formData.comentario || undefined,
       consentimiento: formData.consentimiento,
       timestamp: new Date().toISOString(),
-      originPage: 'home-early-access',
+      originPage: "home-early-access",
     };
 
     try {
       await submitEarlyAccessLead(payload);
       setIsSubmitted(true);
       setFormData({
-        nombre: '',
-        email: '',
-        tipoUsuario: '',
-        volumenFacturas: '',
-        comentario: '',
+        nombre: "",
+        email: "",
+        tipoUsuario: "",
+        volumenFacturas: "",
+        comentario: "",
         consentimiento: false,
       });
     } catch (error) {
-      setSubmitError('Ha ocurrido un error al enviar tus datos. Inténtalo de nuevo en unos minutos.');
+      setSubmitError(
+        "Ha ocurrido un error al enviar tus datos. Inténtalo de nuevo en unos minutos.",
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleInputChange = (field: keyof FormData, value: string | boolean) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+  const handleInputChange = (
+    field: keyof FormData,
+    value: string | boolean,
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field as keyof FormErrors]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
     if (submitError) {
       setSubmitError(null);
@@ -117,7 +122,7 @@ export default function EarlyAccessSection() {
   };
 
   const goToGestorias = () => {
-    navigate('/gestorias#gestorias-form');
+    navigate("/gestorias#gestorias-form");
   };
 
   const isFormValid =
@@ -130,23 +135,25 @@ export default function EarlyAccessSection() {
   return (
     <section
       id="early-access"
-      className="py-20 bg-gradient-to-b from-white to-slate-50"
+      className="py-24 bg-gradient-to-b from-white to-slate-50"
       aria-labelledby="early-access-title"
     >
       <div className="container max-w-4xl">
-        <div className="text-center mb-12">
+        <div className="text-center mb-14">
           <h2
             id="early-access-title"
-            className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 text-primary"
+            className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-5 text-primary"
           >
             Sé de los primeros en usar CumpleFactura
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Estamos desplegando CumpleFactura para autónomos, pymes y gestorías. Déjanos tus datos y te avisamos cuando esté disponible, con prioridad para los primeros interesados.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Estamos desplegando CumpleFactura para negocios con WooCommerce y
+            para gestorías que quieren un estándar único. Déjanos tus datos y te
+            avisamos cuando esté disponible.
           </p>
         </div>
 
-        <div className="mb-8 flex justify-center">
+        <div className="mb-10 flex justify-center">
           <Button
             variant="outline"
             size="lg"
@@ -192,9 +199,9 @@ export default function EarlyAccessSection() {
                 type="text"
                 placeholder="Tu nombre"
                 value={formData.nombre}
-                onChange={(e) => handleInputChange('nombre', e.target.value)}
+                onChange={(e) => handleInputChange("nombre", e.target.value)}
                 aria-invalid={!!errors.nombre}
-                className={errors.nombre ? 'border-red-500' : ''}
+                className={errors.nombre ? "border-red-500" : ""}
               />
               {errors.nombre && (
                 <p className="text-sm text-red-500">{errors.nombre}</p>
@@ -211,9 +218,9 @@ export default function EarlyAccessSection() {
                 type="email"
                 placeholder="tu@email.com"
                 value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
+                onChange={(e) => handleInputChange("email", e.target.value)}
                 aria-invalid={!!errors.email}
-                className={errors.email ? 'border-red-500' : ''}
+                className={errors.email ? "border-red-500" : ""}
               />
               {errors.email && (
                 <p className="text-sm text-red-500">{errors.email}</p>
@@ -228,10 +235,12 @@ export default function EarlyAccessSection() {
                 id="tipoUsuario"
                 name="tipoUsuario"
                 value={formData.tipoUsuario}
-                onChange={(e) => handleInputChange('tipoUsuario', e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("tipoUsuario", e.target.value)
+                }
                 aria-invalid={!!errors.tipoUsuario}
                 className={`flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                  errors.tipoUsuario ? 'border-red-500' : 'border-input'
+                  errors.tipoUsuario ? "border-red-500" : "border-input"
                 }`}
               >
                 <option value="">Selecciona una opción</option>
@@ -253,7 +262,9 @@ export default function EarlyAccessSection() {
                 id="volumenFacturas"
                 name="volumenFacturas"
                 value={formData.volumenFacturas}
-                onChange={(e) => handleInputChange('volumenFacturas', e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("volumenFacturas", e.target.value)
+                }
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <option value="">Selecciona (opcional)</option>
@@ -274,7 +285,9 @@ export default function EarlyAccessSection() {
                 placeholder="¿Qué tipo de negocio tienes? ¿Qué necesitas resolver?"
                 rows={3}
                 value={formData.comentario}
-                onChange={(e) => handleInputChange('comentario', e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("comentario", e.target.value)
+                }
               />
             </div>
 
@@ -284,7 +297,7 @@ export default function EarlyAccessSection() {
                   id="consentimiento"
                   checked={formData.consentimiento}
                   onCheckedChange={(checked) =>
-                    handleInputChange('consentimiento', checked === true)
+                    handleInputChange("consentimiento", checked === true)
                   }
                   aria-invalid={!!errors.consentimiento}
                 />
@@ -292,20 +305,22 @@ export default function EarlyAccessSection() {
                   htmlFor="consentimiento"
                   className="text-sm leading-relaxed cursor-pointer"
                 >
-                  Acepto la{' '}
+                  Acepto la{" "}
                   <Link
                     to="/politica-privacidad"
                     className="text-primary hover:underline"
                     target="_blank"
                   >
                     política de privacidad
-                  </Link>{' '}
-                  y deseo recibir información sobre CumpleFactura.{' '}
+                  </Link>{" "}
+                  y deseo recibir información sobre CumpleFactura.{" "}
                   <span className="text-red-500">*</span>
                 </Label>
               </div>
               {errors.consentimiento && (
-                <p className="text-sm text-red-500 ml-7">{errors.consentimiento}</p>
+                <p className="text-sm text-red-500 ml-7">
+                  {errors.consentimiento}
+                </p>
               )}
             </div>
 
