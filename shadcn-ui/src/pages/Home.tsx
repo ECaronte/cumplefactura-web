@@ -256,7 +256,7 @@ export default function Home() {
 
               <h2
                 id="security-title"
-                className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-primary"
+                className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-accent"
               >
                 Seguridad sólida para tu negocio
               </h2>

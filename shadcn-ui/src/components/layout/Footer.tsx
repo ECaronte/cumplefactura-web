@@ -122,10 +122,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/firma-xades"
+                  to="/seguridad-y-cumplimiento"
                   className="hover:text-white transition-colors"
                 >
-                  Firma XAdES
+                  Seguridad y cumplimiento
                 </Link>
               </li>
             </ul>

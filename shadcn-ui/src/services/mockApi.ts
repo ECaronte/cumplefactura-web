@@ -1,82 +1,99 @@
-import { Plan, FaqItem } from '../types';
+// shadcn-ui/src/services/mockApi.ts
+import { Plan, FaqItem } from "../types";
+
+/**
+ * Precios (marketing) — oferta hasta 1 julio 2027
+ * Ajusta aquí si cambias la estrategia.
+ */
+const PRICING = {
+  offerUntilLabel: "Oferta hasta 1 julio 2027",
+  free: { now: "0€", later: "0€" },
+  pro: { now: "19€", later: "29€" },
+  agency: { now: "59€", later: "79€" },
+};
 
 export const getPlans = (): Promise<Plan[]> => {
   return Promise.resolve([
     {
-      id: 'free',
-      name: 'Plan Gratis',
-      price: '0€',
-      description: 'Ideal para empezar a usar CumpleFactura sin coste.',
+      id: "free",
+      name: "Plan Gratis",
+      price: PRICING.free.now,
+      description:
+        "Ideal para empezar a usar CumpleFactura sin coste. Facturación básica y preparación del entorno.",
       features: [
-        'Factura PDF automática',
-        'Integración nativa con WooCommerce',
-        'Sin límite de pedidos',
-        'Perfecto para probar CumpleFactura antes de activar Verifactu'
+        "Factura PDF automática",
+        "Integración nativa con WooCommerce",
+        "Sin límite de pedidos",
+        "Panel básico de facturas y exportación simple",
       ],
-      cta: 'Empezar gratis'
+      cta: "Empezar gratis",
     },
     {
-      id: 'pro',
-      name: 'Plan PRO',
-      price: '9€',
-      description: 'El plan necesario para cumplir la normativa española de factura electrónica y software verificable.',
+      id: "pro",
+      name: "Plan PRO",
+      price: PRICING.pro.now,
+      description: `Cumplimiento completo para WooCommerce. ${PRICING.offerUntilLabel}. Después: ${PRICING.pro.later}/mes.`,
       features: [
-        'Firma digital XAdES automática',
-        'Verifactu completo (cadena hash + inmutabilidad)',
-        'Numeración y series legales',
-        'Preparado para MiFacturae',
-        'Exportación profesional en CSV y XML',
-        'Soporte prioritario',
-        '100% listo para la normativa 2025–2026'
+        "VeriFactu (hash encadenado + trazabilidad)",
+        "Numeración y series legales",
+        "Registro de integridad y auditoría",
+        "Exportación profesional CSV/XML para gestoría",
+        "Conservación y evidencias de cumplimiento",
+        "Soporte prioritario",
+        "Preparado para la normativa 2026–2027",
       ],
-      cta: 'Elegir Plan PRO',
-      highlight: true
+      cta: "Elegir Plan PRO",
+      highlight: true,
     },
     {
-      id: 'agency',
-      name: 'Plan Gestorías',
-      price: '29€',
-      description: 'Pensado para gestoras fiscales y contables que trabajan con clientes que usan WooCommerce.',
+      id: "agency",
+      name: "Plan Gestorías",
+      price: PRICING.agency.now,
+      description: `Para gestorías con múltiples clientes. ${PRICING.offerUntilLabel}. Después: ${PRICING.agency.later}/mes.`,
       features: [
-        'Acceso multi-cliente',
-        'Descarga masiva de facturas',
-        'Exportaciones CSV/XML optimizadas para contabilidad',
-        'API opcional',
-        'Comisión mensual por cliente recomendado',
-        'Próximo “Panel Gestoría” incluido',
-        'Soporte especializado'
+        "Acceso multi-cliente",
+        "Descarga masiva de facturas",
+        "Exportaciones CSV/XML optimizadas para contabilidad",
+        "API opcional para integraciones profesionales",
+        "Panel gestoría (roadmap)",
+        "Soporte especializado",
       ],
-      cta: 'Solicitar acceso'
-    }
+      cta: "Solicitar acceso",
+    },
   ]);
 };
 
 export const getFaqs = (): Promise<FaqItem[]> => {
   return Promise.resolve([
     {
-      id: '1',
-      question: '¿Puedo usar CumpleFactura gratis?',
-      answer: 'Sí, el plan Gratis permite generar facturas PDF automáticas desde WooCommerce sin coste.'
+      id: "1",
+      question: "¿Puedo usar CumpleFactura gratis?",
+      answer:
+        "Sí. El plan Gratis te permite generar facturas PDF automáticas desde WooCommerce y empezar a preparar tu entorno de facturación.",
     },
     {
-      id: '2',
-      question: '¿Necesito el plan PRO para cumplir la normativa?',
-      answer: 'Sí. Verifactu, firma digital XAdES y compatibilidad MiFacturae solo están incluidos en PRO.'
+      id: "2",
+      question: "¿Necesito el plan PRO para cumplir la normativa 2026–2027?",
+      answer:
+        "Sí. El plan PRO incluye el núcleo de cumplimiento: VeriFactu (trazabilidad con hash), numeración/series legales, evidencias de integridad y exportaciones profesionales para gestoría.",
     },
     {
-      id: '3',
-      question: '¿Puedo cambiar de plan cuando quiera?',
-      answer: 'Sí, puedes subir o bajar de plan en cualquier momento.'
+      id: "3",
+      question: "¿Los precios cambian el 1 de julio de 2027?",
+      answer:
+        "Sí. Aplicamos una oferta de lanzamiento hasta el 1 de julio de 2027. En la página de precios verás el precio actual y el precio posterior.",
     },
     {
-      id: '4',
-      question: '¿Hay descuento anual?',
-      answer: 'Sí, pagando el año completo te ahorras el equivalente a dos meses.'
+      id: "4",
+      question: "¿Puedo cambiar de plan cuando quiera?",
+      answer:
+        "Sí, puedes subir o bajar de plan en cualquier momento. Tu suscripción se ajusta al momento del cambio.",
     },
     {
-      id: '5',
-      question: '¿Qué incluye el Plan Gestorías?',
-      answer: 'Acceso multi-cliente, exportaciones profesionales, API opcional y comisión mensual por cliente.'
-    }
+      id: "5",
+      question: "¿Qué incluye el Plan Gestorías?",
+      answer:
+        "Acceso multi-cliente, descarga masiva, exportaciones optimizadas y opción de API para integraciones. Además, el Panel Gestoría está en roadmap.",
+    },
   ]);
 };

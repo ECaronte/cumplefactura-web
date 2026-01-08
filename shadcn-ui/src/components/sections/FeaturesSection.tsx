@@ -1,83 +1,68 @@
+// shadcn-ui/src/components/sections/FeaturesSection.tsx
 import {
-  Zap,
-  ShoppingCart,
   ShieldCheck,
-  Building2,
-  ArrowRight,
+  Zap,
+  FileText,
+  Database,
+  CheckCircle2,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 const features = [
   {
-    title: "Automático de verdad",
-    description:
-      "Cada pedido en WooCommerce genera una factura y añade la capa de cumplimiento (QR + hash + frase legal). Sin pasos manuales.",
-    icon: <Zap className="h-8 w-8" aria-hidden="true" />,
+    icon: ShieldCheck,
+    title: "VeriFactu y trazabilidad",
+    desc: "Registro con huella digital (hash) y trazabilidad para cumplir con el marco de software verificable.",
   },
   {
-    title: "WooCommerce nativo",
-    description:
-      "No somos un CRM externo. CumpleFactura funciona dentro de tu tienda WooCommerce, sin sincronizaciones raras.",
-    icon: <ShoppingCart className="h-8 w-8" aria-hidden="true" />,
+    icon: FileText,
+    title: "Numeración y series legales",
+    desc: "Control de series y numeración correlativa para reducir riesgos y asegurar coherencia documental.",
   },
   {
-    title: "Cumplimiento legal total (hoy)",
-    description:
-      "Trazabilidad con hash encadenado, numeración/series y capa de cumplimiento en el PDF. Listo para trabajar con gestorías.",
-    icon: <ShieldCheck className="h-8 w-8" aria-hidden="true" />,
+    icon: Database,
+    title: "Exportaciones para gestoría",
+    desc: "CSV/XML listos para contabilidad y conciliación. Menos trabajo manual, menos errores.",
   },
   {
-    title: "Pensado para gestorías",
-    description:
-      "Exportación profesional en CSV/XML, estados claros y un panel multi-cliente en roadmap para centralizar carteras.",
-    icon: <Building2 className="h-8 w-8" aria-hidden="true" />,
+    icon: Zap,
+    title: "Automático desde WooCommerce",
+    desc: "Funciona en segundo plano: cuando hay pedido, se genera la factura y queda registrada.",
   },
 ];
 
 export default function FeaturesSection() {
   return (
-    <section className="py-24 bg-background" aria-labelledby="features-title">
+    <section className="py-20 bg-slate-50">
       <div className="container">
-        <div className="text-center mb-14 md:mb-16">
-          <h2
-            id="features-title"
-            className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-5 text-primary"
-          >
-            La forma más simple y legal de facturar desde WooCommerce.
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-4xl font-bold tracking-tight text-slate-900">
+            Cumple sin cambiar tu forma de trabajar
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Diseñado para ecommerce: menos fricción, más coherencia, y una
-            salida limpia hacia contabilidad y gestoría.
+          <p className="mt-3 text-lg text-muted-foreground">
+            Una capa de cumplimiento para tu WooCommerce: automatiza, registra y
+            exporta con trazabilidad.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-9 mb-14">
-          {features.map((feature, index) => (
-            <article
-              key={index}
-              className="flex flex-col items-center text-center p-7 bg-card rounded-xl shadow-sm border hover:shadow-md transition-shadow"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((f) => (
+            <div
+              key={f.title}
+              className="bg-white rounded-2xl border shadow-sm p-6"
             >
-              <div className="h-16 w-16 rounded-full bg-brand-light flex items-center justify-center text-primary mb-7">
-                {feature.icon}
+              <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                <f.icon className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-primary">
-                {feature.title}
+              <h3 className="text-lg font-bold text-slate-900 mb-2">
+                {f.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
-            </article>
+              <p className="text-sm text-slate-600">{f.desc}</p>
+              <div className="mt-4 flex items-center text-sm text-slate-600">
+                <CheckCircle2 className="h-4 w-4 text-primary mr-2" />
+                Listo para 2026–2027
+              </div>
+            </div>
           ))}
-        </div>
-
-        <div className="flex justify-center">
-          <Button asChild variant="outline" size="lg" className="gap-2">
-            <Link to="/integraciones">
-              Ver Integraciones{" "}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </Button>
         </div>
       </div>
     </section>

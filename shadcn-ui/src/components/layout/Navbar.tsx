@@ -27,8 +27,8 @@ const navLinks: NavLink[] = [
 const resourcesLinks = [
   { label: "Artículos y Guías", href: "/recursos" },
   { label: "Verifactu", href: "/verifactu" },
-  { label: "Factura Electrónica 2027", href: "/factura-electronica-2027" },
-  { label: "Firma XAdES", href: "/firma-xades" },
+  { label: "Factura Electrónica 2027", href: "/factura-electronica-2026" },
+  { label: "Firma digital (próximamente)", href: "/seguridad-y-cumplimiento" },
   { label: "Integraciones", href: "/integraciones" },
   { label: "Seguridad y Cumplimiento", href: "/seguridad-y-cumplimiento" },
 ];
