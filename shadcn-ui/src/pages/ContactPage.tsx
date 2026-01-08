@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Send, CheckCircle2 } from "lucide-react";
+import { Mail, Send, CheckCircle2, AlertTriangle } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -92,14 +93,18 @@ export default function ContactPage() {
         <div className="container max-w-4xl">
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-6">
-              <Mail className="h-8 w-8 text-primary" />
+              <AlertTriangle className="h-8 w-8 text-primary" />
             </div>
-            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl mb-4 text-primary">
-              Contacto
+
+            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl mb-4 text-slate-900">
+              Evita sustos cuando llegue 2027.
             </h1>
+
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              ¿Dudas sobre WooCommerce, facturación o cómo encaja con tu
-              gestoría? Escríbenos y te respondemos.
+              Cuando empiecen las exigencias reales, improvisar sale caro:
+              tiempo, errores y riesgo de sanción. Escríbenos y te orientamos.
+              Si quieres, también te avisamos antes de la subida de precios del
+              1 julio 2027.
             </p>
           </div>
 
@@ -147,7 +152,7 @@ export default function ContactPage() {
                     <Label htmlFor="message">Mensaje</Label>
                     <Textarea
                       id="message"
-                      placeholder="Cuéntanos en qué podemos ayudarte..."
+                      placeholder="Cuéntanos tu caso (WooCommerce / gestoría / volumen de pedidos / dudas de cumplimiento)…"
                       rows={5}
                       required
                     />
@@ -201,11 +206,11 @@ export default function ContactPage() {
                   ¿Eres gestoría?
                 </h2>
                 <p className="text-muted-foreground mb-4">
-                  Tenemos planes especiales para gestorías con múltiples
-                  clientes.
+                  Si gestionas varios WooCommerce, el Plan Partner está pensado
+                  para ti (y las integraciones avanzadas llegarán en Fase 2).
                 </p>
                 <Button variant="outline" asChild>
-                  <Link to="/gestorias">Ver planes para gestorías</Link>
+                  <Link to="/gestorias">Ver página de gestorías</Link>
                 </Button>
               </div>
             </div>

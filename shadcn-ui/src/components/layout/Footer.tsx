@@ -1,25 +1,29 @@
+// shadcn-ui/src/components/layout/Footer.tsx
 import { Link } from "react-router-dom";
-import { ShieldCheck, FileText, Scale, Cookie, Lock } from "lucide-react";
+import { ShieldCheck, Scale } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 text-slate-300 py-12 md:py-16 border-t border-slate-800">
-      <div className="container">
+    <footer className="bg-slate-950 text-slate-300 border-t border-slate-800">
+      <div className="container py-12 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
           <div className="col-span-2 lg:col-span-2">
             <Link
               to="/"
               className="flex items-center gap-2 font-bold text-xl text-white mb-4"
+              aria-label="Ir a inicio"
             >
               <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground">
                 <ShieldCheck className="h-5 w-5" />
               </div>
               CumpleFactura
             </Link>
+
             <p className="text-slate-400 max-w-sm mb-6">
-              La solución definitiva para facturar desde WooCommerce cumpliendo
-              con la Ley Antifraude y la Ley Crea y Crece.
+              Facturación para WooCommerce preparada para la normativa 2026–2027
+              (VeriFactu) y el futuro de la factura electrónica.
             </p>
+
             <div className="text-sm text-slate-500">
               &copy; {new Date().getFullYear()} CumpleFactura. Todos los
               derechos reservados.
@@ -118,14 +122,6 @@ export default function Footer() {
                   className="hover:text-white transition-colors"
                 >
                   Factura Electrónica
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/seguridad-y-cumplimiento"
-                  className="hover:text-white transition-colors"
-                >
-                  Seguridad y cumplimiento
                 </Link>
               </li>
             </ul>

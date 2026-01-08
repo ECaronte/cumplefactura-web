@@ -1,38 +1,28 @@
-// shadcn-ui/src/services/mockApi.ts
 import { Plan, FaqItem } from "../types";
-
-/**
- * Precios (marketing) — oferta hasta 1 julio 2027
- * Ajusta aquí si cambias la estrategia.
- */
-const PRICING = {
-  offerUntilLabel: "Oferta hasta 1 julio 2027",
-  free: { now: "0€", later: "0€" },
-  pro: { now: "19€", later: "29€" },
-  agency: { now: "59€", later: "79€" },
-};
 
 export const getPlans = (): Promise<Plan[]> => {
   return Promise.resolve([
     {
-      id: "free",
-      name: "Plan Gratis",
-      price: PRICING.free.now,
+      id: "woo",
+      name: "Plan Woo",
+      price: "0€",
       description:
-        "Ideal para empezar a usar CumpleFactura sin coste. Facturación básica y preparación del entorno.",
+        "Para tiendas WooCommerce que quieren empezar ya con facturación básica y dejar el terreno preparado.",
       features: [
         "Factura PDF automática",
         "Integración nativa con WooCommerce",
         "Sin límite de pedidos",
         "Panel básico de facturas y exportación simple",
+        "Base preparada para activar VeriFactu cuando toque",
       ],
       cta: "Empezar gratis",
     },
     {
-      id: "pro",
-      name: "Plan PRO",
-      price: PRICING.pro.now,
-      description: `Cumplimiento completo para WooCommerce. ${PRICING.offerUntilLabel}. Después: ${PRICING.pro.later}/mes.`,
+      id: "connect",
+      name: "Plan Connect",
+      price: "19€",
+      description:
+        "Cumplimiento completo para WooCommerce. Oferta hasta 1 julio 2027. Después: 29€/mes.",
       features: [
         "VeriFactu (hash encadenado + trazabilidad)",
         "Numeración y series legales",
@@ -42,20 +32,22 @@ export const getPlans = (): Promise<Plan[]> => {
         "Soporte prioritario",
         "Preparado para la normativa 2026–2027",
       ],
-      cta: "Elegir Plan PRO",
+      cta: "Elegir Plan Connect",
       highlight: true,
     },
     {
-      id: "agency",
-      name: "Plan Gestorías",
-      price: PRICING.agency.now,
-      description: `Para gestorías con múltiples clientes. ${PRICING.offerUntilLabel}. Después: ${PRICING.agency.later}/mes.`,
+      id: "partner",
+      name: "Plan Partner",
+      price: "59€",
+      description:
+        "Para gestorías con múltiples clientes. Oferta hasta 1 julio 2027. Después: 79€/mes.",
       features: [
         "Acceso multi-cliente",
         "Descarga masiva de facturas",
         "Exportaciones CSV/XML optimizadas para contabilidad",
-        "API opcional para integraciones profesionales",
-        "Panel gestoría (roadmap)",
+        "Flujos de revisión y control (roadmap)",
+        "Alertas y avisos (roadmap)",
+        "Integraciones avanzadas / API (fase 2 – en desarrollo)",
         "Soporte especializado",
       ],
       cta: "Solicitar acceso",
@@ -69,31 +61,31 @@ export const getFaqs = (): Promise<FaqItem[]> => {
       id: "1",
       question: "¿Puedo usar CumpleFactura gratis?",
       answer:
-        "Sí. El plan Gratis te permite generar facturas PDF automáticas desde WooCommerce y empezar a preparar tu entorno de facturación.",
+        "Sí. El Plan Woo permite generar facturas PDF automáticas desde WooCommerce sin coste.",
     },
     {
       id: "2",
-      question: "¿Necesito el plan PRO para cumplir la normativa 2026–2027?",
+      question:
+        "¿Qué plan necesito para cumplir con VeriFactu y la normativa 2026–2027?",
       answer:
-        "Sí. El plan PRO incluye el núcleo de cumplimiento: VeriFactu (trazabilidad con hash), numeración/series legales, evidencias de integridad y exportaciones profesionales para gestoría.",
+        "Para el cumplimiento completo (trazabilidad VeriFactu, numeración legal, auditoría y evidencias) necesitas el Plan Connect o superior.",
     },
     {
       id: "3",
-      question: "¿Los precios cambian el 1 de julio de 2027?",
+      question: "¿Qué significa “oferta hasta 1 julio 2027”?",
       answer:
-        "Sí. Aplicamos una oferta de lanzamiento hasta el 1 de julio de 2027. En la página de precios verás el precio actual y el precio posterior.",
+        "Hasta esa fecha aplican precios promocionales. Después, el Plan Connect pasa a 29€/mes y el Plan Partner a 79€/mes.",
     },
     {
       id: "4",
-      question: "¿Puedo cambiar de plan cuando quiera?",
+      question: "¿La API para gestorías está incluida?",
       answer:
-        "Sí, puedes subir o bajar de plan en cualquier momento. Tu suscripción se ajusta al momento del cambio.",
+        "La API e integraciones avanzadas están previstas como Fase 2 (en desarrollo). En Partner lo indicamos como roadmap, no como funcionalidad ya disponible.",
     },
     {
       id: "5",
-      question: "¿Qué incluye el Plan Gestorías?",
-      answer:
-        "Acceso multi-cliente, descarga masiva, exportaciones optimizadas y opción de API para integraciones. Además, el Panel Gestoría está en roadmap.",
+      question: "¿Puedo cambiar de plan cuando quiera?",
+      answer: "Sí. Puedes subir o bajar de plan cuando lo necesites.",
     },
   ]);
 };
