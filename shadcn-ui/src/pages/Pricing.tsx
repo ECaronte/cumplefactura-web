@@ -154,70 +154,130 @@ export default function Pricing() {
           </div>
         </div>
 
-        {/* Planes */}
-        <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-14 md:mb-16">
-          {ordered.map((plan) => {
-            const p = PRICING[plan.id];
-            const promo = p?.promo?.[billing] || plan.price;
-            const standard = p?.standard?.[billing] || "";
+        // --- dentro de Pricing.tsx, reemplaza tu bloque "Planes" por esto ---
+        type BillingCycle = "monthly" | "annual" | "2y" | "3y";
+        const DISCOUNTS: Record<BillingCycle, number> = {
+          monthly: 0,
+          annual: 0,
+          "2y": 0.1,
+          "3y": 0.18,
+        };
+
+        function annualPromoByPlanId(planId: string): number | null {
+          if (planId === "connect") return 55;
+          if (planId === "woo") return 119;
+          if (planId === "partner") return null;
+          return null;
+        }
+        function formatEUR(n: number) {
+          return new Intl.NumberFormat("es-ES", {
+            style: "currency",
+            currency: "EUR",
+            minimumFractionDigits: n % 1 === 0 ? 0 : 2,
+            maximumFractionDigits: n % 1 === 0 ? 0 : 2,
+          }).format(n);
+        }
+
+        const [cycle, setCycle] = useState<BillingCycle>("monthly");
+
+        // ... en tu JSX, pon esto antes del grid de cards (justo encima):
+        <div className="container text-center mb-8">
+          <div className="inline-flex rounded-xl border bg-white p-1 shadow-sm">
+            {(["monthly", "annual", "2y", "3y"] as BillingCycle[]).map((k) => (
+              <button
+                key={k}
+                type="button"
+                onClick={() => setCycle(k)}
+                className={`px-4 py-2 text-sm rounded-lg transition-colors ${
+                  cycle === k
+                    ? "bg-primary text-primary-foreground"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                {k === "monthly"
+                  ? "Mensual"
+                  : k === "annual"
+                  ? "Anual"
+                  : k === "2y"
+                  ? "2 años (-10%)"
+                  : "3 años (-18%)"}
+              </button>
+            ))}
+          </div>
+          <p className="mt-2 text-sm text-slate-500">
+            Los descuentos 2–3 años aplican a Connect y Pro. Partner se cierra en llamada.
+          </p>
+        </div>
+
+        // Y tu grid de cards:
+        <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-14 md:mb-16 items-stretch">
+          {plans.map((plan) => {
+            const annual = annualPromoByPlanId(plan.id);
             const isPartner = plan.id === "partner";
+
+            let priceMain = plan.price;
+            let priceSuffix: string | null = plan.price === "Contactar" ? null : "/mes";
+            let priceNote: string | null = null;
+
+            if (!isPartner && annual && cycle !== "monthly") {
+              const years = cycle === "annual" ? 1 : cycle === "2y" ? 2 : 3;
+              const discount = DISCOUNTS[cycle];
+              const total = annual * years * (1 - discount);
+              const perMonthEq = total / (12 * years);
+
+              priceMain = formatEUR(total);
+              priceSuffix = years === 1 ? "/año" : `/${years} años`;
+              priceNote = `Equiv. ${formatEUR(perMonthEq)}/mes · pago anticipado`;
+            } else if (isPartner) {
+              priceNote = "B2B con onboarding. Condiciones por despacho/volumen en llamada.";
+            }
 
             return (
               <Card
                 key={plan.id}
-                className={`flex flex-col relative ${
+                className={`flex flex-col relative h-full ${
                   plan.highlight
                     ? "border-primary shadow-xl scale-[1.03] z-10"
                     : "border-border shadow-sm"
                 }`}
               >
                 {plan.highlight && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium shadow-sm">
-                    Recomendado
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-white px-3 py-1 rounded-full text-sm font-medium shadow-sm">
+                    Más popular
                   </div>
                 )}
 
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-2xl text-slate-900">
-                    {plan.name}
-                  </CardTitle>
+                <CardHeader className="pb-4 min-h-[110px]">
+                  <CardTitle className="text-2xl text-slate-900">{plan.name}</CardTitle>
                   <CardDescription className="leading-relaxed">
                     {plan.description}
                   </CardDescription>
                 </CardHeader>
 
                 <CardContent className="flex-1">
-                  <div className="mb-3">
-                    <div className="flex items-end gap-2">
+                  <div className="mb-6 min-h-[86px] flex flex-col justify-end">
+                    <div className="flex items-end gap-2 justify-center md:justify-start">
                       <span className="text-4xl font-bold text-slate-900">
-                        {promo}
+                        {priceMain}
                       </span>
-                      {!isPartner && (
-                        <span className="text-muted-foreground">
-                          {billing === "annual" ? "/año" : "/mes"}
-                        </span>
+                      {priceSuffix && (
+                        <span className="text-muted-foreground mb-1">{priceSuffix}</span>
+                      )}
+                      {cycle !== "monthly" && !isPartner && cycle !== "annual" && (
+                        <Badge variant="secondary" className="ml-2">
+                          -{Math.round(DISCOUNTS[cycle] * 100)}%
+                        </Badge>
                       )}
                     </div>
-
-                    {standard && standard !== "—" && (
-                      <div className="mt-1 text-sm text-slate-500">
-                        Desde <span className="font-medium">1 julio 2027</span>:{" "}
-                        <span className="font-medium text-slate-700">
-                          {standard}
-                          {isPartner
-                            ? "/mes"
-                            : billing === "annual"
-                              ? "/año"
-                              : "/mes"}
-                        </span>
-                      </div>
+                    {priceNote && (
+                      <p className="text-xs text-slate-500 mt-2">{priceNote}</p>
                     )}
                   </div>
 
-                  <ul className="space-y-3 mt-6">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <ul className="space-y-3">
+                    {plan.features.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
                         <span className="text-sm text-slate-700 leading-relaxed">
                           {feature}
                         </span>
@@ -225,21 +285,18 @@ export default function Pricing() {
                     ))}
                   </ul>
 
-                  {/* Nota legal-safe */}
                   <div className="mt-6 rounded-xl border bg-slate-50 px-4 py-3 text-sm text-slate-600 leading-relaxed">
-                    Cumplimiento y trazabilidad orientados a Veri*factu /
-                    software verificable. Algunas capacidades avanzadas se
-                    incorporan progresivamente según el calendario técnico.
+                    Orientado a cumplimiento y trazabilidad (Veri*Factu / software verificable).
+                    Módulos avanzados se incorporan progresivamente según roadmap.
                   </div>
                 </CardContent>
 
-                <CardFooter>
+                <CardFooter className="mt-auto">
                   <Button
-                    asChild
                     className="w-full"
                     variant={plan.highlight ? "default" : "outline"}
                   >
-                    <Link to="/contacto">{plan.cta}</Link>
+                    {plan.cta}
                   </Button>
                 </CardFooter>
               </Card>
