@@ -4,6 +4,7 @@ import MainLayout from "@/layouts/MainLayout";
 import FaqSection from "@/components/sections/FaqSection";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -14,43 +15,73 @@ import {
 } from "@/components/ui/card";
 import { Check, Briefcase, ArrowRight } from "lucide-react";
 import { getPlans } from "@/services/mockApi";
-import { Plan } from "@/types";
+import type { Plan } from "@/types";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 type Billing = "monthly" | "annual";
+type MultiYear = "1y" | "2y" | "3y";
 
+const MULTI_DISCOUNT: Record<MultiYear, number> = {
+  "1y": 0,
+  "2y": 0.1, // -10%
+  "3y": 0.18, // -18%
+};
+
+// Promoción (hasta 1/07/2027) vs estándar (a partir de 1/07/2027)
+// Importante: 2y/3y se calcula sobre el anual del periodo seleccionado (promo/estándar).
 const PRICING: Record<
   string,
   {
-    promo: { monthly: string; annual: string };
-    standard: { monthly: string; annual: string };
+    promo: { monthly: number; annual: number };
+    standard: { monthly: number; annual: number };
+    multiYearEligible?: boolean; // Partner no
   }
 > = {
   connect: {
-    promo: { monthly: "4,90€", annual: "49€" },
-    standard: { monthly: "7,90€", annual: "79€" },
+    promo: { monthly: 4.9, annual: 49 },
+    standard: { monthly: 7.9, annual: 79 },
+    multiYearEligible: true,
   },
   pro: {
-    promo: { monthly: "10,90€", annual: "109€" },
-    standard: { monthly: "14,90€", annual: "149€" },
+    promo: { monthly: 10.9, annual: 109 },
+    standard: { monthly: 14.9, annual: 149 },
+    multiYearEligible: true,
   },
   partner: {
-    promo: { monthly: "59€", annual: "—" },
-    standard: { monthly: "79€", annual: "—" },
+    promo: { monthly: 59, annual: 0 },
+    standard: { monthly: 79, annual: 0 },
+    multiYearEligible: false,
   },
 };
+
+function formatEUR(n: number) {
+  return new Intl.NumberFormat("es-ES", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: n % 1 === 0 ? 0 : 2,
+    maximumFractionDigits: n % 1 === 0 ? 0 : 2,
+  }).format(n);
+}
+
+function getPlanBaseId(planId: string) {
+  // Normaliza ids del mock a nuestros ids de pricing
+  // (tu mock actual usa connect / woo / partner; aquí el plan recomendado es "pro")
+  if (planId === "woo") return "pro";
+  return planId;
+}
 
 export default function Pricing() {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [billing, setBilling] = useState<Billing>("monthly");
+  const [years, setYears] = useState<MultiYear>("1y");
 
   useEffect(() => {
     getPlans().then(setPlans);
   }, []);
 
   const ordered = useMemo(() => {
-    const order = { connect: 0, pro: 1, partner: 2 } as Record<string, number>;
+    const order = { connect: 0, woo: 1, partner: 2 } as Record<string, number>;
     return [...plans].sort((a, b) => (order[a.id] ?? 99) - (order[b.id] ?? 99));
   }, [plans]);
 
@@ -98,7 +129,7 @@ export default function Pricing() {
 
       <section className="py-24 md:py-36 bg-background">
         {/* Header */}
-        <div className="container text-center mb-14 md:mb-16">
+        <div className="container text-center mb-10 md:mb-12">
           <div className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold bg-brand-light text-primary mb-5">
             Precios claros
           </div>
@@ -113,31 +144,63 @@ export default function Pricing() {
             aplican las tarifas estándar indicadas en cada plan.
           </p>
 
-          <div className="mt-7 flex items-center justify-center gap-3">
-            <span
-              className={`text-sm ${
-                billing === "monthly"
-                  ? "text-slate-900 font-medium"
-                  : "text-slate-500"
-              }`}
-            >
-              Mensual
-            </span>
-            <Switch
-              checked={billing === "annual"}
-              onCheckedChange={(v) => setBilling(v ? "annual" : "monthly")}
-              aria-label="Cambiar a precios anuales"
-            />
-            <span
-              className={`text-sm ${
-                billing === "annual"
-                  ? "text-slate-900 font-medium"
-                  : "text-slate-500"
-              }`}
-            >
-              Anual
-            </span>
-            <span className="ml-2 text-xs text-slate-500">(total anual)</span>
+          {/* Mensual / Anual */}
+          <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="flex items-center gap-3">
+              <span
+                className={`text-sm ${
+                  billing === "monthly"
+                    ? "text-slate-900 font-medium"
+                    : "text-slate-500"
+                }`}
+              >
+                Mensual
+              </span>
+              <Switch
+                checked={billing === "annual"}
+                onCheckedChange={(v) => {
+                  setBilling(v ? "annual" : "monthly");
+                  if (!v) setYears("1y"); // multi-año solo tiene sentido en anual
+                }}
+                aria-label="Cambiar a precios anuales"
+              />
+              <span
+                className={`text-sm ${
+                  billing === "annual"
+                    ? "text-slate-900 font-medium"
+                    : "text-slate-500"
+                }`}
+              >
+                Anual
+              </span>
+              <span className="ml-2 text-xs text-slate-500">
+                {billing === "annual" ? "(pago anticipado)" : ""}
+              </span>
+            </div>
+
+            {/* 1y / 2y / 3y (solo si anual) */}
+            {billing === "annual" && (
+              <div className="inline-flex rounded-xl border bg-white p-1 shadow-sm">
+                {(["1y", "2y", "3y"] as MultiYear[]).map((k) => (
+                  <button
+                    key={k}
+                    type="button"
+                    onClick={() => setYears(k)}
+                    className={`px-4 py-2 text-sm rounded-lg transition-colors ${
+                      years === k
+                        ? "bg-primary text-primary-foreground"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    {k === "1y"
+                      ? "1 año"
+                      : k === "2y"
+                        ? "2 años (-10%)"
+                        : "3 años (-18%)"}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
@@ -154,82 +217,60 @@ export default function Pricing() {
           </div>
         </div>
 
-        // --- dentro de Pricing.tsx, reemplaza tu bloque "Planes" por esto ---
-        type BillingCycle = "monthly" | "annual" | "2y" | "3y";
-        const DISCOUNTS: Record<BillingCycle, number> = {
-          monthly: 0,
-          annual: 0,
-          "2y": 0.1,
-          "3y": 0.18,
-        };
+        {/* Planes */}
+        <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12 md:mb-14 items-stretch">
+          {ordered.map((plan) => {
+            const baseId = getPlanBaseId(plan.id);
+            const cfg = PRICING[baseId];
+            const isPartner = baseId === "partner";
 
-        function annualPromoByPlanId(planId: string): number | null {
-          if (planId === "connect") return 55;
-          if (planId === "woo") return 119;
-          if (planId === "partner") return null;
-          return null;
-        }
-        function formatEUR(n: number) {
-          return new Intl.NumberFormat("es-ES", {
-            style: "currency",
-            currency: "EUR",
-            minimumFractionDigits: n % 1 === 0 ? 0 : 2,
-            maximumFractionDigits: n % 1 === 0 ? 0 : 2,
-          }).format(n);
-        }
+            const promo = cfg?.promo;
+            const standard = cfg?.standard;
 
-        const [cycle, setCycle] = useState<BillingCycle>("monthly");
-
-        // ... en tu JSX, pon esto antes del grid de cards (justo encima):
-        <div className="container text-center mb-8">
-          <div className="inline-flex rounded-xl border bg-white p-1 shadow-sm">
-            {(["monthly", "annual", "2y", "3y"] as BillingCycle[]).map((k) => (
-              <button
-                key={k}
-                type="button"
-                onClick={() => setCycle(k)}
-                className={`px-4 py-2 text-sm rounded-lg transition-colors ${
-                  cycle === k
-                    ? "bg-primary text-primary-foreground"
-                    : "text-slate-600 hover:text-slate-900"
-                }`}
-              >
-                {k === "monthly"
-                  ? "Mensual"
-                  : k === "annual"
-                  ? "Anual"
-                  : k === "2y"
-                  ? "2 años (-10%)"
-                  : "3 años (-18%)"}
-              </button>
-            ))}
-          </div>
-          <p className="mt-2 text-sm text-slate-500">
-            Los descuentos 2–3 años aplican a Connect y Pro. Partner se cierra en llamada.
-          </p>
-        </div>
-
-        // Y tu grid de cards:
-        <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-14 md:mb-16 items-stretch">
-          {plans.map((plan) => {
-            const annual = annualPromoByPlanId(plan.id);
-            const isPartner = plan.id === "partner";
-
-            let priceMain = plan.price;
-            let priceSuffix: string | null = plan.price === "Contactar" ? null : "/mes";
+            // Precio principal (según toggle mensual/anual y multi-year)
+            let priceMain = plan.price; // fallback
+            let priceSuffix: string | null =
+              plan.price === "Contactar" ? null : "/mes";
             let priceNote: string | null = null;
+            let promoLine: string | null = null;
 
-            if (!isPartner && annual && cycle !== "monthly") {
-              const years = cycle === "annual" ? 1 : cycle === "2y" ? 2 : 3;
-              const discount = DISCOUNTS[cycle];
-              const total = annual * years * (1 - discount);
-              const perMonthEq = total / (12 * years);
+            // Siempre mostramos “promo vs estándar” como referencia (sin miedo)
+            if (promo && standard) {
+              if (billing === "monthly") {
+                promoLine = `${formatEUR(promo.monthly)}/mes · después ${formatEUR(
+                  standard.monthly,
+                )}/mes`;
+              } else {
+                promoLine = `${formatEUR(promo.annual)}/año · después ${formatEUR(
+                  standard.annual,
+                )}/año`;
+              }
+            }
 
-              priceMain = formatEUR(total);
-              priceSuffix = years === 1 ? "/año" : `/${years} años`;
-              priceNote = `Equiv. ${formatEUR(perMonthEq)}/mes · pago anticipado`;
-            } else if (isPartner) {
-              priceNote = "B2B con onboarding. Condiciones por despacho/volumen en llamada.";
+            if (promo && standard) {
+              if (billing === "monthly") {
+                priceMain = formatEUR(promo.monthly);
+                priceSuffix = "/mes";
+                priceNote = `Después: ${formatEUR(standard.monthly)}/mes`;
+              } else {
+                // anual con 1y/2y/3y (solo para Connect/Pro)
+                if (!isPartner && cfg.multiYearEligible) {
+                  const yearsInt = years === "1y" ? 1 : years === "2y" ? 2 : 3;
+                  const discount = MULTI_DISCOUNT[years];
+                  const total = promo.annual * yearsInt * (1 - discount);
+                  const perMonthEq = total / (12 * yearsInt);
+
+                  priceMain = formatEUR(total);
+                  priceSuffix = yearsInt === 1 ? "/año" : `/${yearsInt} años`;
+                  priceNote = `Equiv. ${formatEUR(perMonthEq)}/mes · pago anticipado`;
+                } else {
+                  // Partner: no auto-checkout anual aquí
+                  priceMain = formatEUR(promo.monthly);
+                  priceSuffix = "/mes";
+                  priceNote =
+                    "B2B con onboarding. Condiciones por despacho/volumen en llamada.";
+                }
+              }
             }
 
             return (
@@ -247,30 +288,43 @@ export default function Pricing() {
                   </div>
                 )}
 
-                <CardHeader className="pb-4 min-h-[110px]">
-                  <CardTitle className="text-2xl text-slate-900">{plan.name}</CardTitle>
+                <CardHeader className="pb-4 min-h-[112px]">
+                  <CardTitle className="text-2xl text-slate-900">
+                    {plan.name}
+                  </CardTitle>
                   <CardDescription className="leading-relaxed">
                     {plan.description}
                   </CardDescription>
                 </CardHeader>
 
                 <CardContent className="flex-1">
-                  <div className="mb-6 min-h-[86px] flex flex-col justify-end">
+                  <div className="mb-6 min-h-[98px] flex flex-col justify-end">
                     <div className="flex items-end gap-2 justify-center md:justify-start">
                       <span className="text-4xl font-bold text-slate-900">
                         {priceMain}
                       </span>
                       {priceSuffix && (
-                        <span className="text-muted-foreground mb-1">{priceSuffix}</span>
+                        <span className="text-muted-foreground mb-1">
+                          {priceSuffix}
+                        </span>
                       )}
-                      {cycle !== "monthly" && !isPartner && cycle !== "annual" && (
-                        <Badge variant="secondary" className="ml-2">
-                          -{Math.round(DISCOUNTS[cycle] * 100)}%
-                        </Badge>
-                      )}
+
+                      {billing === "annual" &&
+                        !isPartner &&
+                        years !== "1y" &&
+                        cfg?.multiYearEligible && (
+                          <Badge variant="secondary" className="ml-2">
+                            -{Math.round(MULTI_DISCOUNT[years] * 100)}%
+                          </Badge>
+                        )}
                     </div>
+
                     {priceNote && (
                       <p className="text-xs text-slate-500 mt-2">{priceNote}</p>
+                    )}
+
+                    {promoLine && (
+                      <p className="text-xs text-slate-500 mt-1">{promoLine}</p>
                     )}
                   </div>
 
@@ -286,8 +340,9 @@ export default function Pricing() {
                   </ul>
 
                   <div className="mt-6 rounded-xl border bg-slate-50 px-4 py-3 text-sm text-slate-600 leading-relaxed">
-                    Orientado a cumplimiento y trazabilidad (Veri*Factu / software verificable).
-                    Módulos avanzados se incorporan progresivamente según roadmap.
+                    Orientado a cumplimiento y trazabilidad (Veri*Factu /
+                    software verificable). Módulos avanzados se incorporan
+                    progresivamente según roadmap.
                   </div>
                 </CardContent>
 
@@ -295,8 +350,11 @@ export default function Pricing() {
                   <Button
                     className="w-full"
                     variant={plan.highlight ? "default" : "outline"}
+                    asChild
                   >
-                    {plan.cta}
+                    <Link to={isPartner ? "/gestorias" : "/contacto"}>
+                      {plan.cta}
+                    </Link>
                   </Button>
                 </CardFooter>
               </Card>
@@ -305,7 +363,7 @@ export default function Pricing() {
         </div>
 
         {/* Caja gestorías */}
-        <div className="container max-w-4xl mx-auto text-center mb-10 md:mb-14">
+        <div className="container max-w-4xl mx-auto text-center mb-8 md:mb-10">
           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 md:p-6 inline-flex flex-col sm:flex-row items-center gap-3 text-slate-700">
             <Briefcase className="h-5 w-5 text-primary" />
             <span className="leading-relaxed">
@@ -321,6 +379,18 @@ export default function Pricing() {
             </span>
           </div>
         </div>
+
+        {/* Nota multi-year */}
+        {billing === "annual" && (
+          <div className="container max-w-3xl mx-auto text-center">
+            <p className="text-sm text-slate-500 leading-relaxed">
+              Descuentos por prepago disponibles en Connect y Pro:{" "}
+              <span className="font-medium">2 años (-10%)</span> y{" "}
+              <span className="font-medium">3 años (-18%)</span>. Pago
+              anticipado no reembolsable.
+            </p>
+          </div>
+        )}
       </section>
 
       <FaqSection />
