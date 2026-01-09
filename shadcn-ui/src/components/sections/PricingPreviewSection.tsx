@@ -19,7 +19,8 @@ const DISCOUNTS: Record<BillingCycle, number> = {
 // Ajusta aquí si cambias precios anuales promo
 function annualPromoByPlanId(planId: string): number | null {
   if (planId === "connect") return 55;
-  if (planId === "woo") return 119;
+  if (planId === "woo") return 119; // compat si tu mock aún usa "woo"
+  if (planId === "pro") return 109; // compat si tu mock ya usa "pro"
   // Partner: no lo hacemos “checkout self-serve” aquí
   if (planId === "partner") return null;
   return null;
@@ -42,9 +43,9 @@ function PriceLine({ plan, cycle }: { plan: Plan; cycle: BillingCycle }) {
   // Partner: siempre CTA a contacto, no mostramos multi-year
   if (isPartner) {
     return (
-      <div className="min-h-[84px] flex flex-col justify-end">
+      <div className="min-h-[92px] flex flex-col justify-end">
         <div className="flex items-end gap-2">
-          <span className="text-4xl font-bold text-slate-900">
+          <span className="text-5xl font-bold text-slate-900">
             {plan.price}
           </span>
           <span className="text-slate-600 mb-1">/mes</span>
@@ -59,7 +60,7 @@ function PriceLine({ plan, cycle }: { plan: Plan; cycle: BillingCycle }) {
   if (!annual) {
     // fallback si faltase mapping
     return (
-      <div className="min-h-[84px] flex items-end gap-2">
+      <div className="min-h-[92px] flex items-end gap-2">
         <span className="text-5xl font-bold text-slate-900">{plan.price}</span>
         <span className="text-slate-600 mb-1">/mes</span>
       </div>
@@ -68,7 +69,7 @@ function PriceLine({ plan, cycle }: { plan: Plan; cycle: BillingCycle }) {
 
   if (cycle === "monthly") {
     return (
-      <div className="min-h-[84px] flex items-end gap-2">
+      <div className="min-h-[92px] flex items-end gap-2">
         <span className="text-5xl font-bold text-slate-900">{plan.price}</span>
         <span className="text-slate-600 mb-1">/mes</span>
       </div>
@@ -81,9 +82,10 @@ function PriceLine({ plan, cycle }: { plan: Plan; cycle: BillingCycle }) {
   const perMonthEq = total / (12 * years);
 
   return (
-    <div className="min-h-[84px] flex flex-col justify-end">
+    <div className="min-h-[92px] flex flex-col justify-end">
       <div className="flex items-end gap-2">
-        <span className="text-4xl font-bold text-slate-900">
+        {/* IMPORTANTE: mismo tamaño que mensual para evitar “saltos” */}
+        <span className="text-5xl font-bold text-slate-900">
           {formatEUR(total)}
         </span>
         <span className="text-slate-600 mb-1">
@@ -111,8 +113,20 @@ export default function PricingPreviewSection() {
   }, []);
 
   const sorted = useMemo(() => {
-    const order = { connect: 0, woo: 1, partner: 2 } as Record<string, number>;
-    return [...plans].sort((a, b) => (order[a.id] ?? 99) - (order[b.id] ?? 99));
+    // Queremos: Connect (izq) · PRO (centro, recomendado) · Partner (dcha)
+    // Lo hacemos robusto:
+    // 1) si hay highlight, va al centro
+    // 2) si no, consideramos "pro" o "woo" como el plan medio
+    // 3) partner siempre al final
+    const rank = (p: Plan) => {
+      if (p.id === "connect") return 0;
+      if (p.highlight) return 1;
+      if (p.id === "pro" || p.id === "woo") return 1;
+      if (p.id === "partner") return 2;
+      return 99;
+    };
+
+    return [...plans].sort((a, b) => rank(a) - rank(b));
   }, [plans]);
 
   const cycleLabel = useMemo(() => {
@@ -169,71 +183,83 @@ export default function PricingPreviewSection() {
 
         {/* Cards (alineadas) */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {sorted.map((plan) => (
-            <div
-              key={plan.id}
-              className={`rounded-2xl border p-8 shadow-sm bg-white flex flex-col h-full ${
-                plan.highlight ? "ring-2 ring-primary/40" : ""
-              }`}
-            >
-              {/* Header fijo */}
-              <div className="min-h-[96px]">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-slate-900">
-                      {plan.name}
-                    </h3>
-                    <p className="mt-2 text-slate-600">{plan.description}</p>
+          {sorted.map((plan) => {
+            // Normalizamos el título para que PRO no “ahuyente” con (WooCommerce)
+            // sin obligarte a tocar el mock ahora mismo.
+            const displayName =
+              plan.id === "woo" || plan.id === "pro"
+                ? "CumpleFactura Pro"
+                : plan.name;
+
+            return (
+              <div
+                key={plan.id}
+                className={`rounded-2xl border p-8 shadow-sm bg-white flex flex-col h-full ${
+                  plan.highlight ? "ring-2 ring-primary/40" : ""
+                }`}
+              >
+                {/* Header fijo */}
+                <div className="min-h-[108px]">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="pr-2">
+                      <h3 className="text-2xl font-bold text-slate-900">
+                        {displayName}
+                      </h3>
+                      <p className="mt-2 text-slate-600">{plan.description}</p>
+                    </div>
+
+                    {plan.highlight && (
+                      <Badge className="bg-primary text-primary-foreground whitespace-nowrap">
+                        Recomendado
+                      </Badge>
+                    )}
                   </div>
-
-                  {plan.highlight && (
-                    <Badge className="bg-primary text-primary-foreground">
-                      Recomendado
-                    </Badge>
-                  )}
                 </div>
+
+                {/* Precio fijo */}
+                <div className="mt-6">
+                  <PriceLine plan={plan} cycle={cycle} />
+                </div>
+
+                {/* Features crecen igual */}
+                <ul className="mt-6 space-y-3 flex-1">
+                  {plan.features.map((f) => (
+                    <li
+                      key={f}
+                      className="flex items-start gap-3 text-slate-700"
+                    >
+                      <Check className="h-5 w-5 text-primary mt-0.5" />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA alineado abajo */}
+                <div className="mt-8">
+                  <Button
+                    asChild
+                    size="lg"
+                    className={
+                      plan.highlight
+                        ? "w-full bg-primary text-white hover:bg-primary/90"
+                        : "w-full"
+                    }
+                    variant={plan.highlight ? "default" : "outline"}
+                  >
+                    <Link to="/precios">{plan.cta}</Link>
+                  </Button>
+                </div>
+
+                <p className="mt-4 text-xs text-slate-500">
+                  Promo hasta 1/07/2027. Condiciones completas en{" "}
+                  <Link to="/precios" className="text-primary hover:underline">
+                    Precios
+                  </Link>
+                  .
+                </p>
               </div>
-
-              {/* Precio fijo */}
-              <div className="mt-6">
-                <PriceLine plan={plan} cycle={cycle} />
-              </div>
-
-              {/* Features crecen igual */}
-              <ul className="mt-6 space-y-3 flex-1">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-slate-700">
-                    <Check className="h-5 w-5 text-primary mt-0.5" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA alineado abajo */}
-              <div className="mt-8">
-                <Button
-                  asChild
-                  size="lg"
-                  className={
-                    plan.highlight
-                      ? "w-full bg-primary text-white hover:bg-primary/90"
-                      : "w-full"
-                  }
-                  variant={plan.highlight ? "default" : "outline"}
-                >
-                  <Link to="/precios">{plan.cta}</Link>
-                </Button>
-              </div>
-
-              <p className="mt-4 text-xs text-slate-500">
-                Promo hasta 1/07/2027. Condiciones completas en{" "}
-                <Link to="/precios" className="text-primary hover:underline">
-                  Precios
-                </Link>
-                .
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-10 text-center">

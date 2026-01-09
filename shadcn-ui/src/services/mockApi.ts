@@ -8,32 +8,33 @@ export const getPlans = (): Promise<Plan[]> => {
       name: "CumpleFactura Connect",
       price: "4,90€",
       description:
-        "Entrada rápida para migraciones y perfiles rezagados (no digitales o transición). Cumplimiento claro, sin complejidad.",
+        "Entrada rápida para migraciones y perfiles rezagados (digital o no). Cumplimiento claro, sin complejidad.",
       features: [
-        "Veri*factu completo (hash + QR + encadenado)",
+        "Acceso al plugin y al panel (modo Connect)",
+        "Veri*factu completo (QR + hash encadenado)",
         "Envío automático de registros a AEAT",
         "Registro de eventos (evidencias de cumplimiento)",
         "Facturas ordinarias, rectificativas básicas y simplificadas",
         "Documento austero (sin plantillas, logo ni personalización)",
-        "Pensado para empezar o migrar sin fricción",
+        "Incluye hasta 60 facturas/mes · extra: 0,06 €/factura",
       ],
       cta: "Empezar con Connect",
     },
     {
       id: "pro",
-      name: "CumpleFactura Pro (WooCommerce)",
+      name: "CumpleFactura Pro",
       price: "10,90€",
       description:
-        "Sistema completo y defendible. Para operar cómodo a largo plazo (digital o no). Incluye plugin para WooCommerce.",
+        "Sistema completo y defendible para operar cómodo a largo plazo (digital o no). Incluye plugin para WooCommerce.",
       features: [
         "Todo lo de Connect",
         "Plugin WooCommerce incluido (si vendes online)",
-        "Editor de facturas + plantillas y logo",
+        "Editor de facturas + plantillas + logo",
         "Validaciones fiscales avanzadas (menos errores)",
         "Asistente de rectificativas / sustitutivas",
         "Control de series y numeración",
         "Auditoría navegable + evidencias estructuradas",
-        "Panel fiscal con estados y alertas",
+        "Incluye hasta 100 facturas/mes · extra: 0,04 €/factura",
       ],
       cta: "Elegir Pro",
       highlight: true,
@@ -61,27 +62,27 @@ export const getFaqs = (): Promise<FaqItem[]> => {
   return Promise.resolve([
     {
       id: "1",
-      question: "¿Hasta cuándo es la promoción?",
+      question: "¿Hasta cuándo están vigentes los precios promocionales?",
       answer:
-        "La promoción aplica a nuevas altas hasta el 1 de julio de 2027. A partir de esa fecha, se aplican las tarifas estándar indicadas (Connect 7,90 €, Pro 14,90 €, Partner 79 €).",
+        "La promoción aplica a nuevas altas hasta el 1 de julio de 2027. En la tabla puedes ver el precio promocional y el precio estándar posterior (por plan).",
     },
     {
       id: "2",
-      question: "¿Qué plan me conviene si vendo con WooCommerce?",
+      question: "¿Qué plan necesito si vendo online con WooCommerce?",
       answer:
-        "Normalmente, CumpleFactura Pro: incluye el plugin para WooCommerce, edición de factura, plantillas y un panel fiscal con evidencias y auditoría más completas.",
+        "Normalmente, CumpleFactura Pro: incluye el plugin para WooCommerce, editor de facturas con plantillas/logo y validaciones avanzadas para reducir errores.",
     },
     {
       id: "3",
-      question: "¿Para qué sirve exactamente Connect?",
+      question: "¿Para qué sirve CumpleFactura Connect?",
       answer:
-        "Connect es una modalidad de entrada para migraciones o perfiles rezagados: prioriza cumplimiento y envío a AEAT con un documento austero (sin editor ni personalización) para empezar sin fricción.",
+        "Connect está pensado como entrada rápida: migraciones, perfiles rezagados o una operativa mínima. Mantiene cumplimiento (QR + hash, envío AEAT y evidencias), pero con documento austero y menos automatización.",
     },
     {
       id: "4",
-      question: "Soy gestoría/asesoría: ¿cómo funciona Partner?",
+      question: "Soy gestoría/asesoría: ¿qué incluye Partner?",
       answer:
-        "Partner es un producto B2B con panel multi-cliente y control centralizado. Las condiciones dependen del volumen y se explican en una llamada breve.",
+        "Partner es B2B con panel multi-cliente, control centralizado y soporte especializado. La activación se hace con onboarding y condiciones ajustadas según volumen.",
     },
     {
       id: "5",
@@ -91,9 +92,15 @@ export const getFaqs = (): Promise<FaqItem[]> => {
     },
     {
       id: "6",
-      question: "¿Mensual o anual?",
+      question: "¿Qué significa el modo anual, 2 años o 3 años?",
       answer:
-        "Puedes pagar mensual o anual. En la web puedes alternar el selector para ver el total anual.",
+        "Es pago anticipado. En 2 años se aplica un -10% y en 3 años un -18% (solo para Connect y Pro). Partner se define en llamada.",
+    },
+    {
+      id: "7",
+      question: "¿Qué cambia después del 1 de julio de 2027?",
+      answer:
+        "Tras esa fecha, se aplican las tarifas estándar indicadas en cada plan. En la tabla verás siempre el “después” para que sea transparente.",
     },
   ]);
 };
