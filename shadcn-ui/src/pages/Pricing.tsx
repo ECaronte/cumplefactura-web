@@ -1,8 +1,9 @@
 // shadcn-ui/src/pages/Pricing.tsx
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import MainLayout from "@/layouts/MainLayout";
 import FaqSection from "@/components/sections/FaqSection";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import {
   Card,
   CardContent,
@@ -17,12 +18,41 @@ import { Plan } from "@/types";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
+type Billing = "monthly" | "annual";
+
+const PRICING: Record<
+  string,
+  {
+    promo: { monthly: string; annual: string };
+    standard: { monthly: string; annual: string };
+  }
+> = {
+  connect: {
+    promo: { monthly: "4,90€", annual: "49€" },
+    standard: { monthly: "7,90€", annual: "79€" },
+  },
+  pro: {
+    promo: { monthly: "10,90€", annual: "109€" },
+    standard: { monthly: "14,90€", annual: "149€" },
+  },
+  partner: {
+    promo: { monthly: "59€", annual: "—" },
+    standard: { monthly: "79€", annual: "—" },
+  },
+};
+
 export default function Pricing() {
   const [plans, setPlans] = useState<Plan[]>([]);
+  const [billing, setBilling] = useState<Billing>("monthly");
 
   useEffect(() => {
     getPlans().then(setPlans);
   }, []);
+
+  const ordered = useMemo(() => {
+    const order = { connect: 0, pro: 1, partner: 2 } as Record<string, number>;
+    return [...plans].sort((a, b) => (order[a.id] ?? 99) - (order[b.id] ?? 99));
+  }, [plans]);
 
   return (
     <MainLayout>
@@ -32,7 +62,7 @@ export default function Pricing() {
         </title>
         <meta
           name="description"
-          content="Planes claros para facturación desde WooCommerce y colaboración con gestorías. Empieza simple y escala sólo si lo necesitas."
+          content="Planes claros para cumplir con Veri*factu y operar con tranquilidad: Connect (entrada rápida), Pro (recomendado) y Partner para gestorías/asesorías."
         />
         <link rel="canonical" href="https://cumplefactura.es/precios" />
 
@@ -43,7 +73,7 @@ export default function Pricing() {
         />
         <meta
           property="og:description"
-          content="Elige el plan que mejor encaje con tu volumen de facturación y tu forma de trabajar con tu gestoría."
+          content="Elige el plan que encaja con tu forma de facturar. Precios promocionales hasta 1 julio 2027 y tarifas estándar a partir de esa fecha."
         />
         <meta property="og:url" content="https://cumplefactura.es/precios" />
         <meta
@@ -64,80 +94,61 @@ export default function Pricing() {
           name="twitter:image"
           content="https://cumplefactura.es/og/precios.png"
         />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "Product",
-                name: "CumpleFactura",
-                description:
-                  "Facturación para WooCommerce orientada a cumplimiento y colaboración con gestorías",
-                category: "Software de facturación / cumplimiento",
-                url: "https://cumplefactura.es/precios",
-                brand: { "@type": "Brand", name: "CumpleFactura" },
-                offers: {
-                  "@type": "AggregateOffer",
-                  priceCurrency: "EUR",
-                  lowPrice: "0",
-                  highPrice: "99",
-                  offerCount: "3",
-                  availability: "https://schema.org/InStock",
-                },
-              },
-              {
-                "@type": "BreadcrumbList",
-                itemListElement: [
-                  {
-                    "@type": "ListItem",
-                    position: 1,
-                    name: "Inicio",
-                    item: "https://cumplefactura.es/",
-                  },
-                  {
-                    "@type": "ListItem",
-                    position: 2,
-                    name: "Precios",
-                    item: "https://cumplefactura.es/precios",
-                  },
-                ],
-              },
-            ],
-          })}
-        </script>
       </Helmet>
 
       <section className="py-24 md:py-36 bg-background">
         {/* Header */}
         <div className="container text-center mb-14 md:mb-16">
           <div className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold bg-brand-light text-primary mb-5">
-            Planes claros
+            Precios claros
           </div>
+
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl mb-6 text-slate-900">
             Planes transparentes
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Elige el plan que mejor se adapte a tu volumen de facturación. Sin
-            costes ocultos.{" "}
-            <Link
-              to="/como-funciona"
-              className="text-primary hover:underline font-medium"
-            >
-              Ver cómo funciona
-            </Link>
-            .
+
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Promoción para nuevas altas hasta el{" "}
+            <strong>1 de julio de 2027</strong>. A partir de esa fecha, se
+            aplican las tarifas estándar indicadas en cada plan.
           </p>
+
+          <div className="mt-7 flex items-center justify-center gap-3">
+            <span
+              className={`text-sm ${
+                billing === "monthly"
+                  ? "text-slate-900 font-medium"
+                  : "text-slate-500"
+              }`}
+            >
+              Mensual
+            </span>
+            <Switch
+              checked={billing === "annual"}
+              onCheckedChange={(v) => setBilling(v ? "annual" : "monthly")}
+              aria-label="Cambiar a precios anuales"
+            />
+            <span
+              className={`text-sm ${
+                billing === "annual"
+                  ? "text-slate-900 font-medium"
+                  : "text-slate-500"
+              }`}
+            >
+              Anual
+            </span>
+            <span className="ml-2 text-xs text-slate-500">(total anual)</span>
+          </div>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild size="lg" className="h-12 px-8">
-              <Link to="/empezar" className="inline-flex items-center gap-2">
-                Empezar <ArrowRight className="h-4 w-4" />
+              <Link to="/contacto" className="inline-flex items-center gap-2">
+                Hablar con nosotros <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="h-12 px-8">
               <Link to="/gestorias" className="inline-flex items-center gap-2">
-                Soy gestoría <Briefcase className="h-4 w-4" />
+                Soy gestoría/asesoría <Briefcase className="h-4 w-4" />
               </Link>
             </Button>
           </div>
@@ -145,135 +156,113 @@ export default function Pricing() {
 
         {/* Planes */}
         <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-14 md:mb-16">
-          {plans.map((plan) => (
-            <Card
-              key={plan.id}
-              className={`flex flex-col relative ${
-                plan.highlight
-                  ? "border-primary shadow-xl scale-[1.03] z-10"
-                  : "border-border shadow-sm"
-              }`}
-            >
-              {plan.highlight && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-white px-3 py-1 rounded-full text-sm font-medium shadow-sm">
-                  Más popular
-                </div>
-              )}
-              <CardHeader className="pb-4">
-                <CardTitle className="text-2xl text-slate-900">
-                  {plan.name}
-                </CardTitle>
-                <CardDescription className="leading-relaxed">
-                  {plan.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <div className="mb-6">
-                  <span className="text-4xl font-bold text-slate-900">
-                    {plan.price}
-                  </span>
-                  {plan.price !== "Contactar" && (
-                    <span className="text-muted-foreground">/mes</span>
-                  )}
-                </div>
-                <ul className="space-y-3">
-                  {plan.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-slate-700 leading-relaxed">
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+          {ordered.map((plan) => {
+            const p = PRICING[plan.id];
+            const promo = p?.promo?.[billing] || plan.price;
+            const standard = p?.standard?.[billing] || "";
+            const isPartner = plan.id === "partner";
 
-                {/* Nota legal-safe */}
-                <div className="mt-6 rounded-xl border bg-slate-50 px-4 py-3 text-sm text-slate-600 leading-relaxed">
-                  Orientado a cumplimiento y trazabilidad (Veri*Factu / software
-                  verificable). Algunos módulos avanzados se incorporan
-                  progresivamente según el calendario técnico.
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button
-                  className="w-full"
-                  variant={plan.highlight ? "default" : "outline"}
-                >
-                  {plan.cta}
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
+            return (
+              <Card
+                key={plan.id}
+                className={`flex flex-col relative ${
+                  plan.highlight
+                    ? "border-primary shadow-xl scale-[1.03] z-10"
+                    : "border-border shadow-sm"
+                }`}
+              >
+                {plan.highlight && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium shadow-sm">
+                    Recomendado
+                  </div>
+                )}
+
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-2xl text-slate-900">
+                    {plan.name}
+                  </CardTitle>
+                  <CardDescription className="leading-relaxed">
+                    {plan.description}
+                  </CardDescription>
+                </CardHeader>
+
+                <CardContent className="flex-1">
+                  <div className="mb-3">
+                    <div className="flex items-end gap-2">
+                      <span className="text-4xl font-bold text-slate-900">
+                        {promo}
+                      </span>
+                      {!isPartner && (
+                        <span className="text-muted-foreground">
+                          {billing === "annual" ? "/año" : "/mes"}
+                        </span>
+                      )}
+                    </div>
+
+                    {standard && standard !== "—" && (
+                      <div className="mt-1 text-sm text-slate-500">
+                        Desde <span className="font-medium">1 julio 2027</span>:{" "}
+                        <span className="font-medium text-slate-700">
+                          {standard}
+                          {isPartner
+                            ? "/mes"
+                            : billing === "annual"
+                              ? "/año"
+                              : "/mes"}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  <ul className="space-y-3 mt-6">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2">
+                        <Check className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-slate-700 leading-relaxed">
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Nota legal-safe */}
+                  <div className="mt-6 rounded-xl border bg-slate-50 px-4 py-3 text-sm text-slate-600 leading-relaxed">
+                    Cumplimiento y trazabilidad orientados a Veri*factu /
+                    software verificable. Algunas capacidades avanzadas se
+                    incorporan progresivamente según el calendario técnico.
+                  </div>
+                </CardContent>
+
+                <CardFooter>
+                  <Button
+                    asChild
+                    className="w-full"
+                    variant={plan.highlight ? "default" : "outline"}
+                  >
+                    <Link to="/contacto">{plan.cta}</Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+            );
+          })}
         </div>
 
         {/* Caja gestorías */}
-        <div className="container max-w-4xl mx-auto text-center mb-16 md:mb-20">
+        <div className="container max-w-4xl mx-auto text-center mb-10 md:mb-14">
           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 md:p-6 inline-flex flex-col sm:flex-row items-center gap-3 text-slate-700">
             <Briefcase className="h-5 w-5 text-primary" />
             <span className="leading-relaxed">
-              ¿Eres una gestoría y quieres recomendar CumpleFactura a tus
-              clientes?{" "}
+              Partner es para gestorías y asesorías (B2B): panel multi-cliente y
+              control centralizado.
               <Link
                 to="/gestorias"
-                className="text-primary font-medium hover:underline"
+                className="text-primary font-medium hover:underline ml-1"
               >
-                Ver programa para gestorías
+                Ver programa Partner
               </Link>
               .
             </span>
           </div>
-        </div>
-
-        {/* Sección valor (sin XAdES / Facturae) */}
-        <div className="container max-w-5xl mx-auto">
-          <div className="bg-white rounded-2xl p-8 md:p-12 border shadow-sm">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900 text-center">
-              ¿Por qué pagar una cuota si tu WooCommerce factura poco?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-10 text-center leading-relaxed max-w-3xl mx-auto">
-              Aunque factures poco, sigues necesitando orden, numeración
-              coherente y exportaciones limpias para tu contabilidad.
-              CumpleFactura reduce trabajo manual y fricción con tu gestoría:
-              menos correcciones, menos dudas y más tranquilidad.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
-              {[
-                "Orden y coherencia contable desde el origen",
-                "Menos errores y menos trabajo de revisión",
-                "Exportación limpia para gestoría y ERP",
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <div className="h-9 w-9 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                    <Check className="h-5 w-5 text-green-600" />
-                  </div>
-                  <span className="font-medium text-slate-700 leading-relaxed">
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-10 text-center">
-              <Button asChild size="lg" className="h-12 px-8">
-                <Link to="/empezar">Empezar</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Ayuda */}
-        <div className="container max-w-2xl mx-auto mt-12 text-center">
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            ¿Dudas sobre qué plan elegir?{" "}
-            <Link
-              to="/contacto"
-              className="text-primary font-medium hover:underline"
-            >
-              Escríbenos
-            </Link>{" "}
-            y te ayudamos a encontrar la mejor opción para tu caso.
-          </p>
         </div>
       </section>
 

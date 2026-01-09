@@ -4,26 +4,64 @@ import { Link } from "react-router-dom";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
 import { getPlans } from "@/services/mockApi";
 import type { Plan } from "@/types";
 
-function PriceLine({ plan }: { plan: Plan }) {
-  const isFree = plan.id === "free";
+type Billing = "monthly" | "annual";
 
-  // Extra: detecta “Después: XX/mes” desde description para mostrarlo en pequeño (sin depender de tipos).
-  const later = useMemo(() => {
-    const m = plan.description?.match(/Después:\s*([0-9]+€)\/mes/i);
-    return m?.[1] || "";
-  }, [plan.description]);
+const PRICING: Record<
+  string,
+  {
+    promo: { monthly: string; annual: string };
+    standard: { monthly: string; annual: string };
+  }
+> = {
+  connect: {
+    promo: { monthly: "4,90€", annual: "49€" },
+    standard: { monthly: "7,90€", annual: "79€" },
+  },
+  pro: {
+    promo: { monthly: "10,90€", annual: "109€" },
+    standard: { monthly: "14,90€", annual: "149€" },
+  },
+  partner: {
+    promo: { monthly: "59€", annual: "—" },
+    standard: { monthly: "79€", annual: "—" },
+  },
+};
+
+function PriceLine({ plan, billing }: { plan: Plan; billing: Billing }) {
+  const p = PRICING[plan.id];
+
+  const promo = p?.promo?.[billing];
+  const standard = p?.standard?.[billing];
+
+  const showAnnual = billing === "annual";
+  const isPartner = plan.id === "partner";
 
   return (
-    <div className="flex items-end gap-2">
-      <span className="text-5xl font-bold text-slate-900">{plan.price}</span>
-      {!isFree && <span className="text-slate-600 mb-1">/mes</span>}
-      {!isFree && later && (
-        <span className="text-sm text-slate-500 mb-2 ml-2">
-          después {later}/mes
+    <div className="space-y-2">
+      <div className="flex items-end gap-2">
+        <span className="text-5xl font-bold text-slate-900">
+          {promo || plan.price}
         </span>
+
+        {!isPartner && (
+          <span className="text-slate-600 mb-1">
+            {showAnnual ? "/año" : "/mes"}
+          </span>
+        )}
+      </div>
+
+      {standard && standard !== "—" && (
+        <p className="text-sm text-slate-500">
+          Desde <span className="font-medium">1 julio 2027</span>:{" "}
+          <span className="font-medium text-slate-700">
+            {standard}
+            {isPartner ? "/mes" : showAnnual ? "/año" : "/mes"}
+          </span>
+        </p>
       )}
     </div>
   );
@@ -31,27 +69,49 @@ function PriceLine({ plan }: { plan: Plan }) {
 
 export default function PricingPreviewSection() {
   const [plans, setPlans] = useState<Plan[]>([]);
+  const [billing, setBilling] = useState<Billing>("monthly");
 
   useEffect(() => {
     getPlans().then(setPlans);
   }, []);
 
   const sorted = useMemo(() => {
-    const order = { free: 0, pro: 1, agency: 2 } as Record<string, number>;
+    const order = { connect: 0, pro: 1, partner: 2 } as Record<string, number>;
     return [...plans].sort((a, b) => (order[a.id] ?? 99) - (order[b.id] ?? 99));
   }, [plans]);
 
   return (
     <section className="py-20 bg-white" id="pricing">
       <div className="container">
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-4xl font-bold tracking-tight text-slate-900">
-            Precios simples (oferta hasta 1 julio 2027)
+            Precios (promoción hasta 1 julio 2027)
           </h2>
           <p className="mt-3 text-lg text-muted-foreground">
-            Elige tu encaje: empieza gratis, activa cumplimiento completo o
-            centraliza clientes si eres gestoría.
+            Elige tu encaje: entrada rápida con Connect, sistema completo con
+            Pro (recomendado) o control centralizado si eres gestoría/asesoría.
           </p>
+
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <span
+              className={`text-sm ${billing === "monthly" ? "text-slate-900 font-medium" : "text-slate-500"}`}
+            >
+              Mensual
+            </span>
+            <Switch
+              checked={billing === "annual"}
+              onCheckedChange={(v) => setBilling(v ? "annual" : "monthly")}
+              aria-label="Cambiar a precios anuales"
+            />
+            <span
+              className={`text-sm ${billing === "annual" ? "text-slate-900 font-medium" : "text-slate-500"}`}
+            >
+              Anual
+            </span>
+            <span className="ml-2 text-xs text-slate-500">
+              (muestra el total anual)
+            </span>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -78,7 +138,7 @@ export default function PricingPreviewSection() {
               </div>
 
               <div className="mt-6">
-                <PriceLine plan={plan} />
+                <PriceLine plan={plan} billing={billing} />
               </div>
 
               <ul className="mt-6 space-y-3">
@@ -106,8 +166,8 @@ export default function PricingPreviewSection() {
               </div>
 
               <p className="mt-4 text-xs text-slate-500">
-                Oferta vigente hasta 1 julio 2027. Los precios posteriores se
-                muestran en la página de precios.
+                Promoción para nuevas altas hasta el 1/07/2027. Desde esa fecha,
+                se aplican las tarifas estándar indicadas.
               </p>
             </div>
           ))}

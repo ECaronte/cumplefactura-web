@@ -1,56 +1,58 @@
+// shadcn-ui/src/services/mockApi.ts
 import { Plan, FaqItem } from "../types";
 
 export const getPlans = (): Promise<Plan[]> => {
   return Promise.resolve([
     {
-      id: "woo",
-      name: "Plan Woo",
-      price: "0€",
+      id: "connect",
+      name: "CumpleFactura Connect",
+      price: "4,90€",
       description:
-        "Para tiendas WooCommerce que quieren empezar ya con facturación básica y dejar el terreno preparado.",
+        "Entrada rápida para migraciones y perfiles rezagados (no digitales o transición). Cumplimiento claro, sin complejidad.",
       features: [
-        "Factura PDF automática",
-        "Integración nativa con WooCommerce",
-        "Sin límite de pedidos",
-        "Panel básico de facturas y exportación simple",
-        "Base preparada para activar VeriFactu cuando toque",
+        "Veri*factu completo (hash + QR + encadenado)",
+        "Envío automático de registros a AEAT",
+        "Registro de eventos (evidencias de cumplimiento)",
+        "Facturas ordinarias, rectificativas básicas y simplificadas",
+        "Documento austero (sin plantillas, logo ni personalización)",
+        "Pensado para empezar o migrar sin fricción",
       ],
-      cta: "Empezar gratis",
+      cta: "Empezar con Connect",
     },
     {
-      id: "connect",
-      name: "Plan Connect",
-      price: "19€",
+      id: "pro",
+      name: "CumpleFactura Pro (WooCommerce)",
+      price: "10,90€",
       description:
-        "Cumplimiento completo para WooCommerce. Oferta hasta 1 julio 2027. Después: 29€/mes.",
+        "Sistema completo y defendible. Para operar cómodo a largo plazo (digital o no). Incluye plugin para WooCommerce.",
       features: [
-        "VeriFactu (hash encadenado + trazabilidad)",
-        "Numeración y series legales",
-        "Registro de integridad y auditoría",
-        "Exportación profesional CSV/XML para gestoría",
-        "Conservación y evidencias de cumplimiento",
-        "Soporte prioritario",
-        "Preparado para la normativa 2026–2027",
+        "Todo lo de Connect",
+        "Plugin WooCommerce incluido (si vendes online)",
+        "Editor de facturas + plantillas y logo",
+        "Validaciones fiscales avanzadas (menos errores)",
+        "Asistente de rectificativas / sustitutivas",
+        "Control de series y numeración",
+        "Auditoría navegable + evidencias estructuradas",
+        "Panel fiscal con estados y alertas",
       ],
-      cta: "Elegir Plan Connect",
+      cta: "Elegir Pro",
       highlight: true,
     },
     {
       id: "partner",
-      name: "Plan Partner",
+      name: "CumpleFactura Partner (Gestorías y asesorías)",
       price: "59€",
       description:
-        "Para gestorías con múltiples clientes. Oferta hasta 1 julio 2027. Después: 79€/mes.",
+        "Producto B2B: panel multi-cliente, control centralizado y soporte de despacho. Activación con onboarding guiado.",
       features: [
-        "Acceso multi-cliente",
-        "Descarga masiva de facturas",
-        "Exportaciones CSV/XML optimizadas para contabilidad",
-        "Flujos de revisión y control (roadmap)",
-        "Alertas y avisos (roadmap)",
-        "Integraciones avanzadas / API (fase 2 – en desarrollo)",
-        "Soporte especializado",
+        "Panel multi-cliente (control centralizado)",
+        "Estados AEAT y trazabilidad por cliente",
+        "Registro de eventos y evidencias por cliente",
+        "Documentación de migración y cambio de SIF",
+        "Soporte B2B especializado",
+        "Condiciones variables según volumen (se explican en llamada)",
       ],
-      cta: "Solicitar acceso",
+      cta: "Hablar con nosotros",
     },
   ]);
 };
@@ -59,33 +61,39 @@ export const getFaqs = (): Promise<FaqItem[]> => {
   return Promise.resolve([
     {
       id: "1",
-      question: "¿Puedo usar CumpleFactura gratis?",
+      question: "¿Hasta cuándo es la promoción?",
       answer:
-        "Sí. El Plan Woo permite generar facturas PDF automáticas desde WooCommerce sin coste.",
+        "La promoción aplica a nuevas altas hasta el 1 de julio de 2027. A partir de esa fecha, se aplican las tarifas estándar indicadas (Connect 7,90 €, Pro 14,90 €, Partner 79 €).",
     },
     {
       id: "2",
-      question:
-        "¿Qué plan necesito para cumplir con VeriFactu y la normativa 2026–2027?",
+      question: "¿Qué plan me conviene si vendo con WooCommerce?",
       answer:
-        "Para el cumplimiento completo (trazabilidad VeriFactu, numeración legal, auditoría y evidencias) necesitas el Plan Connect o superior.",
+        "Normalmente, CumpleFactura Pro: incluye el plugin para WooCommerce, edición de factura, plantillas y un panel fiscal con evidencias y auditoría más completas.",
     },
     {
       id: "3",
-      question: "¿Qué significa “oferta hasta 1 julio 2027”?",
+      question: "¿Para qué sirve exactamente Connect?",
       answer:
-        "Hasta esa fecha aplican precios promocionales. Después, el Plan Connect pasa a 29€/mes y el Plan Partner a 79€/mes.",
+        "Connect es una modalidad de entrada para migraciones o perfiles rezagados: prioriza cumplimiento y envío a AEAT con un documento austero (sin editor ni personalización) para empezar sin fricción.",
     },
     {
       id: "4",
-      question: "¿La API para gestorías está incluida?",
+      question: "Soy gestoría/asesoría: ¿cómo funciona Partner?",
       answer:
-        "La API e integraciones avanzadas están previstas como Fase 2 (en desarrollo). En Partner lo indicamos como roadmap, no como funcionalidad ya disponible.",
+        "Partner es un producto B2B con panel multi-cliente y control centralizado. Las condiciones dependen del volumen y se explican en una llamada breve.",
     },
     {
       id: "5",
-      question: "¿Puedo cambiar de plan cuando quiera?",
-      answer: "Sí. Puedes subir o bajar de plan cuando lo necesites.",
+      question: "¿Puedo cancelar cuando quiera?",
+      answer:
+        "Sí. Puedes cancelar en cualquier momento. Al cancelar, debes cesar el uso del SIF o migrar a otro SIF conforme. No bloqueamos la migración.",
+    },
+    {
+      id: "6",
+      question: "¿Mensual o anual?",
+      answer:
+        "Puedes pagar mensual o anual. En la web puedes alternar el selector para ver el total anual.",
     },
   ]);
 };
